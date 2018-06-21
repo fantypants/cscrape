@@ -1,0 +1,28 @@
+<h2>Show domain</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @domain.name %>
+  </li>
+
+  <li>
+    <strong>Date:</strong>
+    <%= @domain.date %>
+  </li>
+
+  <li>
+    <strong>Type:</strong>
+    <%= @domain.type %>
+  </li>
+
+  <li>
+    <strong>Url:</strong>
+    <%= @domain.url %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: domain_path(@conn, :edit, @domain) %></span>
+<span><%= link "Back", to: domain_path(@conn, :index) %></span>
