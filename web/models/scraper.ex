@@ -2,8 +2,8 @@ defmodule Cryptscrape.Scraper do
   alias Cryptscrape.DomainController
 
 def runlist() do
-      #list = newlist
-      #raw_list = scrapegit(list) |> IO.inspect
+      list = newlist
+      raw_list = scrapegit(list) |> IO.inspect
       #for_submission = remove_entries(raw_list) |> IO.inspect
 end
 

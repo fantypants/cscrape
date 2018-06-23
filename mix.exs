@@ -43,8 +43,9 @@ defmodule Cryptscrape.Mixfile do
       {:cowboy, "~> 1.0"},
       {:httpotion, "~> 3.1.0"},
       {:friendly, "~> 1.0.0"},
-      {:httpoison, "~> 1.0"}
-    ]
+      {:httpoison, "~> 1.0"},
+      {:edeliver, "~> 1.4.2"},
+      {:distillery, "~> 1.4"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
