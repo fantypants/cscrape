@@ -18,7 +18,7 @@
           <ul class="nav nav-pills pull-right">
             <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
               <li><span><%= link "Domains", to: domain_path(@conn, :index), class: "btn btn-default btn-xs" %></span></li>
-              <li><span><%= link "Scrape!", to: domain_path(@conn, :generatelist), data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs"  %></span></li>
+              
 
           </ul>
         </nav>

@@ -15,6 +15,10 @@ defmodule Cryptscrape.DomainController do
     render(conn, "new.html", changeset: changeset)
   end
 
+  def run_list() do
+    Task.async(fn -> Cryptscrape.Scraper.runlist() end)
+  end
+
   def generatelist(conn, _params) do
     IO.puts "Start of generating list"
     Task.async(fn -> Cryptscrape.Scraper.runlist() end)
