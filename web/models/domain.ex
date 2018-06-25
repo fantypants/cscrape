@@ -18,6 +18,7 @@ defmodule Cryptscrape.Domain do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:name, :date, :type, :url, :relevancy])
+    |> unique_constraint(:name)
     |> validate_required([:name, :date, :type, :url, :relevancy])
   end
 end

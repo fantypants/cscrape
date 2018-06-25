@@ -16,7 +16,7 @@ defmodule Cryptscrape.DomainController do
   end
 
   def run_list() do
-    Task.async(fn -> Cryptscrape.Scraper.runlist() end)
+    #Task.async(fn -> Cryptscrape.Scraper.runlist() end)
   end
 
   def generatelist(conn, _params) do
