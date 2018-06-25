@@ -18,6 +18,7 @@ defmodule Cryptscrape.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/welcome", PageController, :welcome
     resources "/domains", DomainController
     get "/run", DomainController, :generatelist
     resources "/users", UserController
