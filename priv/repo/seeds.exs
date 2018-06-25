@@ -2,10 +2,14 @@
 #
 #     mix run priv/repo/seeds.exs
 #
-# Inside the script, you can read and write to any of your
-# repositories directly:
+# It is also run when you use the command `mix ecto.setup`
 #
-#     Cryptscrape.Repo.insert!(%Cryptscrape.SomeModel{})
-#
-# We recommend using the bang functions (`insert!`, `update!`
-# and so on) as they will halt execution if something goes wrong.
+
+users = [
+  %{email: "jane.doe@example.com", password: "password"},
+  %{email: "john.smith@example.org", password: "password"}
+]
+
+for user <- users do
+  {:ok, _} = Cryptscrape.Accounts.create_user(user)
+end

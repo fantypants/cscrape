@@ -7,6 +7,7 @@ defmodule Cryptscrape.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug Phauxth.Authenticate
   end
 
   pipeline :api do
@@ -19,6 +20,8 @@ defmodule Cryptscrape.Router do
     get "/", PageController, :index
     resources "/domains", DomainController
     get "/run", DomainController, :generatelist
+    resources "/users", UserController
+    resources "/sessions", SessionController, only: [:new, :create, :delete]
 
   end
 
