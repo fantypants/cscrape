@@ -1,9 +1,14 @@
 defmodule Cryptscrape.Scraper do
   alias Cryptscrape.DomainController
+  alias Cryptscrape.Target
 
 def runlist() do
       list = newlist
-      raw_list = scrapegit(list) |> IO.inspect
+      direct_list = list |> Target.direct_matches
+      raw_list = scrapegit(list)
+      perfect_matches = Target.perfect_matches(raw_list, direct_list)
+
+      #raw_list = scrapegit(list) |> IO.inspect
       #for_submission = remove_entries(raw_list) |> IO.inspect
 end
 
@@ -41,7 +46,7 @@ defp scrapegit(list) do
     case processgit(a.name) do
       {:ok, map} ->
         map = %{name: a.name, type: a.type, url: a.url, date: a.date, relevancy: map}
-        DomainController.insert_domain(%{"domain" => map})
+        #DomainController.insert_domain(%{"domain" => map})
       {:error, message} ->
         %{name: a.name, type: a.type, url: a.url, date: a.date, relevancy: "invalid"} |> IO.inspect
     end
