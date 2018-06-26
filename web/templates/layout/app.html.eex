@@ -12,11 +12,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/lux/bootstrap.min.css">
   </head>
 
-  <body>
-    <div class="container">
+  <body id="page-top">
+
       <header class="header">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <a class="navbar-brand" href="#">Navbar</a>
+          <a class="navbar-brand" href="">ICORUMORS</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation" style="">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -24,7 +24,7 @@
             <ul class="navbar-nav mr-auto">
               <%= if @current_user do %>
               <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="<%= page_path @conn, :index %>">Home <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item"><a href="<%= user_path @conn, :index %>">Users</a></li>
               <li class="nav-item"><a href="<%= domain_path @conn, :index %>">Domains</a></li>
@@ -32,16 +32,19 @@
               <li class="nav-item"><%= link "Logout", to: session_path(@conn, :delete, @current_user), method: :delete %></li>
               <% else %>
               <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="<%= page_path @conn, :index %>">Home <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
+                <a class="nav-link" href="<%= page_path @conn, :features %>">Features</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
+                <a class="nav-link" href="<%= page_path @conn, :pricing %>">Pricing</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
+                <a class="nav-link" href="<%= page_path @conn, :faq %>">FAQ</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<%= page_path @conn, :about %>">About</a>
               </li>
               <li><a href="<%= session_path @conn, :new %>">Login</a></li>
               <% end %>
@@ -65,7 +68,7 @@
         <%= render @view_module, @view_template, assigns %>
       </main>
 
-    </div> <!-- /container -->
+
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

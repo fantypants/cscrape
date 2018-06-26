@@ -19,6 +19,10 @@ defmodule Cryptscrape.Router do
 
     get "/", PageController, :index
     get "/welcome", PageController, :welcome
+    get "/pricing", PageController, :pricing
+    get "/faq", PageController, :faq
+    get "/about", PageController, :about
+    get "/features", PageController, :features
     resources "/domains", DomainController
     get "/run", DomainController, :generatelist
     resources "/users", UserController
