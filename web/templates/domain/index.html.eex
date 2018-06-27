@@ -1,6 +1,6 @@
 <h2>Listing domains</h2>
 
-<table class="table">
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Name</th>
@@ -15,18 +15,24 @@
   </thead>
   <tbody>
 <%= for domain <- @domains do %>
-    <tr>
+    <tr class="text-info">
       <td><%= domain.name %></td>
       <td><%= domain.date %></td>
       <td><%= domain.type %></td>
       <td><%= domain.url %></td>
       <td><%= domain.relevancy %></td>
-      <td><%= domain.target %></td>
+      <%= if domain.target == "Potential" do %>
+      <td><span class="badge badge-pill badge-success"><%= domain.target %></span></td>
+      <% end %>
+      <%= if domain.target == "Direct" do %>
+      <td><span class="badge badge-pill badge-warning"><%= domain.target %></span></td>
+      <% end %>
+      <%= if domain.target == "Watch" do %>
+      <td><span class="badge badge-pill badge-info"><%= domain.target %></span></td>
+      <% end %>
 
 
     </tr>
 <% end %>
   </tbody>
 </table>
-
-<span><%= link "New domain", to: domain_path(@conn, :new) %></span>
