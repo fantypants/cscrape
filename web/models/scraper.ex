@@ -4,10 +4,13 @@ defmodule Cryptscrape.Scraper do
 
 def runlist() do
       list = newlist
-      direct_list = list |> Target.direct_matches
       raw_list = scrapegit(list)
+      direct_list = list |> Target.direct_matches
       perfect_matches = Target.perfect_matches(raw_list, direct_list)
-
+      pending_matches = Target.watch_list(perfect_matches, raw_list)
+      direct_list |> Enum.map(fn(a) -> Target.insert_matches(a) end)
+      perfect_matches |> Enum.map(fn(a) -> Target.insert_matches(a) end)
+      pending_matches |> Enum.map(fn(a) -> Target.insert_matches(a) end)
       #raw_list = scrapegit(list) |> IO.inspect
       #for_submission = remove_entries(raw_list) |> IO.inspect
 end
@@ -45,8 +48,7 @@ defp scrapegit(list) do
   list |> Enum.map(fn(a) ->
     case processgit(a.name) do
       {:ok, map} ->
-        map = %{name: a.name, type: a.type, url: a.url, date: a.date, relevancy: map}
-        #DomainController.insert_domain(%{"domain" => map})
+        %{name: a.name, type: a.type, url: a.url, date: a.date, relevancy: map}
       {:error, message} ->
         %{name: a.name, type: a.type, url: a.url, date: a.date, relevancy: "invalid"} |> IO.inspect
     end

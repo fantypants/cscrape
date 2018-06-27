@@ -7,6 +7,7 @@ defmodule Cryptscrape.Domain do
     field :date, :naive_datetime
     field :type, :string
     field :url, :string
+    field :target, :string
     field :relevancy, :integer
 
     timestamps()
@@ -17,8 +18,8 @@ defmodule Cryptscrape.Domain do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:name, :date, :type, :url, :relevancy])
+    |> cast(params, [:name, :date, :type, :url, :relevancy, :target])
     |> unique_constraint(:name)
-    |> validate_required([:name, :date, :type, :url, :relevancy])
+    |> validate_required([:name, :date, :type, :url, :relevancy, :target])
   end
 end
