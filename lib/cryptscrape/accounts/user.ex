@@ -8,6 +8,7 @@ defmodule Cryptscrape.Accounts.User do
     field :password, :string, virtual: true
     field :password_hash, :string
     field :sessions, {:map, :integer}, default: %{}
+    has_many :votes, Cryptscrape.Vote, on_delete: :nothing
 
     timestamps()
   end
@@ -15,6 +16,7 @@ defmodule Cryptscrape.Accounts.User do
   def changeset(%User{} = user, attrs) do
     user
     |> cast(attrs, [:email])
+    |> cast_assoc(:votes)
     |> validate_required([:email])
     |> unique_email
   end
@@ -22,6 +24,7 @@ defmodule Cryptscrape.Accounts.User do
   def create_changeset(%User{} = user, attrs) do
     user
     |> cast(attrs, [:email, :password])
+    |> cast_assoc(:votes)
     |> validate_required([:email, :password])
     |> unique_email
     |> validate_password(:password)

@@ -1,3 +1,52 @@
+<p style="text-align: center;">
+<h2 style="text-align: center;">Beach Tech.</h2>
+<h2 style="text-align: center;">No more Sand.</h2>
+<h2 style="text-align: center;">Makes your life easier.</h2>
+</p>
+
+
+
+<div class="eight columns alpha">
+<h2 style="text-align: center;">Reinvent Comfort for the 21st Century</h2>
+</div>
+<div class="eight columns alpha">
+<div id="shopify-section-1528339211608" class="shopify-section  featured-promotions-section">
+<div class="container content" style="padding-top: 0;">
+<div class="sixteen columns featured_links">
+<div class="section clearfix feature">
+<div class="four columns alpha animate_down delay-025s center animated fadeInDown">
+<div class="feature_divider"></div>
+<strong>C</strong>onvenient One Size Fits All!</div>
+<div class="four columns alpha animate_down delay-025s center animated fadeInDown"><strong>C</strong>hange anywhere, whilst keeping yourself and your kids protected from the elements</div>
+<div class="four columns alpha animate_down delay-025s center animated fadeInDown"><strong>D</strong>ry Fast when it counts the most! weather conditions don't matter anymore!</div>
+<div class="four columns animate_down delay-05s center animated fadeInDown">
+<div class="feature_divider"></div>
+<strong>F</strong>rom Premium materials to our 30 day money back guarantee, If you don't love your Warrobe return it with our money back guarantee.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="eight columns alpha">
+<div id="shopify-section-1528339211608" class="shopify-section  featured-promotions-section">
+<div class="container content" style="padding-top: 0;">
+<div class="sixteen columns featured_links">
+<div class="section clearfix feature">
+<div class="four columns animate_down delay-075s center animated fadeInDown">
+<div class="rounded"></div>
+</div>
+<div class="four columns omega animate_down delay-1s center animated fadeInDown"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="eight columns alpha">
+<div class="feature_divider"></div>
+<video autoplay="autoplay" loop="loop" id="video" onclick="this.paused?this.play():this.pause();"><source src="https://cdn.shopify.com/s/files/1/0017/8995/2047/files/AdSlide_1.mp4?10300287137843138766" type="video/mp4" /><source type="video/ogg" /></video></div>
+
 upstream cryptscrape {
   server 127.0.0.1:8888;
 }

@@ -10,6 +10,9 @@ defmodule Cryptscrape.Domain do
     field :target, :string
     field :relevancy, :integer
 
+    has_many :votes, Cryptscrape.Vote, on_delete: :nothing
+
+
     timestamps()
   end
 
@@ -19,6 +22,7 @@ defmodule Cryptscrape.Domain do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:name, :date, :type, :url, :relevancy, :target])
+    |> cast_assoc(:votes)
     |> unique_constraint(:name)
     |> validate_required([:name, :date, :type, :url, :relevancy, :target])
   end
