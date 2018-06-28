@@ -2,10 +2,9 @@ defmodule Cryptscrape.Vote do
   use Cryptscrape.Web, :model
 
   schema "votes" do
-    field :value, :string
-
-      belongs_to :user, Cryptscrape.User
-      belongs_to :domain, Cryptscrape.Domain
+    field :value, :integer
+    belongs_to :user, Cryptscrape.User
+    belongs_to :domain, Cryptscrape.Domain
     timestamps()
   end
 
