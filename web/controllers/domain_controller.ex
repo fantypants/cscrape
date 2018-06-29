@@ -23,7 +23,9 @@ defmodule Cryptscrape.DomainController do
     IO.puts "First stage of adding vote"
     IO.inspect user.id
     IO.inspect domain_id
-    conn |> redirect(to: domain_path(conn, :index))
+    conn
+    |> put_flash(:info, "Vote added!")
+    |> redirect(to: domain_path(conn, :index))
   end
 
   def generatelist(conn, _params) do
