@@ -2,11 +2,16 @@ defmodule Cryptscrape.DomainController do
   use Cryptscrape.Web, :controller
 
   alias Cryptscrape.Domain
+  alias Cryptscrape.Vote
 
   def index(conn, _params) do
-    domains = Repo.all(Domain) |> Enum.sort_by(fn(a) -> a.relevancy end) |> Enum.reverse
-    #
+    domains = Repo.all(Domain) |> Repo.preload(:votes) |> Enum.sort_by(fn(a) -> a.relevancy end) |> Enum.reverse
     render(conn, "index.html", domains: domains)
+  end
+
+  def count_votes(domain) do
+    query = from v in Vote, where: v.domain_id == ^domain
+    Repo.all(query) |> Enum.count
   end
 
 
@@ -19,10 +24,27 @@ defmodule Cryptscrape.DomainController do
     #Task.async(fn -> Cryptscrape.Scraper.runlist() end)
   end
 
+  defp create_vote(%{"user" => user_id, "domain" => domain_id, "value" => value}) do
+    vote_params = %{
+      "user_id" => user_id,
+      "domain_id" => domain_id,
+      "value" => +1
+      }
+   changeset = Vote.changeset(%Vote{}, vote_params)
+
+    case Repo.insert(changeset) do
+      {:ok, vote} ->
+        IO.puts "Vote added Successfully"
+      {:error, vote_params} ->
+        IO.puts "Vote not added"
+    end
+  end
+
   def add_vote(%Plug.Conn{assigns: %{current_user: user}} = conn, %{"id"=> domain_id}) do
     IO.puts "First stage of adding vote"
     IO.inspect user.id
     IO.inspect domain_id
+    create_vote(%{"user" => user.id, "domain" => domain_id, "value" => +1})
     conn
     |> put_flash(:info, "Vote added!")
     |> redirect(to: domain_path(conn, :index))

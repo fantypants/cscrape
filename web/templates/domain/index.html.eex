@@ -8,6 +8,7 @@
       <th>Type</th>
       <th>Url</th>
       <th>Relevancy</th>
+      <th> Reputation </th>
       <th>Target</th>
 
       <th></th>
@@ -21,6 +22,7 @@
       <td><%= domain.type %></td>
       <td><%= domain.url %></td>
       <td><%= domain.relevancy %></td>
+      <td><%= Cryptscrape.DomainController.count_votes(domain.id) %></td>
       <%= if domain.target == "Potential" do %>
       <td><span class="badge badge-pill badge-success"><%= domain.target %></span></td>
       <% end %>
