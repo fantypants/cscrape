@@ -21,6 +21,8 @@ defmodule Cryptscrape.Router do
     get "/welcome", PageController, :welcome
     get "/pricing", PageController, :pricing
     get "/faq", PageController, :faq
+    get "/domains/:id/add_vote", DomainController, :add_vote
+    post "/domains/:id/add_vote", DomainController, :add_vote
     get "/about", PageController, :about
     get "/features", PageController, :features
     resources "/domains", DomainController

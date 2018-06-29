@@ -19,6 +19,13 @@ defmodule Cryptscrape.DomainController do
     #Task.async(fn -> Cryptscrape.Scraper.runlist() end)
   end
 
+  def add_vote(%Plug.Conn{assigns: %{current_user: user}} = conn, %{"id"=> domain_id}) do
+    IO.puts "First stage of adding vote"
+    IO.inspect user.id
+    IO.inspect domain_id
+    conn |> redirect(to: domain_path(conn, :index))
+  end
+
   def generatelist(conn, _params) do
     IO.puts "Start of generating list"
     Task.async(fn -> Cryptscrape.Scraper.runlist() end)

@@ -30,6 +30,7 @@
       <%= if domain.target == "Watch" do %>
       <td><span class="badge badge-pill badge-info"><%= domain.target %></span></td>
       <% end %>
+      <td><%= link "ADD VOTE", to: domain_path(@conn, :add_vote, domain), class: "btn btn-default btn-xs" %></td>
 
 
     </tr>
