@@ -26,10 +26,13 @@
               <li class="nav-item active">
                 <a class="nav-link" href="<%= page_path @conn, :index %>">Home <span class="sr-only">(current)</span></a>
               </li>
-              <li class="nav-item"><a href="<%= user_path @conn, :index %>">Users</a></li>
-              <li class="nav-item"><a href="<%= domain_path @conn, :index %>">Domains</a></li>
-              <li class="nav-item"><a href="<%= user_path(@conn, :show, @current_user.id) %>"><%= @current_user.email %></a></li>
-              <li class="nav-item"><%= link "Logout", to: session_path(@conn, :delete, @current_user), method: :delete %></li>
+              <li class="nav-item active"><a class="nav-link" href="<%= user_path @conn, :index %>">Users</a></li>
+              <li class="nav-item active"><a class="nav-link" href="<%= domain_path @conn, :index %>">List All Domains</a></li>
+              <li class="nav-item active"><a class="nav-link" href="<%= domain_path @conn, :watch_index %>">Watch These</a></li>
+              <li class="nav-item active"><a class="nav-link" href="<%= domain_path @conn, :potential_index %>">Potential Matches</a></li>
+              <li class="nav-item active"><a class="nav-link" href="<%= domain_path @conn, :direct_index %>">Direct Matches</a></li>
+              <li class="nav-item active"><a class="nav-link" href="<%= user_path(@conn, :show, @current_user.id) %>"><%= @current_user.email %></a></li>
+              <li class="nav-item active"><%= link "Logout", to: session_path(@conn, :delete, @current_user), method: :delete %></li>
               <% else %>
               <li class="nav-item active">
                 <a class="nav-link" href="<%= page_path @conn, :index %>">Home <span class="sr-only">(current)</span></a>

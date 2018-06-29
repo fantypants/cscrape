@@ -14,6 +14,21 @@ defmodule Cryptscrape.DomainController do
     Repo.all(query) |> Enum.count
   end
 
+  def watch_index(conn, _params) do
+    domains = Repo.all(from d in Domain, where: d.target == ^"Watch") |> Repo.preload(:votes) |> Enum.sort_by(fn(a) -> a.relevancy end) |> Enum.reverse
+    conn |> render("watch_index.html", domains: domains)
+  end
+
+  def potential_index(conn, _params) do
+    domains = Repo.all(from d in Domain, where: d.target == ^"Potential") |> Repo.preload(:votes) |> Enum.sort_by(fn(a) -> a.relevancy end) |> Enum.reverse
+    conn |> render("potential_index.html", domains: domains)
+  end
+
+  def direct_index(conn, _params) do
+    domains = Repo.all(from d in Domain, where: d.target == ^"Direct") |> Repo.preload(:votes) |> Enum.sort_by(fn(a) -> a.relevancy end) |> Enum.reverse
+    conn |> render("direct_index.html", domains: domains)
+  end
+
 
   def new(conn, _params) do
     changeset = Domain.changeset(%Domain{})

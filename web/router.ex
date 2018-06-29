@@ -22,6 +22,18 @@ defmodule Cryptscrape.Router do
     get "/pricing", PageController, :pricing
     get "/faq", PageController, :faq
     get "/domains/:id/add_vote", DomainController, :add_vote
+    get "/watch/domains/", DomainController, :watch_index
+    post "/watch/domains/:id/add_vote", DomainController, :add_vote
+    get "/watch/domains/:id/add_vote", DomainController, :add_vote
+
+    get "/direct/domains/", DomainController, :direct_index
+    post "/direct/domains/:id/add_vote", DomainController, :add_vote
+    get "/direct/domains/:id/add_vote", DomainController, :add_vote
+
+    get "/potential/domains/", DomainController, :potential_index
+    post "/potential/domains/:id/add_vote", DomainController, :add_vote
+    get "/potential/domains/:id/add_vote", DomainController, :add_vote
+
     post "/domains/:id/add_vote", DomainController, :add_vote
     get "/about", PageController, :about
     get "/features", PageController, :features
