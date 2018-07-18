@@ -4,8 +4,9 @@ defmodule Cryptscrape.Scraper do
 
 def runlist() do
       list = newlist
-      raw_list = scrapegit(list)
-      direct_list = list |> Target.direct_matches
+      filtered_list = Target.filter_initial_domains(list)
+      raw_list = scrapegit(filtered_list)
+      direct_list = filtered_list |> Target.direct_matches
       perfect_matches = Target.perfect_matches(raw_list, direct_list)
       pending_matches = Target.watch_list(perfect_matches, raw_list)
       direct_list |> Enum.map(fn(a) -> Target.insert_matches(a) end)
@@ -79,5 +80,7 @@ defp processgit(name) do
     {:error, "Error in RPC Call"}
   end
 end
+
+
 
 end

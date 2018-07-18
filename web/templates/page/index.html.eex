@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
 
     <!-- Plugin CSS -->
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/new-age.css") %>">
+    
 
 
   </head>

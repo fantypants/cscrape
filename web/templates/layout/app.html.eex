@@ -9,13 +9,16 @@
 
     <title>Hello Cryptscrape!</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/lux/bootstrap.min.css">
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/phoenix.css") %>">
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/new-age.css") %>">
+
+
   </head>
 
   <body id="page-top">
 
       <header class="header">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark>
           <a class="navbar-brand" href="">ICORUMORS</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation" style="">
             <span class="navbar-toggler-icon"></span>

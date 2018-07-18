@@ -10,6 +10,36 @@ defmodule Cryptscrape.Target do
   #Plausable
   #Watch
 
+  def filter_initial_domains(list) do
+    IO.puts "Main Domain Filter"
+    valid_list = list |> Enum.map(fn(a) -> filter_integers(a) end) |> Enum.reject(fn(a) -> a.url == "invalid" end)
+    valid_list
+  end
+
+  defp filter_integers(map) do
+    case Regex.match?(~r/[^0-9]/, map.name) do
+      false ->
+        IO.inspect map.name
+        IO.puts "Shit Domain, contains crap"
+        %{
+          url: "invalid",
+          name: map.name,
+          type: ".network",
+          date: map.date
+          }
+      true ->
+        IO.inspect map.name
+        IO.puts "Solid Domain, no shit"
+        %{
+          url: map.url,
+          name: map.name,
+          type: ".network",
+          date: map.date
+          }
+    end
+
+  end
+
   def insert_matches(map) do
     DomainController.insert_domain(%{"domain" => map})
   end

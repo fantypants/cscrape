@@ -8,3 +8,6 @@
 <%= for vote <- domain.votes do %>
 <td><%= vote.value %></td>
 <% end %>
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/lux/bootstrap.min.css">

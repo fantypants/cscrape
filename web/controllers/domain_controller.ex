@@ -36,7 +36,7 @@ defmodule Cryptscrape.DomainController do
   end
 
   def run_list() do
-    #Task.async(fn -> Cryptscrape.Scraper.runlist() end)
+    Task.async(fn -> Cryptscrape.Scraper.runlist() end)
   end
 
   defp create_vote(%{"user" => user_id, "domain" => domain_id, "value" => value}) do
