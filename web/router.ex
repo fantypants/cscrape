@@ -40,6 +40,9 @@ defmodule Cryptscrape.Router do
     get "/features", PageController, :features
     resources "/domains", DomainController
     get "/run", DomainController, :generatelist
+
+    get "/csv", Csv, :export
+
     resources "/users", UserController
     resources "/sessions", SessionController, only: [:new, :create, :delete]
 

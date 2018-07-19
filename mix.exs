@@ -49,6 +49,8 @@ defmodule Cryptscrape.Mixfile do
       {:argon2_elixir, "~> 1.2"},
       {:bamboo, "~> 0.8"},
       {:stripity_stripe, "~> 2.0"},
+      {:csvlixir, "~> 2.0.3"},
+      {:csv, "~> 1.4.0"},
       {:edeliver, "~> 1.4.2"},
       {:distillery, "~> 1.4"}]
   end
