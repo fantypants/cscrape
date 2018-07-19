@@ -48,6 +48,7 @@ defmodule Cryptscrape.Mixfile do
       {:httpoison, "~> 1.0"},
       {:argon2_elixir, "~> 1.2"},
       {:bamboo, "~> 0.8"},
+      {:stripity_stripe, "~> 2.0"},
       {:edeliver, "~> 1.4.2"},
       {:distillery, "~> 1.4"}]
   end

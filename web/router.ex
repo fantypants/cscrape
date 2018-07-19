@@ -33,7 +33,8 @@ defmodule Cryptscrape.Router do
     get "/potential/domains/", DomainController, :potential_index
     post "/potential/domains/:id/add_vote", DomainController, :add_vote
     get "/potential/domains/:id/add_vote", DomainController, :add_vote
-
+    get "/users/:id/billing", UserController, :billing
+    post "/users/:id/billing", UserController, :billing
     post "/domains/:id/add_vote", DomainController, :add_vote
     get "/about", PageController, :about
     get "/features", PageController, :features

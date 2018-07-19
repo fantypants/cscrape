@@ -30,6 +30,10 @@ defmodule Cryptscrape.UserController do
     end
   end
 
+  def billing(%Plug.Conn{assigns: %{current_user: user}} = conn, %{"id" => id}) do
+    render(conn, "billing.html")
+  end
+
   def show(%Plug.Conn{assigns: %{current_user: user}} = conn, %{"id" => id}) do
     user = (id == to_string(user.id) and user) || Accounts.get(id)
     render(conn, "show.html", user: user)

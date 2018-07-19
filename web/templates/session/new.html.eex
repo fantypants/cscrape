@@ -1,27 +1,56 @@
-<h2>Login</h2>
+<body id="page-top">
+  <header class="masthead">
+    <div class="container h-100">
+      <div class="row h-100">
+        <div class="col-lg-7 my-auto">
+          <div class="header-content mx-auto">
+            <h1 class="mb-5">Login or Signup!</h1>
+          </div>
+        </div>
+      </div>
+        <div class="col-lg-5 my-auto">
+          <div class="device-container">
+            <div class="container">
+              <div class="row">
+            <%= form_for @conn, session_path(@conn, :create), [as: :session], fn f -> %>
+              <%= if f.errors != [] do %>
+                <div class="alert alert-danger">
+                  <p>Please check the errors below:</p>
+                </div>
+              <% end %>
 
-<%= form_for @conn, session_path(@conn, :create), [as: :session], fn f -> %>
-  <%= if f.errors != [] do %>
-    <div class="alert alert-danger">
-      <p>Please check the errors below:</p>
+              <div class="form-group">
+                <%= label f, :email, class: "control-label" %>
+                <%= text_input f, :email, class: "form-control" %>
+                <%= error_tag f, :email %>
+              </div>
+
+              <div class="form-group">
+                <%= label f, :password, class: "control-label" %>
+                <%= password_input f, :password, class: "form-control" %>
+                <%= error_tag f, :password %>
+              </div>
+
+              <div class="form-group">
+                <%= submit "Login", class: "btn btn-primary" %>
+              </div>
+              <span><%= link "Back", to: page_path(@conn, :index), class: "btn btn-primary" %></span>
+              <span><%= link "Register", to: user_path(@conn, :new), class: "btn btn-primary" %></span>
+            <% end %>
+          </div>
+          </div>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end %>
 
-  <div class="form-group">
-    <%= label f, :email, class: "control-label" %>
-    <%= text_input f, :email, class: "form-control" %>
-    <%= error_tag f, :email %>
-  </div>
 
-  <div class="form-group">
-    <%= label f, :password, class: "control-label" %>
-    <%= password_input f, :password, class: "form-control" %>
-    <%= error_tag f, :password %>
-  </div>
 
-  <div class="form-group">
-    <%= submit "Login", class: "btn btn-primary" %>
-  </div>
-<% end %>
 
-<span><%= link "Back", to: page_path(@conn, :index) %></span>
+
+
+  </header>
+
+
+
+</body>
