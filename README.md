@@ -19,3 +19,10 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
   * Mailing list: http://groups.google.com/group/phoenix-talk
   * Source: https://github.com/phoenixframework/phoenix
 # cscrape
+
+# TODO
+
+# Nav Bar and App.html fix so it's clean (thinking semantic?)
+# Landing Page without navbar
+# Integrate Stripe/ Crypto Payment Gateway
+# Build Corpus on backend

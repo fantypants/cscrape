@@ -19,7 +19,6 @@ end
 defp newlist() do
 user = Application.get_env(:cryptscrape, Cryptscrape.Endpoint)[:user]
 pass = Application.get_env(:cryptscrape, Cryptscrape.Endpoint)[:pass]
-#url = "https://domainlists.io/api/newdns/962/#{user}/#{pass}/"
 url = "https://domainlists.io/api/new/100/matthewmjeaton@gmail.com/Eato0810a!/"
 response = HTTPotion.get(url)
 case response do
