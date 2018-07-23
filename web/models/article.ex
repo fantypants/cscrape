@@ -19,4 +19,12 @@ defmodule Cryptscrape.Article do
     end
   end
 
+  defp medium_people(domain) do
+    url = "https://medium.com/search/users?q=" <> domain
+  end
+
+  defp medium_articles(domain) do
+    url = "https://medium.com/tag/" <> domain <> "/latest"
+  end
+
 end
