@@ -29,7 +29,7 @@ defmodule Cryptscrape.Mixfile do
   defp elixirc_paths(_),     do: ["lib", "web"]
 
   # Specifies your project dependencies.
-  #
+  # 
   # Type `mix help deps` for examples and options.
   defp deps do
     [
@@ -44,6 +44,7 @@ defmodule Cryptscrape.Mixfile do
       {:bcrypt_elixir, "~> 1.0"},
       {:cowboy, "~> 1.0"},
       {:httpotion, "~> 3.1.0"},
+      {:poison, "~> 3.1.0", override: true},
       {:friendly, "~> 1.0.0"},
       {:httpoison, "~> 1.0"},
       {:argon2_elixir, "~> 1.2"},
