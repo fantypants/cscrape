@@ -29,7 +29,7 @@ defmodule Cryptscrape.Mixfile do
   defp elixirc_paths(_),     do: ["lib", "web"]
 
   # Specifies your project dependencies.
-  # 
+  #
   # Type `mix help deps` for examples and options.
   defp deps do
     [

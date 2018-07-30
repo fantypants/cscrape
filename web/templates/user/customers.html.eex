@@ -1,0 +1,5 @@
+<h2> Customers </h2>
+
+<%= for e <- @email do %>
+<%= e.email %>
+<% end %>

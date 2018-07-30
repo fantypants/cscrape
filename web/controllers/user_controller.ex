@@ -14,6 +14,30 @@ defmodule Cryptscrape.UserController do
     render(conn, "index.html", users: users)
   end
 
+  def customers(conn, _) do
+    full_list = Stripe.Customer.list()
+    email = elem(full_list, 1).data |> Enum.map(fn(a) -> %{email: a.email} end)
+    render(conn, "customers.html", email: email)
+  end
+
+  def charge(%Plug.Conn{assigns: %{current_user: user}} = conn, %{"id" => id}) do
+
+  changeset = Accounts.User.changeset(%Accounts.User{}, %{id: id})
+  render(conn, "billing.html", changeset: changeset, user: user)
+  end
+
+  def check_charge(%Plug.Conn{assigns: %{current_user: user}} = conn, %{"id" => id, "user" => users}) do
+  changeset = Accounts.User.changeset(%Accounts.User{}, %{id: id})
+  request = Stripe.Customer.create(%{email: users["email"]})
+    case request do
+      {:ok, data} ->
+      details = %{email: data.email, id: data.id}
+      render(conn, "check_charge.html", changeset: changeset, user: user, details: details)
+      {:error, data} ->
+      render(conn, "billing.html", changeset: changeset, user: user)
+    end
+  end
+
   def new(conn, _) do
     changeset = Accounts.change_user(%Accounts.User{})
     render(conn, "new.html", changeset: changeset)

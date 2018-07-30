@@ -41,6 +41,11 @@ defmodule Cryptscrape.Router do
     resources "/domains", DomainController
     get "/run", DomainController, :generatelist
 
+    get "users/:id/charge", UserController, :charge
+    post "users/:id/charge", UserController, :charge
+    post "users/:id/check_charge", UserController, :check_charge
+    get "users/:id/customers", UserController, :customers
+
     get "/csv", Csv, :export
 
     resources "/users", UserController
