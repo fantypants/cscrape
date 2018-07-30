@@ -21,21 +21,19 @@ defmodule Cryptscrape.UserController do
   end
 
   def charge(%Plug.Conn{assigns: %{current_user: user}} = conn, %{"id" => id}) do
-
   changeset = Accounts.User.changeset(%Accounts.User{}, %{id: id})
+  IO.inspect conn
   render(conn, "billing.html", changeset: changeset, user: user)
   end
 
-  def check_charge(%Plug.Conn{assigns: %{current_user: user}} = conn, %{"id" => id, "user" => users}) do
-  changeset = Accounts.User.changeset(%Accounts.User{}, %{id: id})
-  request = Stripe.Customer.create(%{email: users["email"]})
-    case request do
-      {:ok, data} ->
-      details = %{email: data.email, id: data.id}
-      render(conn, "check_charge.html", changeset: changeset, user: user, details: details)
-      {:error, data} ->
-      render(conn, "billing.html", changeset: changeset, user: user)
-    end
+  def success_charge(%Plug.Conn{assigns: %{current_user: user}} = conn, %{"id" => id}) do
+
+  render(conn, "success_charge.html")
+  end
+
+  def create_charge(%Plug.Conn{assigns: %{current_user: user}} = conn,  %{"id" => id}) do
+    IO.inspect conn
+  conn |> redirect(to: user_path(conn, :success_charge, id: id))
   end
 
   def new(conn, _) do

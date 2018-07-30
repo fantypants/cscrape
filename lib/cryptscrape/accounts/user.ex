@@ -5,6 +5,8 @@ defmodule Cryptscrape.Accounts.User do
 
   schema "users" do
     field :email, :string
+    field :stripe_id, :string
+    field :paid, :boolean
     field :password, :string, virtual: true
     field :password_hash, :string
     field :sessions, {:map, :integer}, default: %{}
@@ -14,18 +16,37 @@ defmodule Cryptscrape.Accounts.User do
   end
 
   def changeset(%User{} = user, attrs) do
+    paid = false
+    IO.inspect attrs
+    IO.puts "Initital Changeset"
     user
-    |> cast(attrs, [:email])
+    |> cast(attrs, [:email, :paid])
     |> cast_assoc(:votes)
-    |> validate_required([:email])
+    |> validate_required([:email, :paid])
     |> unique_email
   end
 
+  defp create_stripe_account(email) do
+    request = Stripe.Customer.create(%{email: email})
+      case request do
+        {:ok, data} ->
+        details = %{email: data.email, id: data.id}
+        {:error, data} ->
+        IO.puts "Stripe Did Not Work"
+        details = %{email: email, id: "did not work"}
+      end
+      details
+  end
+
   def create_changeset(%User{} = user, attrs) do
+    IO.puts "THis changeset"
+    paid = false
+    stripe = create_stripe_account(attrs["email"])
+    attrs = Map.merge(attrs, %{"paid" => paid, "stripe_id" => stripe.id})
     user
-    |> cast(attrs, [:email, :password])
+    |> cast(attrs, [:email, :password, :paid, :stripe_id])
     |> cast_assoc(:votes)
-    |> validate_required([:email, :password])
+    |> validate_required([:email, :password, :paid, :stripe_id])
     |> unique_email
     |> validate_password(:password)
     |> put_pass_hash

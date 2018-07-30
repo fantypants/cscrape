@@ -32,7 +32,7 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-config :stripity_stripe, api_key: "sk_live_ioKnopIO8qUyIuv1jP3s1GOS"
+config :stripity_stripe, api_key: "sk_test_0gvWZW6A0mDk1WZFhacn5It3"
 
 
 

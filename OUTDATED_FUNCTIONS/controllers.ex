@@ -11,3 +11,26 @@
 
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/lux/bootstrap.min.css">
+
+
+def create_charge(%Plug.Conn{assigns: %{current_user: user}} = conn, %{"params" => params}) do
+changeset = Accounts.User.changeset(%Accounts.User{}, %{id: id})
+  params = %{
+    amount: 1,
+    card: users["card"],
+    currency: "USD",
+    customer: user.stripe_id
+  }
+
+IO.puts "User Strip ID"
+IO.inspect user.stripe_id
+request = Stripe.Charge.create(params) |> IO.inspect
+render(conn, "success_charge.html")
+  #case request do
+#    {:ok, data} ->
+  #  details = %{email: data.email, id: data.id}
+#    render(conn, "success_charge.html")
+#    {:error, data} ->
+#    render(conn, "billing.html", changeset: changeset, user: user)
+#  end
+end

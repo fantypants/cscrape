@@ -5,6 +5,8 @@
   <li>
     <strong>Email:</strong>
     <%= @user.email %>
+    <%= @user.stripe_id %>
+    <%= @user.paid %>
   </li>
 
 </ul>

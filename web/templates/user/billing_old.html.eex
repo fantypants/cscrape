@@ -1,0 +1,44 @@
+<h2> Billing </h2>
+
+<%= form_for @changeset, user_path(@conn, :create_charge, @user), fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= label f, :credit, class: "control-label" %>
+    <%= text_input f, :credit, class: "form-control" %>
+    <%= error_tag f, :credit %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :expiry, class: "control-label" %>
+    <%= text_input f, :expiry, class: "form-control" %>
+    <%= error_tag f, :expiry %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :ccv, class: "control-label" %>
+    <%= text_input f, :ccv, class: "form-control" %>
+    <%= error_tag f, :ccv %>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Submit", class: "btn btn-primary" %>
+  </div>
+
+  <form action="your-server-side-code" method="POST">
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_g6do5S237ekq10r65BnxO6S0"
+    data-amount="9"
+    data-name="Stripe.com"
+    data-description="Widget"
+    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+    data-locale="auto"
+    data-zip-code="true">
+  </script>
+</form>
+<% end %>
