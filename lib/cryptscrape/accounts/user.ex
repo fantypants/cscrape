@@ -17,7 +17,7 @@ defmodule Cryptscrape.Accounts.User do
 
   def changeset(%User{} = user, attrs) do
     paid = false
-    IO.inspect attrs
+    #USED IN NORMAL FUNCTIONS
     IO.puts "Initital Changeset"
     user
     |> cast(attrs, [:email, :paid])
@@ -26,23 +26,28 @@ defmodule Cryptscrape.Accounts.User do
     |> unique_email
   end
 
-  defp create_stripe_account(email) do
-    request = Stripe.Customer.create(%{email: email})
-      case request do
-        {:ok, data} ->
-        details = %{email: data.email, id: data.id}
-        {:error, data} ->
-        IO.puts "Stripe Did Not Work"
-        details = %{email: email, id: "did not work"}
-      end
-      details
+  def create_stripe_account(email, token) do
+    IO.puts "Charged Details are as follows: "
+    IO.inspect token
+    IO.inspect email
+    source = Stripe.Token.create(%{card: token}) |> IO.inspect
+    #request = Stripe.Customer.create(%{email: email, source: source})
+    #  case request do
+    #    {:ok, data} ->
+    #    details = %{email: data.email, id: data.id}
+    #    {:error, data} ->
+    #      IO.inspect data
+    #    IO.puts "Stripe Did Not Work"
+    #    details = %{email: email, id: "did not work"}
+    #  end
+    #  details
   end
 
   def create_changeset(%User{} = user, attrs) do
     IO.puts "THis changeset"
     paid = false
-    stripe = create_stripe_account(attrs["email"])
-    attrs = Map.merge(attrs, %{"paid" => paid, "stripe_id" => stripe.id})
+    stripe = "Not Set"
+    attrs = Map.merge(attrs, %{"paid" => paid, "stripe_id" => stripe})
     user
     |> cast(attrs, [:email, :password, :paid, :stripe_id])
     |> cast_assoc(:votes)

@@ -22,18 +22,33 @@ defmodule Cryptscrape.UserController do
 
   def charge(%Plug.Conn{assigns: %{current_user: user}} = conn, %{"id" => id}) do
   changeset = Accounts.User.changeset(%Accounts.User{}, %{id: id})
-  IO.inspect conn
-  render(conn, "billing.html", changeset: changeset, user: user)
+  IO.inspect id
+  render(conn, "billing.html", changeset: changeset, user: user, id: id)
   end
 
-  def success_charge(%Plug.Conn{assigns: %{current_user: user}} = conn, %{"id" => id}) do
+  def success_charge(%Plug.Conn{assigns: %{current_user: user}} = conn, _params) do
 
   render(conn, "success_charge.html")
   end
 
-  def create_charge(%Plug.Conn{assigns: %{current_user: user}} = conn,  %{"id" => id}) do
-    IO.inspect conn
-  conn |> redirect(to: user_path(conn, :success_charge, id: id))
+  def create_charge(%Plug.Conn{assigns: %{current_user: user}} = conn,  _params) do
+  IO.puts "User ID"
+  IO.inspect user.id
+  data = conn.body_params
+  email = data["stripeEmail"] |> IO.inspect
+  card_token = data["stripeToken"] |> IO.inspect
+  Accounts.User.create_stripe_account(email, card_token) |> IO.inspect
+  params = %{
+    amount: 1,
+    card: card_token,
+    currency: "USD",
+    customer: user.stripe_id
+  }
+
+IO.puts "STRIPE PAYMENT IS"
+#request = Stripe.Charge.create(params) |> IO.inspect
+
+  conn |> render("success_charge.html")
   end
 
   def new(conn, _) do
