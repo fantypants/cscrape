@@ -1,5 +1,7 @@
 /* This file is for your main application css. */
-
+.nav-item .user{
+  float: right!important;
+}
 .main{
   padding-left: 25px;
 }
