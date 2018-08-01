@@ -31,7 +31,7 @@ defmodule Cryptscrape.UserController do
 
   render(conn, "success_charge.html")
   end
-
+  
   def create_charge(%Plug.Conn{assigns: %{current_user: user}} = conn,  _params) do
   IO.puts "User ID"
   IO.inspect user.id
