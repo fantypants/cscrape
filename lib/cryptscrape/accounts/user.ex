@@ -26,28 +26,24 @@ defmodule Cryptscrape.Accounts.User do
     |> unique_email
   end
 
-  def create_stripe_account(email, token) do
-    IO.puts "Charged Details are as follows: "
-    IO.inspect token
-    IO.inspect email
-    source = Stripe.Token.create(%{card: token}) |> IO.inspect
-    #request = Stripe.Customer.create(%{email: email, source: source})
-    #  case request do
-    #    {:ok, data} ->
-    #    details = %{email: data.email, id: data.id}
-    #    {:error, data} ->
-    #      IO.inspect data
-    #    IO.puts "Stripe Did Not Work"
-    #    details = %{email: email, id: "did not work"}
-    #  end
-    #  details
+  def create_stripe_account(email) do
+    request = Stripe.Customer.create(%{email: email}) |> IO.inspect
+      case request do
+       {:ok, data} ->
+        details = %{email: data.email, id: data.id}
+       {:error, data} ->
+          IO.inspect data
+        IO.puts "Stripe Did Not Work"
+        details = %{email: email, id: "did not work"}
+      end
+      details
   end
 
   def create_changeset(%User{} = user, attrs) do
     IO.puts "THis changeset"
     paid = false
-    stripe = "Not Set"
-    attrs = Map.merge(attrs, %{"paid" => paid, "stripe_id" => stripe})
+    stripe = create_stripe_account(attrs["email"])
+    attrs = Map.merge(attrs, %{"paid" => paid, "stripe_id" => stripe.id})
     user
     |> cast(attrs, [:email, :password, :paid, :stripe_id])
     |> cast_assoc(:votes)

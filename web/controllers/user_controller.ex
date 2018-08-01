@@ -4,6 +4,7 @@ defmodule Cryptscrape.UserController do
   import Cryptscrape.Authorize
   alias Phauxth.Log
   alias Cryptscrape.Accounts
+  alias Cryptscrape.Payment
 
   # the following plugs are defined in the controllers/authorize.ex file
   plug :user_check when action in [:index, :show]
@@ -37,16 +38,7 @@ defmodule Cryptscrape.UserController do
   data = conn.body_params
   email = data["stripeEmail"] |> IO.inspect
   card_token = data["stripeToken"] |> IO.inspect
-  Accounts.User.create_stripe_account(email, card_token) |> IO.inspect
-  params = %{
-    amount: 1,
-    card: card_token,
-    currency: "USD",
-    customer: user.stripe_id
-  }
-
-IO.puts "STRIPE PAYMENT IS"
-#request = Stripe.Charge.create(params) |> IO.inspect
+  Payment.create_customer(card_token, email, "Test Name 1") |> IO.inspect
 
   conn |> render("success_charge.html")
   end

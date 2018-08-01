@@ -11,8 +11,10 @@
 
   <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="pk_test_g6do5S237ekq10r65BnxO6S0"
+    data-key="pk_test_nvVWtFVyKebc00XhIeszG4tF"
     data-amount="9"
+    data-capture="true"
+    data-customer="<%= @user.stripe_id %>"
     data-name="Stripe.com"
     data-description="Widget"
     data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
