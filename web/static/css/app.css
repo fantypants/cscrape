@@ -8,6 +8,7 @@
 #user_link{
   float: right;
 }
+
 .main{
   padding-left: 25px;
 }
@@ -45,7 +46,7 @@
 
 /* Style page content */
 .main {
-    margin-left: 160px; /* Same as the width of the sidebar */
+ /* Same as the width of the sidebar */
     padding: 0px 10px;
 }
 

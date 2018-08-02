@@ -86,6 +86,18 @@
           <li class="nav-item active"><a class="nav-link" href="<%= domain_path @conn, :potential_index %>">Potential Matches</a></li>
           <li class="nav-item active"><a class="nav-link" href="<%= domain_path @conn, :direct_index %>">Direct Matches</a></li>
         </div>
+        <main class="main" role="main" style="margin-left: 160px">
+          <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+          <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+          <%= render @view_module, @view_template, assigns %>
+        </main>
+        <% else %>
+        <main class="main" role="main" style="margin-left: 25px">
+          <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+          <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+          <%= render @view_module, @view_template, assigns %>
+        </main>
+
         <% end %>
 
         <!-- If Not Logged In -->
@@ -93,11 +105,7 @@
 
           <!-- Page Content -->
 
-            <main class="main" role="main">
-              <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-              <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-              <%= render @view_module, @view_template, assigns %>
-            </main>
+
 
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
