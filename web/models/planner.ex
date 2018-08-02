@@ -19,7 +19,7 @@ defmodule Cryptscrape.Planner do
 
   defp schedule_work() do
     IO.puts "Supervisor for the planner is online"
-    #DomainController.run_list()
+    DomainController.run_list()
     Process.send_after(self(), :work, 60 * 1000 * 60 * 24) # In 24 Hours
   end
 end
