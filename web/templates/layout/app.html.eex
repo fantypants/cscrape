@@ -2,79 +2,116 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Hello Cryptscrape!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>ICO Rumors.io</title>
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/phoenix.css") %>">
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/new-age.css") %>">
-
-
   </head>
-
-  <body id="page-top">
-
-      <header class="header">
-        <nav class="navbar navbar-dark">
-          <a class="navbar-brand" href="">ICORUMORS</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation" style="">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarColor02">
+      <body>
+        <header>
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark main-nav">
+            <a class="navbar-brand" href="#">ICORUMORS</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-              <%= if @current_user do %>
               <li class="nav-item active">
-                <a class="nav-link" href="<%= page_path @conn, :index %>">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
               </li>
-              <li class="nav-item active"><a class="nav-link" href="<%= user_path @conn, :index %>">Users</a></li>
-              <li class="nav-item active"><a class="nav-link" href="<%= domain_path @conn, :index %>">List All Domains</a></li>
-              <li class="nav-item active"><a class="nav-link" href="<%= domain_path @conn, :watch_index %>">Watch These</a></li>
-              <li class="nav-item active"><a class="nav-link" href="<%= domain_path @conn, :potential_index %>">Potential Matches</a></li>
-              <li class="nav-item active"><a class="nav-link" href="<%= domain_path @conn, :direct_index %>">Direct Matches</a></li>
-              <li class="nav-item active"><a class="nav-link" href="<%= user_path(@conn, :show, @current_user.id) %>"><%= @current_user.email %></a></li>
-              <li class="nav-item active"><%= link "Logout", to: session_path(@conn, :delete, @current_user), method: :delete %></li>
-              <% else %>
-              <li class="nav-item active">
-                <a class="nav-link" href="<%= page_path @conn, :index %>">Home <span class="sr-only">(current)</span></a>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Features
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Overview</a>
+                  <a class="dropdown-item" href="#">Plans</a>
+                </div>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="<%= page_path @conn, :features %>">Features</a>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Pricing
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Overview</a>
+                  <a class="dropdown-item" href="#">Plans</a>
+                </div>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="<%= page_path @conn, :pricing %>">Pricing</a>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  About
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">About ICORUMORS.io</a>
+                  <a class="dropdown-item" href="#">FAQs</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="<%= page_path @conn, :faq %>">FAQ</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="<%= page_path @conn, :about %>">About</a>
-              </li>
-              <li><a href="<%= session_path @conn, :new %>">Login</a></li>
-              <% end %>
 
-
-
+              <li class="nav-item dropdown user pull-right" id="user_link">
+                <a class="nav-link dropdown-toggle user" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <img class="side" src="<%= static_path(@conn, "/images/icons/png/person-4x.png") %>">
+                </a>
+                <%= if @current_user do %>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item disabled" href="#">Login or Register</a>
+                  <a class="dropdown-item" href="<%= user_path(@conn, :show, @current_user.id) %>">Profile</a>
+                  <div class="dropdown-divider"></div>
+                  <%= link "Logout", to: session_path(@conn, :delete, @current_user), method: :delete %>
+                </div>
+                <% else %>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="<%= session_path @conn, :new %>">Login or Register</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item disabled" href="#">Logout</a>
+                </div>
+                <% end %>
+              </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" placeholder="Search" type="text">
-              <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-            </form>
           </div>
         </nav>
+        </header>
 
-      </header>
+        <!-- If Logged In -->
+        <%= if @current_user do %>
+        <!-- Side Nav -->
+        <div class="sidenav">
+          <li class="nav-item active"><a class="nav-link" href="<%= user_path @conn, :index %>">Users</a></li>
+          <li class="nav-item active"><a class="nav-link" href="<%= domain_path @conn, :index %>">List All Domains</a></li>
+          <li class="nav-item active"><a class="nav-link" href="<%= domain_path @conn, :watch_index %>">Watch These</a></li>
+          <li class="nav-item active"><a class="nav-link" href="<%= domain_path @conn, :potential_index %>">Potential Matches</a></li>
+          <li class="nav-item active"><a class="nav-link" href="<%= domain_path @conn, :direct_index %>">Direct Matches</a></li>
+        </div>
+        <main class="main" role="main" style="margin-left: 160px">
+          <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+          <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+          <%= render @view_module, @view_template, assigns %>
+        </main>
+        <% else %>
+        <main class="main" role="main" style="margin-left: 25px">
+          <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+          <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+          <%= render @view_module, @view_template, assigns %>
+        </main>
 
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+        <% end %>
 
-      <main role="main">
-        <%= render @view_module, @view_template, assigns %>
-      </main>
+        <!-- If Not Logged In -->
+
+
+          <!-- Page Content -->
+
 
 
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+
   </body>
 </html>

@@ -1,147 +1,208 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <title>Join ICO Rumors</title>
+  <style>
+  .masthead{
+    width: 100%;
+    height: 100%;
+  }
+  body {
+  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
 
-    <title>ICO Rumors</title>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+}
 
-    <!-- Custom fonts for this template -->
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+header.masthead {
+  position: relative;
+  background-color: #343a40;
+  background: url("../img/bg-masthead.jpg") no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
 
-    <!-- Plugin CSS -->
+header.masthead .overlay {
+  position: absolute;
+  background-color: #212529;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.3;
+}
 
+header.masthead h1 {
+  font-size: 2rem;
+}
 
+@media (min-width: 768px) {
+  header.masthead {
+    padding-top: 12rem;
+    padding-bottom: 12rem;
+  }
+  header.masthead h1 {
+    font-size: 3rem;
+  }
+}
 
+.showcase .showcase-text {
+  padding: 3rem;
+}
+
+.showcase .showcase-img {
+  min-height: 30rem;
+  background-size: cover;
+}
+
+@media (min-width: 768px) {
+  .showcase .showcase-text {
+    padding: 7rem;
+  }
+}
+
+.features-icons {
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+
+.features-icons .features-icons-item {
+  max-width: 20rem;
+}
+
+.features-icons .features-icons-item .features-icons-icon {
+  height: 7rem;
+}
+
+.features-icons .features-icons-item .features-icons-icon i {
+  font-size: 4.5rem;
+}
+
+.features-icons .features-icons-item:hover .features-icons-icon i {
+  font-size: 5rem;
+}
+
+.testimonials {
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+
+.testimonials .testimonial-item {
+  max-width: 18rem;
+}
+
+.testimonials .testimonial-item img {
+  max-width: 12rem;
+  box-shadow: 0px 5px 5px 0px #adb5bd;
+}
+
+.call-to-action {
+  position: relative;
+  background-color: #343a40;
+  background: url("../img/bg-masthead.jpg") no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+
+.call-to-action .overlay {
+  position: absolute;
+  background-color: #212529;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.3;
+}
+
+footer.footer {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+  </style>
   </head>
 
-  <body id="page-top">
-    <header class="masthead">
-      <div class="container h-100">
-        <div class="row h-100">
-          <div class="col-lg-7 my-auto">
-            <div class="header-content mx-auto">
-              <h1 class="mb-5">ICO rumors is where you go, before you check ICO drops CHANGES</h1>
-              <a href="#download" class="btn btn-outline btn-xl js-scroll-trigger">Start Now!</a>
-            </div>
+  <body id="page">
+
+    <header class="masthead text-black text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-9 mx-auto">
+            <h1 class="mb-5">Where you go before an ICO Drops!</h1>
           </div>
-          <div class="col-lg-5 my-auto">
-            <div class="device-container">
-              <div class="device-mockup iphone6_plus portrait white">
-                <div class="device">
-                  <div class="screen">
-                    <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-                    <img src="img/demo-screen-1.jpg" class="img-fluid" alt="">
-                  </div>
-                  <div class="button">
-                    <!-- You can hook the "home button" to some JavaScript events or just remove it -->
-                  </div>
+          <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+            <form>
+              <div class="form-row">
+                <div class="col-12 col-md-9 mb-2 mb-md-0">
+                  <input type="email" class="form-control form-control-lg" placeholder="Enter your email...">
+                </div>
+                <div class="col-12 col-md-3">
+                  <button type="submit" class="btn btn-block btn-lg btn-primary">Sign up!</button>
                 </div>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>
-    </header>
+</header>
 
-    <section class="features bg-primary" id="features">
-      <div class="container">
-        <div class="section-heading text-center">
-          <h2>Daily Updates and Tracked Startups</h2>
-          <p class="text-muted">Check out what you can find today!!</p>
-          <hr>
-        </div>
-      </div>
-    </section>
-
-    <section class="features" id="pricing">
-      <div class="container">
-        <div class="section-heading text-center">
-          <h2>Pricing</h2>
-          <p class="text-muted">Check out what you can find today!!</p>
-          <hr>
-          <div class="row">
-            <div class="col-lg-16 my-auto">
-              <div class="device-container">
-                <div class="feature-item">
-                <table class="table table-responsive table-bordered table-hover">
-                  <thead>
-                    <th> Features </th>
-                    <th> Free (Trial) </th>
-                    <th> Basic </th>
-                    <th> LifeTime </th>
-                  </thead>
-                  <tbody>
-                    <tr>
-                    <td> Access to Unlimited Results</td>
-                    <td> X </td>
-                    <td> X </td>
-                    <td> X </td>
-                    </tr>
-                    <tr>
-                    <td> Ability to Download Results </td>
-                    <td> - </td>
-                    <td> X </td>
-                    <td> X </td>
-                    </tr>
-                    <tr>
-                    <td> Access To ICORUMOR API</td>
-                    <td> - </td>
-                    <td> X </td>
-                    <td> X </td>
-                    </tr>
-                    <tr>
-                    <td> Price</td>
-                    <td> - </td>
-                    <td> $9.99/month</td>
-                    <td> $129 </td>
-                  </tr>
-                  </tbody>
-
-                </table>
-              </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta">
-      <div class="cta-content">
-        <div class="container">
-          <h2>About Us</h2>
-          <a href="#contact" class="btn btn-outline btn-xl js-scroll-trigger">Let's Get Started!</a>
-        </div>
-      </div>
-      <div class="overlay"></div>
-    </section>
+<section class="features-icons bg-light text-center">
+     <div class="container">
+       <div class="row">
+         <div class="col-lg-4">
+           <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+             <div class="features-icons-icon d-flex">
+               <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/dollar-8x.png") %>">
+             </div>
+             <h3>Early Investment Research</h3>
+             <p class="lead mb-0">We've taken the hassle out of early research!</p>
+           </div>
+         </div>
+         <div class="col-lg-4">
+           <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+             <div class="features-icons-icon d-flex">
+               <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/timer-8x.png") %>">
+             </div>
+             <h3>Updated Daily</h3>
+             <p class="lead mb-0">We work 24/7 to give you instant ICO Leads</p>
+           </div>
+         </div>
+         <div class="col-lg-4">
+           <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+             <div class="features-icons-icon d-flex">
+              <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/flash-8x.png") %>">
+             </div>
+             <h3>Easy to Use</h3>
+             <p class="lead mb-0">We Sort, Filter & Prioritize data so you don't have too!</p>
+           </div>
+         </div>
+       </div>
+     </div>
+</section>
 
 
-    <footer>
-      <div class="container">
-        <p>&copy; Your Website 2018. All Rights Reserved.</p>
-        <ul class="list-inline">
-          <li class="list-inline-item">
-            <a href="#">Privacy</a>
-          </li>
-          <li class="list-inline-item">
-            <a href="#">Terms</a>
-          </li>
-          <li class="list-inline-item">
-            <a href="#">FAQ</a>
-          </li>
-        </ul>
-      </div>
-    </footer>
+
 
   </body>
+  <script src="<%= static_path(@conn, "/js/new-age.js") %>"></script>
 
 </html>
