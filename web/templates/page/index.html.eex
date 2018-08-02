@@ -1,147 +1,21 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>ICO Rumors</title>
-
-    <!-- Custom fonts for this template -->
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
-
-    <!-- Plugin CSS -->
-
-
-
+    <title>Join ICO Rumors</title>
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/landing.css") %>">
   </head>
 
-  <body id="page-top">
-    <header class="masthead">
-      <div class="container h-100">
-        <div class="row h-100">
-          <div class="col-lg-7 my-auto">
-            <div class="header-content mx-auto">
-              <h1 class="mb-5">ICO rumors is where you go, before you check ICO drops CHANGES</h1>
-              <a href="#download" class="btn btn-outline btn-xl js-scroll-trigger">Start Now!</a>
-            </div>
-          </div>
-          <div class="col-lg-5 my-auto">
-            <div class="device-container">
-              <div class="device-mockup iphone6_plus portrait white">
-                <div class="device">
-                  <div class="screen">
-                    <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-                    <img src="img/demo-screen-1.jpg" class="img-fluid" alt="">
-                  </div>
-                  <div class="button">
-                    <!-- You can hook the "home button" to some JavaScript events or just remove it -->
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <section class="features bg-primary" id="features">
-      <div class="container">
-        <div class="section-heading text-center">
-          <h2>Daily Updates and Tracked Startups</h2>
-          <p class="text-muted">Check out what you can find today!!</p>
-          <hr>
-        </div>
-      </div>
-    </section>
-
-    <section class="features" id="pricing">
-      <div class="container">
-        <div class="section-heading text-center">
-          <h2>Pricing</h2>
-          <p class="text-muted">Check out what you can find today!!</p>
-          <hr>
-          <div class="row">
-            <div class="col-lg-16 my-auto">
-              <div class="device-container">
-                <div class="feature-item">
-                <table class="table table-responsive table-bordered table-hover">
-                  <thead>
-                    <th> Features </th>
-                    <th> Free (Trial) </th>
-                    <th> Basic </th>
-                    <th> LifeTime </th>
-                  </thead>
-                  <tbody>
-                    <tr>
-                    <td> Access to Unlimited Results</td>
-                    <td> X </td>
-                    <td> X </td>
-                    <td> X </td>
-                    </tr>
-                    <tr>
-                    <td> Ability to Download Results </td>
-                    <td> - </td>
-                    <td> X </td>
-                    <td> X </td>
-                    </tr>
-                    <tr>
-                    <td> Access To ICORUMOR API</td>
-                    <td> - </td>
-                    <td> X </td>
-                    <td> X </td>
-                    </tr>
-                    <tr>
-                    <td> Price</td>
-                    <td> - </td>
-                    <td> $9.99/month</td>
-                    <td> $129 </td>
-                  </tr>
-                  </tbody>
-
-                </table>
-              </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta">
-      <div class="cta-content">
-        <div class="container">
-          <h2>About Us</h2>
-          <a href="#contact" class="btn btn-outline btn-xl js-scroll-trigger">Let's Get Started!</a>
-        </div>
-      </div>
-      <div class="overlay"></div>
-    </section>
+  <body id="page">
+    
 
 
-    <footer>
-      <div class="container">
-        <p>&copy; Your Website 2018. All Rights Reserved.</p>
-        <ul class="list-inline">
-          <li class="list-inline-item">
-            <a href="#">Privacy</a>
-          </li>
-          <li class="list-inline-item">
-            <a href="#">Terms</a>
-          </li>
-          <li class="list-inline-item">
-            <a href="#">FAQ</a>
-          </li>
-        </ul>
-      </div>
-    </footer>
 
   </body>
+  <script src="<%= static_path(@conn, "/js/new-age.js") %>"></script>
 
 </html>

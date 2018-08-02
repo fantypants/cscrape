@@ -52,26 +52,43 @@
                 </div>
               </li>
 
-              <li class="nav-item dropdown user pull-right">
+              <li class="nav-item dropdown user pull-right" id="user_link">
                 <a class="nav-link dropdown-toggle user" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  User
+                  <img class="side" src="<%= static_path(@conn, "/images/icons/png/person-4x.png") %>">
                 </a>
+                <%= if @current_user do %>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Overview</a>
-                  <a class="dropdown-item" href="#">Plans</a>
+                  <a class="dropdown-item disabled" href="#">Login or Register</a>
+                  <a class="dropdown-item" href="<%= user_path(@conn, :show, @current_user.id) %>">Profile</a>
+                  <div class="dropdown-divider"></div>
+                  <%= link "Logout", to: session_path(@conn, :delete, @current_user), method: :delete %>
                 </div>
+                <% else %>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="<%= session_path @conn, :new %>">Login or Register</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item disabled" href="#">Logout</a>
+                </div>
+                <% end %>
               </li>
             </ul>
           </div>
         </nav>
         </header>
+
+        <!-- If Logged In -->
+        <%= if @current_user do %>
         <!-- Side Nav -->
         <div class="sidenav">
-          <a href="#">List All Domains</a>
-          <a href="#">Domains to Watch</a>
-          <a href="#">Direct Hit Domains</a>
-          
+          <li class="nav-item active"><a class="nav-link" href="<%= user_path @conn, :index %>">Users</a></li>
+          <li class="nav-item active"><a class="nav-link" href="<%= domain_path @conn, :index %>">List All Domains</a></li>
+          <li class="nav-item active"><a class="nav-link" href="<%= domain_path @conn, :watch_index %>">Watch These</a></li>
+          <li class="nav-item active"><a class="nav-link" href="<%= domain_path @conn, :potential_index %>">Potential Matches</a></li>
+          <li class="nav-item active"><a class="nav-link" href="<%= domain_path @conn, :direct_index %>">Direct Matches</a></li>
         </div>
+        <% end %>
+
+        <!-- If Not Logged In -->
 
 
           <!-- Page Content -->

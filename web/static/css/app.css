@@ -2,6 +2,12 @@
 .nav-item .user{
   float: right!important;
 }
+
+
+
+#user_link{
+  float: right;
+}
 .main{
   padding-left: 25px;
 }
