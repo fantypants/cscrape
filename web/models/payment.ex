@@ -79,21 +79,21 @@ defp handle_event(event) do
   #Catch Payload
   #Determine Event
   #Submit Details
-case event do
-  %Stripe.Event{} ->
-    IO.puts "Pass Data"
-    with {:ok, type} <- get_event(event) do
-      case type do
-        "Charge.Succeeded" ->
-          IO.puts "Charge Succeeded"
-        "Charge.Failed" ->
-          IO.puts "Charge Failed"
-        _->
-          IO.puts "Other Event: #{{type}}"
+  case event do
+    %Stripe.Event{} ->
+      with {:ok, type} <- get_event(event) do
+        case type do
+          "charge.succeeded" ->
+            IO.puts "Charge Succeeded"
+          "charge.failed" ->
+            IO.puts "Charge Failed"
+          _->
+            IO.puts "Other Event: #{type}"
+        end
       end
-  _->
-  IO.puts "Error"
-end
+    _->
+      IO.puts "Error"
+  end
 end
 
 
