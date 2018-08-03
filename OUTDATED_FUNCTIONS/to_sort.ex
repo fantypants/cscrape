@@ -18,7 +18,7 @@
        "customer" => "cus_DKqCFHfDwQpGOO",
        "cvc_check" => "pass",
        "dynamic_last4" => nil,
-       "exp_month" => 1, 
+       "exp_month" => 1,
        "exp_year" => 2019,
        "fingerprint" => "qO9nK3Pu4g9CQvPR",
        "funding" => "credit",
@@ -34,3 +34,21 @@
   "subscriptions" => %{"data" => [], "has_more" => false, "object" => "list",
     "total_count" => 0,
     "url" => "/v1/customers/cus_DKqCFHfDwQpGOO/subscriptions"}}
+
+
+    Parameters: %{
+      "api_version" => "2018-05-21",
+      "created" => 1326853478,
+      "data" => %{
+        "object" => %{
+          "id" => "ca_00000000000000",
+          "name" => nil,
+          "object" =>
+          "application"}
+          },
+          "id" => "evt_00000000000000",
+          "livemode" => false,
+          "object" => "event",
+          "pending_webhooks" => 1,
+          "request" => nil,
+          "type" => "account.application.authorized"}

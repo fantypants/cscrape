@@ -12,6 +12,7 @@ defmodule Cryptscrape.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    post("/stripe/webhook", Cryptscrape.Payment, :webhook)
   end
 
   scope "/", Cryptscrape do

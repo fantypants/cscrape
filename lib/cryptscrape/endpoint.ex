@@ -24,7 +24,8 @@ defmodule Cryptscrape.Endpoint do
 
   plug Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json],
-    pass: ["*/*"],
+    pass: ["text/*"],
+    body_reader: {Cryptscrape.Payment, :read_body, []},
     json_decoder: Poison
 
   plug Plug.MethodOverride

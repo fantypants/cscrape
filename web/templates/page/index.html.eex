@@ -199,6 +199,40 @@ footer.footer {
      </div>
 </section>
 
+<div class="masthead text-black text-center">
+<div class="container">
+  <div class="row">
+    <div class="col-xl-16 mx-auto">
+      <h1 class="mb-5">Pricing</h1>
+    </div>
+  </div>
+
+      <div class="plans">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+          <table class="table">
+            <thead>
+              <td>Free</td>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-lg-8 mx-auto">
+          <table class="table">
+            <thead>
+              <td>Plan</td>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 
 

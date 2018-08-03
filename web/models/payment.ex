@@ -1,4 +1,5 @@
 defmodule Cryptscrape.Payment do
+  use Cryptscrape.Web, :controller
   alias Cryptscrape.Payment
 
 @customer_api "https://api.stripe.com/v1/customers"
@@ -51,4 +52,78 @@ defp encode_url(url) do
    |> :erlang.iolist_to_binary()
    |> URI.encode()
 end
+
+def read_body(conn, opts) do
+  IO.puts "READ BODY PLUG"
+   {:ok, body, conn} = Plug.Conn.read_body(conn, opts)
+   conn = update_in(conn.assigns[:raw_body], &[body | (&1 || [])])
+   {:ok, body, conn}
+ end
+
+
+def webhook(conn, params) do
+  payload = conn.assigns[:raw_body]
+  signature = Plug.Conn.get_req_header(conn, "stripe-signature") |> List.first
+  secret = Application.get_env(:cryptscrape, Cryptscrape.Endpoint)[:webhook_key]
+  case Stripe.Webhook.construct_event(payload, signature, secret) do
+          {:ok, %Stripe.Event{} = event} ->
+            IO.puts "Handling Authorized Stripe Event"
+            handle_event(event)
+            send_resp(conn, 200, "Recieved Event Correctly")
+          {:error, reason} ->
+            send_resp(conn, 404, "")
+  end
+end
+
+defp handle_event(event) do
+
+case event do
+  %Stripe.Event{} ->
+    IO.puts "Pass Data"
+    select_event(event)
+  _->
+  IO.puts "Error"
+end
+end
+
+defp select_event(event) do
+with {:ok, data} <- get_event(event) do
+  IO.puts "data IS"
+  IO.inspect data
+end
+
+end
+
+defp get_event(data) do
+  type = data.type
+  account = data.account
+  customer = data.data.object.id
+  payload = %{type: type, customer: customer, account: account}
+ {:ok, payload}
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 end
