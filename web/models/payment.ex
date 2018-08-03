@@ -76,31 +76,35 @@ def webhook(conn, params) do
 end
 
 defp handle_event(event) do
-
+  #Catch Payload
+  #Determine Event
+  #Submit Details
 case event do
   %Stripe.Event{} ->
     IO.puts "Pass Data"
-    select_event(event)
+    with {:ok, type} <- get_event(event) do
+      case type do
+        "Charge.Succeeded" ->
+          IO.puts "Charge Succeeded"
+        "Charge.Failed" ->
+          IO.puts "Charge Failed"
+        _->
+          IO.puts "Other Event: #{{type}}"
+      end
   _->
   IO.puts "Error"
 end
 end
 
-defp select_event(event) do
-with {:ok, data} <- get_event(event) do
-  IO.puts "data IS"
-  IO.inspect data
-end
-
-end
 
 defp get_event(data) do
   type = data.type
   account = data.account
   customer = data.data.object.id
   payload = %{type: type, customer: customer, account: account}
- {:ok, payload}
+ {:ok, type}
 end
+
 
 
 
