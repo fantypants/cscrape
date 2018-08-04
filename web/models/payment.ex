@@ -12,13 +12,24 @@ stripe_key = Application.get_env(:cryptscrape, Cryptscrape.Endpoint)[:stripe_key
 @headers [{"Authorization", "Bearer #{stripe_key}"}, {"Content-Type", "application/x-www-form-urlencoded"}]
 
 
-@spec create_customer(String.t, String.t, String.t) :: {:ok, map} | :fatal
+@spec create_customer(String.t, String.t, String.t, String.t) :: {:ok, map} | :fatal
 
-def create_customer(cc_token, email, name) do
+def create_customer(cc_token, email, name, stripe_id) do
  url = "https://api.stripe.com/v1/customers"
- post(url, %{"source" => cc_token, "email" => email, "metadata[name]" => name})
+ #post(url, %{"source" => cc_token, "email" => email, "metadata[name]" => name})
+ plan_id = "plan_DLuOXRMspS7po7"
+ create_subscription(cc_token, email, name, stripe_id, plan_id) |> IO.inspect
 end
 
+defp create_subscription(cc_token, email, name, stripe_id, plan_id) do
+  url = "https://api.stripe.com/v1/subscriptions"
+  post(url, %{"source" => cc_token, "customer" => stripe_id, "items[0][plan]" => plan_id})
+  #Catch Subscription -> Check Return -> Update DB
+end
+
+def check_plan(customer_id) do
+  Stripe.Customer.retrieve(customer_id) |> IO.inspect
+end
 
 
 @spec post(iodata, map) :: {:ok, map} | :fatal
@@ -87,6 +98,8 @@ defp handle_event(event) do
             IO.puts "Charge Succeeded"
           "charge.failed" ->
             IO.puts "Charge Failed"
+          "create.charge" ->
+            IO.puts "charge Created"
           _->
             IO.puts "Other Event: #{type}"
         end

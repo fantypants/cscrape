@@ -9,19 +9,17 @@
     </div>
   <% end %>
 
-
   <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key="pk_test_nvVWtFVyKebc00XhIeszG4tF"
+    data-amount="9"
     data-capture="true"
     data-customer="<%= @user.stripe_id %>"
+    data-name="Stripe.com"
+    data-description="Widget"
     data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-    data-name="ICORUMORs Monthly Subscription"
-    data-description="Subscription for 1 Month"
-    data-amount="999"
-    data-label="Sign Me Up!">
-  </script>
-
+    data-locale="auto"
+    data-zip-code="true">
 
   </script>
   <input type="hidden" value="<%= Map.get(@conn.req_cookies, "_csrf_token") %>" name="authenticity_token"/>
