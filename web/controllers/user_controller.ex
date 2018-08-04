@@ -23,7 +23,7 @@ defmodule Cryptscrape.UserController do
 
   def charge(%Plug.Conn{assigns: %{current_user: user}} = conn, %{"id" => id}) do
   changeset = Accounts.User.changeset(%Accounts.User{}, %{id: id})
-  IO.inspect id
+
   render(conn, "billing.html", changeset: changeset, user: user, id: id)
   end
 
@@ -33,13 +33,12 @@ defmodule Cryptscrape.UserController do
   end
 
   def create_charge(%Plug.Conn{assigns: %{current_user: user}} = conn,  _params) do
-  IO.puts "User ID"
-  IO.inspect user.id
+
   data = conn.body_params
-  email = data["stripeEmail"] |> IO.inspect
-  card_token = data["stripeToken"] |> IO.inspect
+  email = data["stripeEmail"]
+  card_token = data["stripeToken"]
   stripe_id = user.stripe_id
-  Payment.create_customer(card_token, email, "Test Name 1", stripe_id) |> IO.inspect
+  Payment.create_customer(card_token, email, "Test Name 1", stripe_id) 
 
   conn |> render("success_charge.html")
   end
@@ -66,7 +65,7 @@ defmodule Cryptscrape.UserController do
 
   def show(%Plug.Conn{assigns: %{current_user: user}} = conn, %{"id" => id}) do
     user = (id == to_string(user.id) and user) || Accounts.get(id)
-    
+
     render(conn, "show.html", user: user)
   end
 

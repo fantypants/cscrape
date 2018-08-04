@@ -18,7 +18,9 @@ def create_customer(cc_token, email, name, stripe_id) do
  url = "https://api.stripe.com/v1/customers"
  #post(url, %{"source" => cc_token, "email" => email, "metadata[name]" => name})
  plan_id = "plan_DLuOXRMspS7po7"
- create_subscription(cc_token, email, name, stripe_id, plan_id) |> IO.inspect
+ subscription = create_subscription(cc_token, email, name, stripe_id, plan_id)
+ paid? = subscription["items"]["data"] |> IO.inspect
+
 end
 
 defp create_subscription(cc_token, email, name, stripe_id, plan_id) do
