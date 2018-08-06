@@ -19,7 +19,7 @@ def create_customer(cc_token, email, name, stripe_id) do
  #post(url, %{"source" => cc_token, "email" => email, "metadata[name]" => name})
  plan_id = "plan_DLuOXRMspS7po7"
  subscription = create_subscription(cc_token, email, name, stripe_id, plan_id)
- paid? = subscription["items"]["data"] |> IO.inspect
+ paid? = subscription["items"]["data"]["plan"]["active"] |> IO.inspect
 
 end
 
@@ -102,6 +102,10 @@ defp handle_event(event) do
             IO.puts "Charge Failed"
           "create.charge" ->
             IO.puts "charge Created"
+          "subscription.plan.succeeded" ->
+            IO.puts "Subscription Plan Created"
+          "subscription.plan.cancelled" ->
+            IO.puts "Subscription Plan Cancelled"
           _->
             IO.puts "Other Event: #{type}"
         end
