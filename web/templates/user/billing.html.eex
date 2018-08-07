@@ -1,29 +1,253 @@
-<h2> Billing </h2>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Join ICO Rumors</title>
+<style>
+.masthead{
+  width: 100%;
+  height: 100%;
+}
+body {
+font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+font-weight: 700;
+}
 
+header.masthead {
+position: relative;
+background-color: #343a40;
+background: url("../img/bg-masthead.jpg") no-repeat center center;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+padding-top: 8rem;
+padding-bottom: 8rem;
+}
 
-<%= form_for @changeset, user_path(@conn, :create_charge, @user), fn f -> %>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Please check the errors below.</p>
+header.masthead .overlay {
+position: absolute;
+background-color: #212529;
+height: 100%;
+width: 100%;
+top: 0;
+left: 0;
+opacity: 0.3;
+}
+
+header.masthead h1 {
+font-size: 2rem;
+}
+
+@media (min-width: 768px) {
+header.masthead {
+  padding-top: 1rem;
+  padding-bottom: 0rem;
+}
+header.masthead h1 {
+  font-size: 3rem;
+}
+}
+
+.showcase .showcase-text {
+padding: 3rem;
+}
+
+.showcase .showcase-img {
+min-height: 30rem;
+background-size: cover;
+}
+
+@media (min-width: 768px) {
+.showcase .showcase-text {
+  padding: 7rem;
+}
+}
+
+.features-icons {
+padding-top: 7rem;
+padding-bottom: 7rem;
+}
+
+.features-icons .features-icons-item {
+max-width: 20rem;
+}
+
+.features-icons .features-icons-item .features-icons-icon {
+height: 7rem;
+}
+
+.features-icons .features-icons-item .features-icons-icon i {
+font-size: 4.5rem;
+}
+
+.features-icons .features-icons-item:hover .features-icons-icon i {
+font-size: 5rem;
+}
+
+.testimonials {
+padding-top: 7rem;
+padding-bottom: 7rem;
+}
+
+.testimonials .testimonial-item {
+max-width: 18rem;
+}
+
+.testimonials .testimonial-item img {
+max-width: 12rem;
+box-shadow: 0px 5px 5px 0px #adb5bd;
+}
+
+.call-to-action {
+position: relative;
+background-color: #343a40;
+background: url("../img/bg-masthead.jpg") no-repeat center center;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+padding-top: 7rem;
+padding-bottom: 7rem;
+}
+
+.call-to-action .overlay {
+position: absolute;
+background-color: #212529;
+height: 100%;
+width: 100%;
+top: 0;
+left: 0;
+opacity: 0.3;
+}
+
+footer.footer {
+padding-top: 4rem;
+padding-bottom: 4rem;
+}
+
+.panel-group-ico{
+box-shadow: 1px 1px 1px grey;
+}
+
+.stripe-button{
+   transform: scaleY(1.5);
+    transform: scaleX(1.5);
+}
+</style>
+</head>
+
+<header class="masthead text-black text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-9 mx-auto">
+        <h1 class="mb-5">Sign Up Now!</h1>
+        <p> With access to the earliest ICO Startups to give your research the head start you deserve, you will get access to all features on the site from downloading content, to API access for developers</p>
+      </div>
+      <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+        <table class="table table-bordered">
+        <thead>
+          <th></th>
+          <th> Trial </th>
+          <th> Premium </th>
+        </thead>
+        <tbody>
+          <tr>
+          <td> Access to Unlimited Domains </td>
+          <td>  <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/circle-check-4x.png") %>"></td>
+          <td> <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/circle-check-4x.png") %>"> </td>
+        </tr>
+        <tr>
+          <td> Download Valuable Leads  </td>
+          <td>  <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/circle-check-4x.png") %>"></td>
+          <td>  <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/circle-check-4x.png") %>"></td>
+        </tr>
+        <tr>
+          <td> Access to our API (Coming Soon) </td>
+          <td>  <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/circle-check-4x.png") %>"></td>
+          <td>  <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/circle-check-4x.png") %>"></td>
+        </tr>
+        <tr>
+          <td> Cost </td>
+          <td>  Free for 7 Days</td>
+          <td>  $9.99/Month</td>
+        </tr>
+        </tbody>
+      </table>
+      </div>
     </div>
-  <% end %>
+  </div>
+</header>
+<div class="masthead text-black text-center">
+<div class="container">
+  <div class="row">
+    <div class="col-xl-9 mx-auto">
+      <h1 class="mb-5">What are you waiting for?</h1>
+      <%= form_for @changeset, user_path(@conn, :create_charge, @user), fn f -> %>
+        <%= if @changeset.action do %>
+          <div class="alert alert-danger">
+            <p>Please check the errors below.</p>
+          </div>
+        <% end %>
+        <script
+          src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="pk_test_nvVWtFVyKebc00XhIeszG4tF"
+          data-capture="true"
+          data-customer="<%= @user.stripe_id %>"
+          data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+          data-name="ICORUMORs Monthly Subscription"
+          data-description="Subscription for 1 Month"
+          data-amount="999"
+          data-label="Sign Me Up!">
+        </script>
+        </script>
+        <input type="hidden" value="<%= Map.get(@conn.req_cookies, "_csrf_token") %>" name="authenticity_token"/>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>
 
-
-  <script
-    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="pk_test_nvVWtFVyKebc00XhIeszG4tF"
-    data-capture="true"
-    data-customer="<%= @user.stripe_id %>"
-    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-    data-name="ICORUMORs Monthly Subscription"
-    data-description="Subscription for 1 Month"
-    data-amount="999"
-    data-label="Sign Me Up!">
-  </script>
-
-
-  </script>
-  <input type="hidden" value="<%= Map.get(@conn.req_cookies, "_csrf_token") %>" name="authenticity_token"/>
-
-<% end %>
+<section class="features-icons bg-light text-center">
+     <div class="container">
+       <div class="row">
+         <div class="col-lg-4">
+           <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+             <div class="features-icons-icon d-flex">
+               <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/dollar-8x.png") %>">
+             </div>
+             <h3>Early Investment Research</h3>
+             <p class="lead mb-0">We've taken the hassle out of early research!</p>
+           </div>
+         </div>
+         <div class="col-lg-4">
+           <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+             <div class="features-icons-icon d-flex">
+               <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/timer-8x.png") %>">
+             </div>
+             <h3>Updated Daily</h3>
+             <p class="lead mb-0">We work 24/7 to give you instant ICO Leads</p>
+           </div>
+         </div>
+         <div class="col-lg-4">
+           <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+             <div class="features-icons-icon d-flex">
+              <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/flash-8x.png") %>">
+             </div>
+             <h3>Easy to Use</h3>
+             <p class="lead mb-0">We Sort, Filter & Prioritize data so you don't have too!</p>
+           </div>
+         </div>
+       </div>
+     </div>
+</section>
