@@ -4,12 +4,12 @@ defmodule Cryptscrape.PageController do
   alias Cryptscrape.Domain
 
   def index(conn, _params) do
-    direct_query = from d in Domain, where: d.target == ^"Direct"
-    potential_query = from d in Domain, where: d.target == ^"Potential"
-    watch_query = from d in Domain, where: d.target == ^"Watch"
-    direct = Repo.all(direct_query) |> Repo.preload(:votes) |> Enum.uniq_by(fn(a) -> a.name end) |> Enum.take(5) |> IO.inspect
-    potential = Repo.all(potential_query) |> Repo.preload(:votes) |> Enum.uniq_by(fn(a) -> a.name end) |> Enum.take(5) |> IO.inspect
-    watch = Repo.all(watch_query) |> Repo.preload(:votes) |> Enum.uniq_by(fn(a) -> a.name end) |> Enum.take(5) |> IO.inspect
+    direct_query = from d in Domain, where: d.target == ^"Direct", limit: 10
+    potential_query = from d in Domain, where: d.target == ^"Potential", limit: 10
+    watch_query = from d in Domain, where: d.target == ^"Watch", limit: 10
+    direct = Repo.all(direct_query) |> Repo.preload(:votes) |> Enum.uniq_by(fn(a) -> a.name end) |> Enum.take(3) |> IO.inspect
+    potential = Repo.all(potential_query) |> Repo.preload(:votes) |> Enum.uniq_by(fn(a) -> a.name end) |> Enum.take(3) |> IO.inspect
+    watch = Repo.all(watch_query) |> Repo.preload(:votes) |> Enum.uniq_by(fn(a) -> a.name end) |> Enum.take(3) |> IO.inspect
     #Article.get_information(:medium, "tronpay")
     render conn, "index.html", direct: direct, potential: potential, watch: watch
   end
