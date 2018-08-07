@@ -109,6 +109,9 @@ defp handle_event(conn, event) do
             end
           "charge.failed" ->
             IO.puts "Charge Failed"
+            with {:ok, customer} <- get_customer(event) do
+              reflect_payment(customer, false)
+            end
           "create.charge" ->
             IO.puts "charge Created"
           "subscription.plan.succeeded" ->
@@ -132,27 +135,42 @@ defp reflect_payment(customer, value) do
     true ->
       IO.puts "Update profile for reflected payment"
       with {:ok, user_id} <- convert_customer(customer) do
-        update_user(user_id)
+        update_user(user_id, value)
       end
     false ->
       IO.puts "Payment Declined"
+      with {:ok, user_id} <- convert_customer(customer) do
+        update_user(user_id, value)
+      end
   end
 end
 
-defp update_user(id) do
+defp update_user(id, value) do
   user = Repo.get!(User, id)
-  user = Ecto.Changeset.change user, paid: true
-  case Repo.update user do
-    {:ok, struct}       -> IO.puts "Success, Customer Updated"
-    {:error, changeset} -> IO.puts "Incorrect, Customer Not Updated"
+  case user do
+    nil ->
+      {:error, "User Not Found"}
+    _->
+    user = Ecto.Changeset.change user, paid: value
+    case Repo.update user do
+      {:ok, struct}       -> IO.puts "Success, Customer Updated"
+      {:error, changeset} -> IO.puts "Incorrect, Customer Not Updated"
+    end
   end
+
 end
 
 defp convert_customer(customer) do
   IO.inspect customer
   #customer_id = elem(customer, 1) |> IO.inspect
   user_id = Repo.all(from u in User, where: u.stripe_id == ^customer, select: u.id) |> List.first
-  {:ok, user_id}
+  case user_id do
+    nil ->
+      {:error, "No User Found"}
+      _->
+      {:ok, user_id}
+  end
+
 end
 
 defp get_customer(data) do
