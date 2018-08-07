@@ -21,7 +21,7 @@ defmodule Cryptscrape.SessionController do
         Accounts.add_session(user, session_id, System.system_time(:second))
 
         Login.add_session(conn, session_id, user.id)
-        |> login_success(user_path(conn, :index))
+        |> login_success(user_path(conn, :show, user))
 
       {:error, message} ->
         error(conn, message, session_path(conn, :new))

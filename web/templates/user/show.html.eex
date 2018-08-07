@@ -1,15 +1,29 @@
-<h2>Show User</h2>
+<div class="col-12 col-lg-4">
+  <div class="panel-group panel-group-ico">
+    <div class="panel panel-default">
+            <div class="panel-heading"><h4>Your Details</h4></div>
+            <div class="panel-body">
+              <h5> <strong>Name: </strong> NAME HERE</h5>
+              <h5> <strong>Email: </strong> <%= @user.email %> </h5>
+            </div>
+    </div>
+</div>
+</div>
+<div class="col-12 col-lg-4">
+  <div class="panel-group panel-group-ico">
+    <div class="panel panel-default">
+            <div class="panel-heading"><h4>Subscription Status</h4></div>
+            <div class="panel-body">
+              <h5> <strong>Trial Period?: </strong> YES/NO</h5>
+              <h5> <strong>Payment Status: </strong> <%= @user.paid %></h5>
+              <%= if @user.paid == false do %>
+              <span><%= link "Sign up Now!", to: user_path(@conn, :charge, @user.id), class: "btn btn-primary" %></span>
+              <% end %>
+            </div>
+    </div>
+</div>
+</div>
 
-<ul>
-
-  <li>
-    <strong>Email:</strong>
-    <%= @user.email %>
-    <%= @user.stripe_id %>
-    <%= @user.paid %>
-  </li>
-
-</ul>
 
 <span><%= link "Edit", to: user_path(@conn, :edit, @user) %></span><br>
 <span><%= link "Back", to: user_path(@conn, :index) %></span>

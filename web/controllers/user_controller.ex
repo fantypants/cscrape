@@ -64,9 +64,9 @@ defmodule Cryptscrape.UserController do
   end
 
   def show(%Plug.Conn{assigns: %{current_user: user}} = conn, %{"id" => id}) do
-    user = (id == to_string(user.id) and user) || Accounts.get(id)
+    user = (id == to_string(user.id) and user) || Accounts.get(id) |> IO.inspect
+    Repo.get!(Accounts.User, id) |> IO.inspect
 
-  
 
     render(conn, "show.html", user: user)
   end
