@@ -138,6 +138,10 @@ footer.footer {
   padding-top: 4rem;
   padding-bottom: 4rem;
 }
+
+.panel-group-ico{
+  box-shadow: 1px 1px 1px grey;
+}
   </style>
   </head>
 
@@ -164,6 +168,102 @@ footer.footer {
         </div>
       </div>
 </header>
+
+<div class="masthead text-black text-center">
+<div class="container">
+  <div class="row">
+    <div class="col-xl-16 mx-auto">
+      <h1 class="mb-5">Daily ICO Updates</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-lg-4">
+      <h2> Direct </h2>
+      <div class="panel-group panel-group-ico">
+        <div class="panel panel-default">
+          <ul class="list-group">
+              <%= for domain <- @direct do %>
+              <a href="#" class="list-group-item">
+                <div class="panel-heading"><h4><%= domain.name %></h4></div>
+                <div class="panel-body">
+                  <div class="col-12 col-sm-4">
+                    <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/thumb-up-4x.png") %>">
+                    <%= Cryptscrape.DomainController.count_votes(domain.id) %>
+                  </div>
+                 <div class="col-12 col-sm-4">
+                    <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/thumb-down-4x.png") %>">
+                    0
+                  </div>
+                  <div class="col-12 col-sm-4">
+                     <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/eye-4x.png") %>">
+                     <%= domain.relevancy %>
+                   </div>
+                </div>
+              </a>
+              <% end %>
+          </ul>
+        </div>
+    </div>
+  </div>
+    <div class="col-12 col-lg-4">
+      <h2> Potential </h2>
+      <div class="panel-group panel-group-ico">
+        <div class="panel panel-default">
+          <ul class="list-group">
+              <%= for domain <- @potential do %>
+              <a href="#" class="list-group-item">
+                <div class="panel-heading"><h4><%= domain.name %></h4></div>
+                <div class="panel-body">
+                  <div class="col-12 col-sm-4">
+                    <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/thumb-up-4x.png") %>">
+                    <%= Cryptscrape.DomainController.count_votes(domain.id) %>
+                  </div>
+                 <div class="col-12 col-sm-4">
+                    <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/thumb-down-4x.png") %>">
+                    0
+                  </div>
+                  <div class="col-12 col-sm-4">
+                     <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/eye-4x.png") %>">
+                     <%= domain.relevancy %>
+                   </div>
+                </div>
+              </a>
+              <% end %>
+          </ul>
+        </div>
+    </div>
+    </div>
+    <div class="col-12 col-lg-4">
+      <h2> Watch </h2>
+      <div class="panel-group panel-group-ico">
+        <div class="panel panel-default">
+          <ul class="list-group">
+              <%= for domain <- @watch do %>
+               <a href="#" class="list-group-item">
+                 <div class="panel-heading"><h4><%= domain.name %></h4></div>
+                 <div class="panel-body">
+                   <div class="col-12 col-sm-4">
+                     <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/thumb-up-4x.png") %>">
+                     <%= Cryptscrape.DomainController.count_votes(domain.id) %>
+                   </div>
+                  <div class="col-12 col-sm-4">
+                     <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/thumb-down-4x.png") %>">
+                     0
+                   </div>
+                   <div class="col-12 col-sm-4">
+                      <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/eye-4x.png") %>">
+                      <%= domain.relevancy %>
+                    </div>
+                 </div>
+               </a>
+              <% end %>
+          </ul>
+        </div>
+    </div>
+    </div>
+
+  </div>
+</div>
 
 <section class="features-icons bg-light text-center">
      <div class="container">
