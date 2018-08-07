@@ -1,6 +1,7 @@
 defmodule Cryptscrape.Payment do
   use Cryptscrape.Web, :controller
   alias Cryptscrape.Payment
+  alias Cryptscrape.Accounts.User
 
 @customer_api "https://api.stripe.com/v1/customers"
 @subscription_api "https://api.stripe.com/v1/subscriptions"
@@ -19,7 +20,12 @@ def create_customer(cc_token, email, name, stripe_id) do
  #post(url, %{"source" => cc_token, "email" => email, "metadata[name]" => name})
  plan_id = "plan_DLuOXRMspS7po7"
  subscription = create_subscription(cc_token, email, name, stripe_id, plan_id)
- paid? = subscription["items"]["data"]["plan"]["active"] |> IO.inspect
+ paid? = subscription["items"]["data"] |> Enum.map(fn(a) -> IO.inspect a end)
+ #MAke plan
+ #Sign USer
+ #Get return
+ #Get user details
+ #Update DB with returned outcome
 
 end
 
@@ -81,14 +87,14 @@ def webhook(conn, params) do
   case Stripe.Webhook.construct_event(payload, signature, secret) do
           {:ok, %Stripe.Event{} = event} ->
             IO.puts "Handling Authorized Stripe Event"
-            handle_event(event)
+            handle_event(conn, event)
             send_resp(conn, 200, "Recieved Event Correctly")
           {:error, reason} ->
             send_resp(conn, 404, "")
   end
 end
 
-defp handle_event(event) do
+defp handle_event(conn, event) do
   #Catch Payload
   #Determine Event
   #Submit Details
@@ -97,7 +103,10 @@ defp handle_event(event) do
       with {:ok, type} <- get_event(event) do
         case type do
           "charge.succeeded" ->
-            IO.puts "Charge Succeeded"
+            IO.puts "Charge Succeeded is Frist step in Payment Process"
+            with {:ok, customer} <- get_customer(event) do
+              reflect_payment(customer, true)
+            end
           "charge.failed" ->
             IO.puts "Charge Failed"
           "create.charge" ->
@@ -106,6 +115,8 @@ defp handle_event(event) do
             IO.puts "Subscription Plan Created"
           "subscription.plan.cancelled" ->
             IO.puts "Subscription Plan Cancelled"
+          "invoice.payment_succeeded" ->
+            IO.puts "Second Step in Subscription Process"
           _->
             IO.puts "Other Event: #{type}"
         end
@@ -116,11 +127,42 @@ defp handle_event(event) do
 end
 
 
+defp reflect_payment(customer, value) do
+  case value do
+    true ->
+      IO.puts "Update profile for reflected payment"
+      with {:ok, user_id} <- convert_customer(customer) do
+        update_user(user_id)
+      end
+    false ->
+      IO.puts "Payment Declined"
+  end
+end
+
+defp update_user(id) do
+  user = Repo.get!(User, id)
+  user = Ecto.Changeset.change user, paid: true
+  case Repo.update user do
+    {:ok, struct}       -> IO.puts "Success, Customer Updated"
+    {:error, changeset} -> IO.puts "Incorrect, Customer Not Updated"
+  end
+end
+
+defp convert_customer(customer) do
+  IO.inspect customer
+  #customer_id = elem(customer, 1) |> IO.inspect
+  user_id = Repo.all(from u in User, where: u.stripe_id == ^customer, select: u.id) |> List.first
+  {:ok, user_id}
+end
+
+defp get_customer(data) do
+source = data.data.object.source
+customer = source.customer
+{:ok, customer}
+end
+
 defp get_event(data) do
   type = data.type
-  account = data.account
-  customer = data.data.object.id
-  payload = %{type: type, customer: customer, account: account}
  {:ok, type}
 end
 

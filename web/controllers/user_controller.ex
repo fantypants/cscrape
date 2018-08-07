@@ -38,7 +38,7 @@ defmodule Cryptscrape.UserController do
   email = data["stripeEmail"]
   card_token = data["stripeToken"]
   stripe_id = user.stripe_id
-  Payment.create_customer(card_token, email, "Test Name 1", stripe_id) 
+  Payment.create_customer(card_token, email, "Test Name 1", stripe_id)
 
   conn |> render("success_charge.html")
   end
@@ -66,6 +66,8 @@ defmodule Cryptscrape.UserController do
   def show(%Plug.Conn{assigns: %{current_user: user}} = conn, %{"id" => id}) do
     user = (id == to_string(user.id) and user) || Accounts.get(id)
 
+  
+
     render(conn, "show.html", user: user)
   end
 
@@ -75,6 +77,7 @@ defmodule Cryptscrape.UserController do
   end
 
   def update(%Plug.Conn{assigns: %{current_user: user}} = conn, %{"user" => user_params}) do
+    IO.inspect user_params
     case Accounts.update_user(user, user_params) do
       {:ok, user} ->
         success(conn, "User updated successfully", user_path(conn, :show, user))

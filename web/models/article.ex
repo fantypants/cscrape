@@ -39,13 +39,15 @@ defmodule Cryptscrape.Article do
 
   defp get_request(url) do
     response = HTTPotion.get(url)
-    success? = HTTPotion.Response.success?(response)
+    success? = HTTPotion.Response.success?(response) |> IO.inspect
     case success? do
       true ->
         scrape_response(:article, response.body)
         #scrape_response(:people, response.body)
       false ->
-        scrape_response(:people, response.body)
+        #Need to reflect false
+        IO.puts "Handle no body found"
+        #scrape_response(:people, response.body)
     end
   end
 

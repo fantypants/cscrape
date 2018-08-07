@@ -3,7 +3,7 @@ defmodule Cryptscrape.PageController do
   alias Cryptscrape.Article
 
   def index(conn, _params) do
-    Article.get_information(:medium, "tronpay")
+    #Article.get_information(:medium, "tronpay")
     render conn, "index.html"
   end
 
