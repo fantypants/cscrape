@@ -31,7 +31,7 @@ end
 
 defp create_subscription(cc_token, email, name, stripe_id, plan_id) do
   url = "https://api.stripe.com/v1/subscriptions"
-  post(url, %{"source" => cc_token, "customer" => stripe_id, "items[0][plan]" => plan_id})
+  post(url, %{"source" => cc_token, "customer" => stripe_id, "items[0][plan]" => plan_id, "trial_period_days" => 7})
   #Catch Subscription -> Check Return -> Update DB
 end
 
@@ -114,6 +114,11 @@ defp handle_event(conn, event) do
             end
           "create.charge" ->
             IO.puts "charge Created"
+            "customer.subscription.created" ->
+              IO.puts "Subscription Created"
+              with {:ok, customer} <- get_subscription_customer(event) do
+                reflect_payment(customer, true)
+              end
           "subscription.plan.succeeded" ->
             IO.puts "Subscription Plan Created"
           "subscription.plan.cancelled" ->
@@ -144,6 +149,7 @@ defp reflect_payment(customer, value) do
       end
   end
 end
+
 
 defp update_user(id, value) do
   user = Repo.get!(User, id)
@@ -176,6 +182,12 @@ end
 defp get_customer(data) do
 source = data.data.object.source
 customer = source.customer
+{:ok, customer}
+end
+
+defp get_subscription_customer(data) do
+#source = data.data.object.source
+customer = data.data.object.customer |> IO.inspect
 {:ok, customer}
 end
 
