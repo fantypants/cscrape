@@ -26,17 +26,24 @@ defmodule Cryptscrape.Router do
     get "/watch/domains/", DomainController, :watch_index
     post "/watch/domains/:id/add_vote", DomainController, :add_vote
     get "/watch/domains/:id/add_vote", DomainController, :add_vote
+    post "/watch/domains/:id/add_negvote", DomainController, :add_negvote
+    get "/watch/domains/:id/add_negvote", DomainController, :add_negvote
 
     get "/direct/domains/", DomainController, :direct_index
     post "/direct/domains/:id/add_vote", DomainController, :add_vote
     get "/direct/domains/:id/add_vote", DomainController, :add_vote
+    post "/direct/domains/:id/add_negvote", DomainController, :add_negvote
+    get "/direct/domains/:id/add_negvote", DomainController, :add_negvote
 
     get "/potential/domains/", DomainController, :potential_index
     post "/potential/domains/:id/add_vote", DomainController, :add_vote
     get "/potential/domains/:id/add_vote", DomainController, :add_vote
+    post "/potential/domains/:id/add_negvote", DomainController, :add_negvote
+    get "/potential/domains/:id/add_negvote", DomainController, :add_negvote
     get "/users/:id/billing", UserController, :billing
     post "/users/:id/billing", UserController, :billing
     post "/domains/:id/add_vote", DomainController, :add_vote
+    post "/domains/:id/add_negvote", DomainController, :add_negvote
     get "/about", PageController, :about
     get "/features", PageController, :features
     resources "/domains", DomainController

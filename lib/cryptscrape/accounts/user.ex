@@ -11,6 +11,7 @@ defmodule Cryptscrape.Accounts.User do
     field :password_hash, :string
     field :sessions, {:map, :integer}, default: %{}
     has_many :votes, Cryptscrape.Vote, on_delete: :nothing
+    has_many :negvotes, Cryptscrape.Vote, on_delete: :nothing
 
     timestamps()
   end
@@ -22,6 +23,7 @@ defmodule Cryptscrape.Accounts.User do
     user
     |> cast(attrs, [:email, :paid])
     |> cast_assoc(:votes)
+    |> cast_assoc(:negvotes)
     |> validate_required([:email, :paid])
     |> unique_email
   end

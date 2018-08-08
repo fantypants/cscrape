@@ -8,7 +8,8 @@
       <th>Type</th>
       <th>Url</th>
       <th>Relevancy</th>
-      <th> Reputation </th>
+      <th> <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/thumb-up-2x.png") %>"> </th>
+      <th> <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/thumb-down-2x.png") %>"> </th>
       <th>Target</th>
 
       <th></th>
@@ -23,6 +24,7 @@
       <td><%= domain.url %></td>
       <td><%= domain.relevancy %></td>
       <td><%= Cryptscrape.DomainController.count_votes(domain.id) %></td>
+      <td><%= Cryptscrape.DomainController.count_negvotes(domain.id) %></td>
       <%= if domain.target == "Potential" do %>
       <td><span class="badge badge-pill badge-success"><%= domain.target %></span></td>
       <% end %>
@@ -32,9 +34,19 @@
       <%= if domain.target == "Watch" do %>
       <td><span class="badge badge-pill badge-info"><%= domain.target %></span></td>
       <% end %>
-      <td><%= link "ADD VOTE", to: domain_path(@conn, :add_vote, domain), class: "btn btn-default btn-xs" %></td>
-
-
+      <%= if domain.target == nil do %>
+      <td><span class="badge badge-pill badge-info">NOT SET</span></td>
+      <% end %>
+      <td>
+      <a href="<%= domain_path(@conn, :add_vote, domain) %>" class="imglink">
+        <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/thumb-up-2x.png") %>">
+      </a>
+      </td>
+      <td>
+      <a href="<%= domain_path(@conn, :add_negvote, domain) %>" class="imglink">
+        <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/thumb-down-2x.png") %>">
+      </a>
+      </td>
     </tr>
 <% end %>
   </tbody>
