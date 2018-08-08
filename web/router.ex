@@ -46,7 +46,7 @@ defmodule Cryptscrape.Router do
     post "/domains/:id/add_negvote", DomainController, :add_negvote
     get "/about", PageController, :about
     get "/features", PageController, :features
-    resources "/domains", DomainController
+
     get "/run", DomainController, :generatelist
     get "users/:id/success_charge", UserController, :success_charge
 
@@ -57,8 +57,15 @@ defmodule Cryptscrape.Router do
 
     get "/csv", Csv, :export
 
+    get "/users/:id/admin", UserController, :admin
+    post "/users/:id/admin", UserController, :admin
+    get "/users/:id/edit_domains", DomainController, :edit_domains
+    post "/users/:id/edit_domains", DomainController, :edit_domains
+    get "/domains/:id/delete_domain", DomainController, :delete_domain
+    post "/domains/:id/delete_domain", DomainController, :delete_domain
     resources "/users", UserController
     resources "/sessions", SessionController, only: [:new, :create, :delete]
+    resources "/domains", DomainController
 
   end
 

@@ -4,10 +4,16 @@ defmodule Cryptscrape.DomainController do
   alias Cryptscrape.Domain
   alias Cryptscrape.Vote
   alias Cryptscrape.Negvote
+  alias Cryptscrape.Accounts
 
   def index(conn, _params) do
     domains = Repo.all(Domain) |> Repo.preload(:votes) |> Enum.sort_by(fn(a) -> a.relevancy end) |> Enum.reverse
     render(conn, "index.html", domains: domains)
+  end
+
+  def edit_domains(%Plug.Conn{assigns: %{current_user: user}} = conn, _params) do
+    domains = Repo.all(Domain) |> Repo.preload(:votes) |> Enum.sort_by(fn(a) -> a.name end) |> Enum.reverse
+    render(conn, "edit_domains.html", domains: domains)
   end
 
   def count_votes(domain) do
@@ -150,8 +156,17 @@ defmodule Cryptscrape.DomainController do
     end
   end
 
+  def delete_domain(%Plug.Conn{assigns: %{current_user: user}} = conn, %{"id" => id}) do
+    domain = Repo.get!(Domain, id)
+    Repo.delete!(domain)
+    conn
+    |> put_flash(:info, "Domain deleted successfully.")
+    |> redirect(to: domain_path(conn, :edit_domains, user.id))
+  end
+
   def delete(conn, %{"id" => id}) do
     domain = Repo.get!(Domain, id)
+    IO.puts "Deleting"
 
     # Here we use delete! (with a bang) because we expect
     # it to always work (and if it does not, it will raise).

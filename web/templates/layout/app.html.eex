@@ -57,12 +57,24 @@
                   <img class="side" src="<%= static_path(@conn, "/images/icons/png/person-4x.png") %>">
                 </a>
                 <%= if @current_user do %>
+                <%= if @current_user.auth_level == false || @current_user.auth_level == nil do %>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item disabled" href="#">Login or Register</a>
                   <a class="dropdown-item" href="<%= user_path(@conn, :show, @current_user.id) %>">Profile</a>
                   <div class="dropdown-divider"></div>
                   <%= link "Logout", to: session_path(@conn, :delete, @current_user), method: :delete %>
+                  </div>
+                  <% end %>
+                  <%= if @current_user.auth_level !== false || @current_user.auth_level !== nil do %>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item disabled" href="#">Login or Register</a>
+                  <a class="dropdown-item" href="<%= user_path(@conn, :show, @current_user.id) %>">Profile</a>
+                  <a class="dropdown-item" href="<%= user_path(@conn, :admin, @current_user.id) %>">Settings</a>
+                  <div class="dropdown-divider"></div>
+                  <%= link "Logout", to: session_path(@conn, :delete, @current_user), method: :delete %>
                 </div>
+                  <% end %>
+
                 <% else %>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="<%= session_path @conn, :new %>">Login or Register</a>

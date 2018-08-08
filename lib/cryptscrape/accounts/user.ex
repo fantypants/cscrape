@@ -10,6 +10,7 @@ defmodule Cryptscrape.Accounts.User do
     field :password, :string, virtual: true
     field :password_hash, :string
     field :sessions, {:map, :integer}, default: %{}
+    field :auth_level, :boolean
     has_many :votes, Cryptscrape.Vote, on_delete: :nothing
     has_many :negvotes, Cryptscrape.Vote, on_delete: :nothing
 
@@ -47,9 +48,9 @@ defmodule Cryptscrape.Accounts.User do
     stripe = create_stripe_account(attrs["email"])
     attrs = Map.merge(attrs, %{"paid" => paid, "stripe_id" => stripe.id})
     user
-    |> cast(attrs, [:email, :password, :paid, :stripe_id])
+    |> cast(attrs, [:email, :password, :paid, :stripe_id, :auth_level])
     |> cast_assoc(:votes)
-    |> validate_required([:email, :password, :paid, :stripe_id])
+    |> validate_required([:email, :password, :paid, :stripe_id, :auth_level])
     |> unique_email
     |> validate_password(:password)
     |> put_pass_hash

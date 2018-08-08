@@ -15,6 +15,11 @@ defmodule Cryptscrape.UserController do
     render(conn, "index.html", users: users)
   end
 
+  def admin(%Plug.Conn{assigns: %{current_user: user}} = conn, %{"id" => id}) do
+
+    render(conn, "admin.html", user: user)
+  end
+
   def customers(conn, _) do
     full_list = Stripe.Customer.list()
     email = elem(full_list, 1).data |> Enum.map(fn(a) -> %{email: a.email} end)

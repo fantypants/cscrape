@@ -9,9 +9,10 @@ defmodule Cryptscrape.Domain do
     field :url, :string
     field :target, :string
     field :relevancy, :integer
+    field :active, :boolean
 
-    has_many :votes, Cryptscrape.Vote, on_delete: :nothing
-    has_many :negvotes, Cryptscrape.Negvote, on_delete: :nothing
+    has_many :votes, Cryptscrape.Vote, on_delete: :delete_all
+    has_many :negvotes, Cryptscrape.Negvote, on_delete: :delete_all
 
 
     timestamps()
@@ -22,7 +23,7 @@ defmodule Cryptscrape.Domain do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:name, :date, :type, :url, :relevancy, :target])
+    |> cast(params, [:name, :date, :type, :url, :relevancy, :target, :active])
     |> cast_assoc(:votes)
     |> cast_assoc(:negvotes)
     |> unique_constraint(:name)

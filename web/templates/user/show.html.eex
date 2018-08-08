@@ -3,8 +3,14 @@
     <div class="panel panel-default">
             <div class="panel-heading"><h4>Your Details</h4></div>
             <div class="panel-body">
+              <%= if @user.auth_level == false || @user.auth_level == nil  do %>
               <h5> <strong>Name: </strong> NAME HERE</h5>
               <h5> <strong>Email: </strong> <%= @user.email %> </h5>
+              <%= else %>
+              <h5> <strong>Name: </strong> NAME HERE</h5>
+              <h5> <strong>Email: </strong> <%= @user.email %> </h5>
+              <h5> <strong>Admin: </strong> <%= @user.auth_level %></h5>
+              <% end %>
             </div>
     </div>
 </div>
