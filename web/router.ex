@@ -63,6 +63,8 @@ defmodule Cryptscrape.Router do
     post "/users/:id/edit_domains", DomainController, :edit_domains
     get "/domains/:id/delete_domain", DomainController, :delete_domain
     post "/domains/:id/delete_domain", DomainController, :delete_domain
+    get "/domains/:id/make_active", DomainController, :make_active
+    post "/domains/:id/make_active", DomainController, :make_active
     resources "/users", UserController
     resources "/sessions", SessionController, only: [:new, :create, :delete]
     resources "/domains", DomainController

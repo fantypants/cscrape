@@ -5,13 +5,14 @@
     <tr>
       <th>Name</th>
       <th>Date</th>
-      <th>Type</th>
+      <th>Active?</th>
       <th>Url</th>
       <th>Relevancy</th>
       <th> <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/thumb-up-2x.png") %>"> </th>
       <th> <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/thumb-down-2x.png") %>"> </th>
       <th>Target</th>
-<th>Delete</th>
+      <th>Delete</th>
+      <th>Make Active</th>
       <th></th>
     </tr>
   </thead>
@@ -20,7 +21,7 @@
     <tr class="text-info">
       <td><%= domain.name %></td>
       <td><%= domain.date %></td>
-      <td><%= domain.type %></td>
+      <td><%= domain.active %></td>
       <td><%= domain.url %></td>
       <td><%= domain.relevancy %></td>
       <td><%= Cryptscrape.DomainController.count_votes(domain.id) %></td>
@@ -41,7 +42,12 @@
       <a href="<%= domain_path(@conn, :delete_domain, domain) %>" class="imglink">
         <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/delete-2x.png") %>">
       </a>
-      </td>
+        </td>
+        <td>
+      <a href="<%= domain_path(@conn, :make_active, domain) %>" class="imglink">
+        <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/power-standby-2x.png") %>">
+      </a>
+    </td>
     </tr>
 <% end %>
   </tbody>

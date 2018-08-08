@@ -131,6 +131,29 @@ defmodule Cryptscrape.DomainController do
     end
   end
 
+  defp make_domain_active(%{"user" => user_id, "domain" => domain_id}) do
+    IO.puts "making Domain Active"
+    domain = Repo.get!(Domain, domain_id)
+    case domain do
+      nil ->
+        {:error, "Domain Not Found"}
+      _->
+      domain = Ecto.Changeset.change domain, active: true
+      case Repo.update domain do
+        {:ok, struct}       -> IO.puts "Success, Domain Now Active"
+        {:error, changeset} -> IO.puts "Incorrect, Domain not Active"
+      end
+    end
+  end
+
+  def make_active(%Plug.Conn{assigns: %{current_user: user}} = conn, %{"id" => id}) do
+    make_domain_active(%{"user" => user.id, "domain" => id})
+    conn
+    |> put_flash(:info, "Domain Made Active!")
+    |> redirect(to: domain_path(conn, :edit_domains, user.id))
+
+  end
+
   def show(conn, %{"id" => id}) do
     domain = Repo.get!(Domain, id)
     render(conn, "show.html", domain: domain)
