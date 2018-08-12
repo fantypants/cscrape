@@ -30,6 +30,7 @@ defmodule Cryptscrape.Accounts.User do
   end
 
   def create_stripe_account(email) do
+    details = %{email: email, id: ""}
     request = Stripe.Customer.create(%{email: email}) |> IO.inspect
       case request do
        {:ok, data} ->
