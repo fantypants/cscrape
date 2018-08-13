@@ -157,13 +157,13 @@ footer.footer {
                         <a href="<%= user_path(@conn, :reset_password) %>" class="list-group-item">
                           <div class="panel-heading"><h4>Reset Password</h4></div>
                           <div class="panel-body">
-                          <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/lock-locked-4x.png") %>">
+                          <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/loop-circular-4x.png") %>">
                           </div>
                         </a>
                         <a href="<%= user_path(@conn, :new) %>" class="list-group-item">
                           <div class="panel-heading"><h4>Sign Up Now!</h4></div>
                           <div class="panel-body">
-                          <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/lock-locked-4x.png") %>">
+                          <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/heart-4x.png") %>">
                           </div>
                         </a>
                     </ul>
