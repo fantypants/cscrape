@@ -1,6 +1,7 @@
 defmodule Cryptscrape.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
+  import Ecto.Query
   alias Cryptscrape.Accounts.User
 
   schema "users" do
@@ -19,14 +20,15 @@ defmodule Cryptscrape.Accounts.User do
 
   def changeset(%User{} = user, attrs) do
     paid = false
-    #USED IN NORMAL FUNCTIONS
-    IO.puts "Initital Changeset"
+    #USED IN NORMAL FUNCTIONS & CHANGE PASSWORD
     user
-    |> cast(attrs, [:email, :paid])
+    |> cast(attrs, [:email, :password])
+    |> validate_required([:email])
+    |> unique_email
     |> cast_assoc(:votes)
     |> cast_assoc(:negvotes)
-    |> validate_required([:email, :paid])
-    |> unique_email
+    |> validate_password(:password)
+    |> put_pass_hash
   end
 
   def create_stripe_account(email) do
@@ -43,7 +45,7 @@ defmodule Cryptscrape.Accounts.User do
   end
 
   def create_changeset(%User{} = user, attrs) do
-    IO.puts "THis changeset"
+    IO.puts "THis changeset is when creating a user"
     paid = false
     stripe = create_stripe_account(attrs["email"])
     attrs = Map.merge(attrs, %{"paid" => paid, "stripe_id" => stripe.id})
@@ -88,4 +90,23 @@ defmodule Cryptscrape.Accounts.User do
   end
 
   defp strong_password?(_), do: {:error, "The password is too short"}
+
+  def check_user(email) do
+    exists? = Cryptscrape.Repo.all(from u in User, where: u.email == ^email)
+    case exists? do
+      nil ->
+        {:error, "User Doesn't Exist"}
+      _->
+      {:ok, exists?}
+    end
+  end
+
+ def retrieve_password do
+   password_new = random_string(8)
+   {:ok, password_new}
+ end
+
+ def random_string(length) do
+  :crypto.strong_rand_bytes(length) |> Base.url_encode64 |> binary_part(0, length)
+end
 end

@@ -2,6 +2,9 @@ defmodule Cryptscrape.PageController do
   use Cryptscrape.Web, :controller
   alias Cryptscrape.Article
   alias Cryptscrape.Domain
+  alias Cryptscrape.Email
+  alias Cryptscrape.Mailer
+  alias Bamboo.SentEmailViewerPlug
 
   def index(conn, _params) do
     direct_query = from d in Domain, where: d.target == ^"Direct", limit: 10
@@ -10,7 +13,6 @@ defmodule Cryptscrape.PageController do
     direct = Repo.all(direct_query) |> Repo.preload(:votes) |> Enum.uniq_by(fn(a) -> a.name end) |> Enum.take(3) |> IO.inspect
     potential = Repo.all(potential_query) |> Repo.preload(:votes) |> Enum.uniq_by(fn(a) -> a.name end) |> Enum.take(3) |> IO.inspect
     watch = Repo.all(watch_query) |> Repo.preload(:votes) |> Enum.uniq_by(fn(a) -> a.name end) |> Enum.take(3) |> IO.inspect
-    #Article.get_information(:medium, "tronpay")
     render conn, "index.html", direct: direct, potential: potential, watch: watch
   end
 

@@ -69,6 +69,13 @@ defmodule Cryptscrape.Router do
     resources "/sessions", SessionController, only: [:new, :create, :delete]
     resources "/domains", DomainController
 
+    get "/viewemails", UserController, :view_emails
+    post "/viewemails", UserController, :view_emails
+    get "/resetpassword", UserController, :reset_password
+    post "/resetpassword", UserController, :reset_password
+    get "/passwordreset", UserController, :passwordreset
+    post "/passwordreset", UserController, :passwordreset
+
   end
 
   # Other scopes may use custom stacks.

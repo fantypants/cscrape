@@ -5,6 +5,8 @@ defmodule Cryptscrape.UserController do
   alias Phauxth.Log
   alias Cryptscrape.Accounts
   alias Cryptscrape.Payment
+  alias Cryptscrape.Mailer
+  alias Bamboo.SentEmailViewerPlug
 
   # the following plugs are defined in the controllers/authorize.ex file
   plug :user_check when action in [:index, :show]
@@ -16,9 +18,43 @@ defmodule Cryptscrape.UserController do
   end
 
   def admin(%Plug.Conn{assigns: %{current_user: user}} = conn, %{"id" => id}) do
-
     render(conn, "admin.html", user: user)
   end
+
+  def view_emails(%Plug.Conn{assigns: %{current_user: user}} = conn, _params) do
+  changeset = Accounts.User.changeset(%Accounts.User{}, %{name: "name"})
+  emails = Bamboo.SentEmail.all |> Enum.map(fn(a) -> %{from: elem(a.from, 1), to: elem(List.first(a.to), 1), subject: a.subject, message: a.html_body} end)
+  render(conn, "viewemails.html", changeset: changeset, emails: emails)
+  end
+
+  def reset_password(%Plug.Conn{assigns: %{current_user: user}} = conn, _params) do
+    changeset = Accounts.User.changeset(%Accounts.User{}, %{name: "name"})
+    render(conn, "resetpassword.html", changeset: changeset)
+  end
+
+def passwordreset(%Plug.Conn{assigns: %{current_user: user}} = conn, %{"user" => %{"email" => email}}) do
+changeset = Accounts.User.changeset(%Accounts.User{}, %{name: "name"})
+  case Accounts.User.check_user(email) do
+    {:ok, user} ->
+      case Accounts.User.retrieve_password do
+        {:ok, password} ->
+          case Accounts.update_user(List.first(user), %{"email" => email, "password" => password}) do
+            {:ok, user} ->
+              Cryptscrape.Email.password_recovery(email, password) |> Cryptscrape.Mailer.deliver_now
+              render(conn, "resetpassword.html", changeset: changeset)
+            {:error, %Ecto.Changeset{} = changeset} ->
+              IO.puts "Didn't Work"
+              IO.inspect changeset
+              render(conn, "resetpassword.html", changeset: changeset)
+          end
+        {:error, message} ->
+          IO.puts "Password Change Failed"
+          render(conn, "resetpassword.html", changeset: changeset)
+        end
+    {:error, message} ->
+        render(conn, "resetpassword.html", changeset: changeset)
+    end
+end
 
   def customers(conn, _) do
     full_list = Stripe.Customer.list()
@@ -54,11 +90,12 @@ defmodule Cryptscrape.UserController do
   end
 
   def create(conn, %{"user" => user_params}) do
+    email = user_params["email"]
     case Accounts.create_user(user_params) do
       {:ok, user} ->
         Log.info(%Log{user: user.id, message: "user created"})
+        Cryptscrape.Email.welcome_email(email) |> Cryptscrape.Mailer.deliver_now
         success(conn, "User created successfully", session_path(conn, :new))
-
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -83,8 +120,10 @@ defmodule Cryptscrape.UserController do
 
   def update(%Plug.Conn{assigns: %{current_user: user}} = conn, %{"user" => user_params}) do
     IO.inspect user_params
+    IO.puts "Working with password changeset"
     case Accounts.update_user(user, user_params) do
       {:ok, user} ->
+        IO.inspect user
         success(conn, "User updated successfully", user_path(conn, :show, user))
 
       {:error, %Ecto.Changeset{} = changeset} ->

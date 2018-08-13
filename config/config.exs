@@ -36,6 +36,9 @@ config :logger, :console,
 
 config :stripity_stripe, api_key: "sk_test_0gvWZW6A0mDk1WZFhacn5It3"
 
+config :cryptscrape, Cryptscrape.Mailer,
+  adapter: Bamboo.LocalAdapter
+
 
 
 # Import environment specific config. This must remain at the bottom
