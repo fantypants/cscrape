@@ -1,0 +1,17 @@
+<table class="table">
+  <thead>
+    <th> <strong> To </strong> </th>
+    <th> <strong> From </strong> </th>
+    <th> <strong> Subject </strong> </th>
+  </thead>
+  <tbody>
+      <%= for email <- @emails do %>
+    <tr>
+      <td><%= email.to %></td>
+      <td><%= email.from %></td>
+      <td><%= email.subject %></td>
+      <td><%= email.message %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

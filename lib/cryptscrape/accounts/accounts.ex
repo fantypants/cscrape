@@ -3,7 +3,7 @@ defmodule Cryptscrape.Accounts do
   The boundary for the Accounts system.
   """
 
-  import Ecto.{Query, Changeset}, warn: false
+  import Ecto.{Query, Changeset}, warn: true
   alias Cryptscrape.{Accounts.User, Repo}
 
   def list_users do
@@ -25,7 +25,7 @@ defmodule Cryptscrape.Accounts do
   def update_user(%User{} = user, attrs) do
     user
     |> User.changeset(attrs)
-    |> Repo.update()
+    |> Repo.update() |> IO.inspect
   end
 
   def delete_user(%User{} = user) do

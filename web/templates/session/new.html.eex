@@ -1,4 +1,144 @@
-<body id="page-top">
+<head>
+  <style>
+  .masthead{
+    width: 100%;
+    height: 100%;
+  }
+  body {
+  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+}
+
+header.masthead {
+  position: relative;
+  background-color: #343a40;
+  background: url("../img/bg-masthead.jpg") no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
+
+header.masthead .overlay {
+  position: absolute;
+  background-color: #212529;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.3;
+}
+
+header.masthead h1 {
+  font-size: 2rem;
+}
+
+@media (min-width: 768px) {
+  header.masthead {
+    padding-top: 12rem;
+    padding-bottom: 12rem;
+  }
+  header.masthead h1 {
+    font-size: 3rem;
+  }
+}
+
+.showcase .showcase-text {
+  padding: 3rem;
+}
+
+.showcase .showcase-img {
+  min-height: 30rem;
+  background-size: cover;
+}
+
+@media (min-width: 768px) {
+  .showcase .showcase-text {
+    padding: 7rem;
+  }
+}
+
+.features-icons {
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+
+.features-icons .features-icons-item {
+  max-width: 20rem;
+}
+
+.features-icons .features-icons-item .features-icons-icon {
+  height: 7rem;
+}
+
+.features-icons .features-icons-item .features-icons-icon i {
+  font-size: 4.5rem;
+}
+
+.features-icons .features-icons-item:hover .features-icons-icon i {
+  font-size: 5rem;
+}
+
+.testimonials {
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+
+.testimonials .testimonial-item {
+  max-width: 18rem;
+}
+
+.testimonials .testimonial-item img {
+  max-width: 12rem;
+  box-shadow: 0px 5px 5px 0px #adb5bd;
+}
+
+.call-to-action {
+  position: relative;
+  background-color: #343a40;
+  background: url("../img/bg-masthead.jpg") no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+
+.call-to-action .overlay {
+  position: absolute;
+  background-color: #212529;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.3;
+}
+
+footer.footer {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.panel-group-ico{
+  box-shadow: 1px 1px 1px grey;
+}
+  </style>
+
+</head>
+
+<body id="page">
   <header class="masthead">
     <div class="container h-100">
       <div class="row h-100">
@@ -8,10 +148,37 @@
           </div>
         </div>
       </div>
-        <div class="col-lg-5 my-auto">
+      <div class="col-12 col-lg-4">
+        <div class="panel-group panel-group-ico">
+          <div class="panel panel-default">
+                  <div class="panel-heading"><h4>Looking for more?</h4></div>
+                  <div class="panel-body">
+                    <ul class="list-group">
+                        <a href="<%= user_path(@conn, :reset_password) %>" class="list-group-item">
+                          <div class="panel-heading"><h4>Reset Password</h4></div>
+                          <div class="panel-body">
+                          <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/loop-circular-4x.png") %>">
+                          </div>
+                        </a>
+                        <a href="<%= user_path(@conn, :new) %>" class="list-group-item">
+                          <div class="panel-heading"><h4>Sign Up Now!</h4></div>
+                          <div class="panel-body">
+                          <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/heart-4x.png") %>">
+                          </div>
+                        </a>
+                    </ul>
+                  </div>
+          </div>
+      </div>
+      </div>
+
+        <div class="col-lg-8 my-auto">
           <div class="device-container">
             <div class="container">
               <div class="row">
+                <div class="panel panel-default">
+                        <div class="panel-heading"><h4>ICORUMOR LOGIN PORTAL</h4></div>
+                        <div class="panel-body">
             <%= form_for @conn, session_path(@conn, :create), [as: :session], fn f -> %>
               <%= if f.errors != [] do %>
                 <div class="alert alert-danger">
@@ -34,9 +201,11 @@
               <div class="form-group">
                 <%= submit "Login", class: "btn btn-primary" %>
               </div>
-              <span><%= link "Back", to: page_path(@conn, :index), class: "btn btn-primary" %></span>
-              <span><%= link "Register", to: user_path(@conn, :new), class: "btn btn-primary" %></span>
             <% end %>
+            <span><%= link "Back", to: page_path(@conn, :index), class: "btn btn-primary" %></span>
+          </div>
+        </div>
+      </div>
           </div>
           </div>
           </div>

@@ -29,6 +29,23 @@
     </div>
 </div>
 </div>
+<div class="col-12 col-lg-4">
+  <div class="panel-group panel-group-ico">
+    <div class="panel panel-default">
+            <div class="panel-heading"><h4>Profile Tools</h4></div>
+            <div class="panel-body">
+              <ul class="list-group">
+                  <a href="<%= user_path(@conn, :edit, @user) %>" class="list-group-item">
+                    <div class="panel-heading"><h4>Change Password</h4></div>
+                    <div class="panel-body">
+                    <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/lock-locked-4x.png") %>">
+                    </div>
+                  </a>
+              </ul>
+            </div>
+    </div>
+</div>
+</div>
 
 
 <span><%= link "Edit", to: user_path(@conn, :edit, @user) %></span><br>

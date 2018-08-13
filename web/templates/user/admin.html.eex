@@ -214,6 +214,12 @@
                   <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/power-standby-4x.png") %>">
                   </div>
                 </a>
+                <a href="<%= user_path(@conn, :view_emails) %>" class="list-group-item">
+                  <div class="panel-heading"><h4>Development Email Viewer</h4></div>
+                  <div class="panel-body">
+                  <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/envelope-closed-4x.png") %>">
+                  </div>
+                </a>
             </ul>
           </div>
         </div>
