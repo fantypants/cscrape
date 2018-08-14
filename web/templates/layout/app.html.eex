@@ -9,28 +9,37 @@
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/bootstrap.css") %>">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/phoenix.css") %>">
+    <style>
+    .navbar{
+        box-shadow: 2px 2px 2px black;
+    }
+
+    </style>
   </head>
       <body>
         <header>
           <nav class="navbar navbar-expand-lg navbar-dark bg-dark main-nav">
-            <a class="navbar-brand" href="#">ICORUMORS</a>
+            <a class="navbar-brand" href="/">ICORUMORS</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-              </li>
+              <%= if @current_user do %>
+
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Features
+                    <img class="side" src="<%= static_path(@conn, "/images/icons/png/globe-4x.png") %>">
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Overview</a>
-                  <a class="dropdown-item" href="#">Plans</a>
+                  <a class="dropdown-item" href="<%= domain_path @conn, :index %>">List All Domains</a>
+                  <a class="dropdown-item" href="<%= domain_path @conn, :watch_index %>">Watch These</a>
+                  <a class="dropdown-item" href="<%= domain_path @conn, :potential_index %>">Potential Matches</a>
+                  <a class="dropdown-item" href="<%= domain_path @conn, :direct_index %>">Direct Matches</a>
                 </div>
               </li>
+
+              <% else %>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Pricing
@@ -51,8 +60,10 @@
                   <a class="dropdown-item" href="#">Something else here</a>
                 </div>
               </li>
-
-              <li class="nav-item dropdown user pull-right" id="user_link">
+              <% end %>
+            </ul>
+            <ul class="navbar-nav mr-auto navbar-nav navbar-right">
+              <li class="nav-item dropdown user" id="user_link">
                 <a class="nav-link dropdown-toggle user" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <img class="side" src="<%= static_path(@conn, "/images/icons/png/person-4x.png") %>">
                 </a>
@@ -88,29 +99,15 @@
         </nav>
         </header>
 
-        <!-- If Logged In -->
-        <%= if @current_user do %>
-        <!-- Side Nav -->
-        <div class="sidenav">
-          <li class="nav-item active"><a class="nav-link" href="<%= user_path @conn, :index %>">Users</a></li>
-          <li class="nav-item active"><a class="nav-link" href="<%= domain_path @conn, :index %>">List All Domains</a></li>
-          <li class="nav-item active"><a class="nav-link" href="<%= domain_path @conn, :watch_index %>">Watch These</a></li>
-          <li class="nav-item active"><a class="nav-link" href="<%= domain_path @conn, :potential_index %>">Potential Matches</a></li>
-          <li class="nav-item active"><a class="nav-link" href="<%= domain_path @conn, :direct_index %>">Direct Matches</a></li>
-        </div>
-        <main class="main" role="main" style="margin-left: 160px">
-          <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-          <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-          <%= render @view_module, @view_template, assigns %>
-        </main>
-        <% else %>
+
+
         <main class="main" role="main" style="margin-left: 25px">
           <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
           <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
           <%= render @view_module, @view_template, assigns %>
         </main>
 
-        <% end %>
+
 
         <!-- If Not Logged In -->
 
