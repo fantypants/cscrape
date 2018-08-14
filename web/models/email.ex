@@ -13,7 +13,7 @@ defmodule Cryptscrape.Email do
 
     # or pipe using Bamboo.Email functions
     new_email
-    |> to("matthewmjeaton@gmail.com")
+    |> to("n6378956@gmail.com")
     |> from("welcome@icorumors.io")
     |> subject("Welcome!!!")
     |> html_body("<strong>Welcome</strong>")

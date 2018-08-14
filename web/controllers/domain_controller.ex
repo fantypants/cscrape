@@ -7,7 +7,7 @@ defmodule Cryptscrape.DomainController do
   alias Cryptscrape.Accounts
 
   def index(conn, _params) do
-    domains = Repo.all(Domain) |> Repo.preload(:votes) |> Enum.sort_by(fn(a) -> a.relevancy end) |> Enum.reverse
+    domains = Repo.all(Domain) |> Repo.preload(:votes) |> Enum.sort_by(fn(a) -> a.name end) |> Enum.reverse
     render(conn, "index.html", domains: domains)
   end
 
