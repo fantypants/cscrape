@@ -13,6 +13,7 @@ defmodule Cryptscrape.PageController do
     direct = Repo.all(direct_query) |> Repo.preload(:votes) |> Enum.uniq_by(fn(a) -> a.name end) |> Enum.take(3) |> IO.inspect
     potential = Repo.all(potential_query) |> Repo.preload(:votes) |> Enum.uniq_by(fn(a) -> a.name end) |> Enum.take(3) |> IO.inspect
     watch = Repo.all(watch_query) |> Repo.preload(:votes) |> Enum.uniq_by(fn(a) -> a.name end) |> Enum.take(3) |> IO.inspect
+    #Email.welcome_email |> Mailer.deliver_now |> IO.inspect
     render conn, "index.html", direct: direct, potential: potential, watch: watch
   end
 
