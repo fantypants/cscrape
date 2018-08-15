@@ -1,5 +1,8 @@
 <h2>Listing domains</h2>
 <span><%= link "Download CSV", to: csv_path(@conn, :export) %></span>
+
+<div id="hello-react"></div>
+
 <table class="table table-hover">
   <thead>
     <tr>
@@ -11,8 +14,7 @@
       <th> <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/thumb-up-2x.png") %>"> </th>
       <th> <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/thumb-down-2x.png") %>"> </th>
       <th>Target</th>
-
-      <th></th>
+ 
     </tr>
   </thead>
   <tbody>

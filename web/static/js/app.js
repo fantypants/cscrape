@@ -12,7 +12,21 @@
 // If you no longer want to use a dependency, remember
 // to also remove its path from "config.paths.watched".
 import "phoenix_html"
+import React from "react"
+import ReactDOM from "react-dom"
 
+class ReactApp extends React.Component {
+  render() {
+    return (
+      <h1>Hello React!</h1>
+    )
+  }
+}
+
+ReactDOM.render(
+  <ReactApp/>,
+  document.getElementById("hello-react")
+)
 // Import local files
 //
 // Local files can be imported directly using relative

@@ -13,140 +13,138 @@
     height: 100%;
   }
   body {
-  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
+    font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: 700;
-}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+  }
 
-header.masthead {
-  position: relative;
-  background-color: #343a40;
-  background: url("../img/bg-masthead.jpg") no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  padding-top: 8rem;
-  padding-bottom: 8rem;
-}
-
-header.masthead .overlay {
-  position: absolute;
-  background-color: #212529;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  opacity: 0.3;
-}
-
-header.masthead h1 {
-  font-size: 2rem;
-}
-
-@media (min-width: 768px) {
   header.masthead {
-    padding-top: 12rem;
-    padding-bottom: 12rem;
+    position: relative;
+    background-color: #343a40;
+    background-color: #DFDBE5;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
   }
+
+  header.masthead .overlay {
+    position: absolute;
+    background-color: #212529;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.3;
+  }
+
   header.masthead h1 {
-    font-size: 3rem;
+    font-size: 2rem;
   }
-}
 
-.showcase .showcase-text {
-  padding: 3rem;
-}
+  @media (min-width: 768px) {
+    header.masthead {
+      padding-top: 12rem;
+      padding-bottom: 12rem;
+    }
+    header.masthead h1 {
+      font-size: 3rem;
+    }
+  }
 
-.showcase .showcase-img {
-  min-height: 30rem;
-  background-size: cover;
-}
-
-@media (min-width: 768px) {
   .showcase .showcase-text {
-    padding: 7rem;
+    padding: 3rem;
   }
-}
 
-.features-icons {
-  padding-top: 7rem;
-  padding-bottom: 7rem;
-}
+  .showcase .showcase-img {
+    min-height: 30rem;
+    background-size: cover;
+  }
 
-.features-icons .features-icons-item {
-  max-width: 20rem;
-}
+  @media (min-width: 768px) {
+    .showcase .showcase-text {
+      padding: 7rem;
+    }
+  }
 
-.features-icons .features-icons-item .features-icons-icon {
-  height: 7rem;
-}
+  .features-icons {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
 
-.features-icons .features-icons-item .features-icons-icon i {
-  font-size: 4.5rem;
-}
+  .features-icons .features-icons-item {
+    max-width: 20rem;
+  }
 
-.features-icons .features-icons-item:hover .features-icons-icon i {
-  font-size: 5rem;
-}
+  .features-icons .features-icons-item .features-icons-icon {
+    height: 7rem;
+  }
 
-.testimonials {
-  padding-top: 7rem;
-  padding-bottom: 7rem;
-}
+  .features-icons .features-icons-item .features-icons-icon i {
+    font-size: 4.5rem;
+  }
 
-.testimonials .testimonial-item {
-  max-width: 18rem;
-}
+  .features-icons .features-icons-item:hover .features-icons-icon i {
+    font-size: 5rem;
+  }
 
-.testimonials .testimonial-item img {
-  max-width: 12rem;
-  box-shadow: 0px 5px 5px 0px #adb5bd;
-}
+  .testimonials {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
 
-.call-to-action {
-  position: relative;
-  background-color: #343a40;
-  background: url("../img/bg-masthead.jpg") no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  padding-top: 7rem;
-  padding-bottom: 7rem;
-}
+  .testimonials .testimonial-item {
+    max-width: 18rem;
+  }
 
-.call-to-action .overlay {
-  position: absolute;
-  background-color: #212529;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  opacity: 0.3;
-}
+  .testimonials .testimonial-item img {
+    max-width: 12rem;
+    box-shadow: 0px 5px 5px 0px #adb5bd;
+  }
 
-footer.footer {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
-}
+  .call-to-action {
+    position: relative;
+    background-color: #343a40;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
 
-.panel-group-ico{
-  box-shadow: 1px 1px 1px grey;
-}
+  .call-to-action .overlay {
+    position: absolute;
+    background-color: #212529;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.3;
+  }
+
+  footer.footer {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .panel-group-ico{
+    box-shadow: 1px 1px 1px grey;
+  }
   </style>
   </head>
 
   <body id="page">
-
     <header class="masthead text-black text-center">
       <div class="container">
         <div class="row">
@@ -337,6 +335,7 @@ footer.footer {
 
 
   </body>
+  <!--
   <script src="<%= static_path(@conn, "/js/new-age.js") %>"></script>
-
+  -->
 </html>
