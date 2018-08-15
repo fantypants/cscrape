@@ -10,12 +10,27 @@ defmodule Cryptscrape.Target do
   #Plausable
   #Watch
 
-  def filter_initial_domains(list) do
+
+#OLD
+  def filter_initial_domains_outdated(list) do
     IO.puts "Main Domain Filter"
     valid_list = list |> Enum.map(fn(a) -> filter_integers(a) end) |> Enum.reject(fn(a) -> a.url == "invalid" end)
     valid_list
   end
 
+  def filter_initial_domains(list) do
+    list |>
+    Enum.reject(fn(list) ->
+      String.contains?(list.name, "sex") ||
+      String.contains?(list.name, "gay") ||
+      String.contains?(list.name, "porn") ||
+      String.contains?(list.name, "fuck") == true end) |>
+      Enum.reject(fn(list) ->
+        Regex.match?(~r/[^a-z][^0-9]/, list.name) == true
+      end)
+  end
+
+  #OLD
   defp filter_integers(map) do
     case Regex.match?(~r/[^0-9]/, map.name) do
       false ->
@@ -44,10 +59,31 @@ defmodule Cryptscrape.Target do
     DomainController.insert_domain(%{"domain" => map})
   end
 
-  def direct_matches(list) do
+  #OLD
+  def direct_matches_old(list) do
     list |> Enum.map(fn(a) -> search_names(a) end)
     |> List.flatten
     |> Enum.reject(fn(a) -> a.valid == false end)
+  end
+
+  def direct_matches(list) do
+    identifiers = [
+      "coin",
+      "block",
+      "chain",
+      "crypto",
+      "cash",
+      "tron",
+      "ico",
+      "eos",
+      "eth",
+      "bitcoin",
+      "btc",
+      "token"]
+    identifiers |> Enum.map(fn(identifiers) ->
+      new_list = list
+      |> Enum.reject(fn(list) -> String.contains?(identifiers, list.name) == false end)
+    end) |> List.flatten
   end
 
   def perfect_matches(git_list, direct_list) do
@@ -81,6 +117,7 @@ defmodule Cryptscrape.Target do
     }end)
   end
 
+  #OLD
   defp search_names(name) do
     #THIS FINDS ALL DIRECT ICO RELATED MATCHES
     identifiers = [

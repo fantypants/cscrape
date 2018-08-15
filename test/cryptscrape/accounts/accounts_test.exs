@@ -1,5 +1,5 @@
 defmodule Cryptscrape.AccountsTest do
-  use Cryptscrape.DataCase
+  #use Cryptscrape.DataCase
 
   alias Cryptscrape.Accounts
   alias Cryptscrape.Accounts.User
