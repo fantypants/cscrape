@@ -23,6 +23,13 @@
       padding-bottom: 0px!important;
     }
 
+    .side{
+      color: white;
+      fill: #fff!important;
+      width: 50px;
+      height: 50px;
+    }
+
     </style>
   </head>
       <body>
@@ -38,7 +45,7 @@
 
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="side" src="<%= static_path(@conn, "/images/icons/png/globe-4x.png") %>">
+                    <img class="side" src="<%= static_path(@conn, "/images/icons/svg/globe.svg") %>">
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="<%= domain_path @conn, :index %>">List All Domains</a>
@@ -74,7 +81,7 @@
             <ul class="navbar-nav mr-auto navbar-nav navbar-right">
               <li class="nav-item dropdown user" id="user_link">
                 <a class="nav-link dropdown-toggle user" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <img class="side" src="<%= static_path(@conn, "/images/icons/png/person-4x.png") %>">
+                  <img class="side" src="<%= static_path(@conn, "/images/icons/svg/person.svg") %>">
                 </a>
                 <%= if @current_user do %>
                 <%= if @current_user.auth_level == false || @current_user.auth_level == nil do %>
@@ -132,7 +139,8 @@
   </body>
   <footer>
     <div class="parallax-pro">
-        <div class="img-src" style="background-color: grey;">         <div class="container">
+        <div class="img-src" style="background-color: black;">
+          <div class="container">
                     <div class="row">
                         <div class="col-md-12 text-center credits">
                           <div class="credits">

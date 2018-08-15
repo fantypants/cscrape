@@ -134,6 +134,12 @@
   .panel-group-ico{
   box-shadow: 1px 1px 1px grey;
   }
+
+  .side{
+    height: 30px!important;
+    width: 30px!important;
+
+  }
   </style>
 </head>
 <div class="masthead text-black text-center">
@@ -153,19 +159,19 @@
                 <a href="<%= domain_path(@conn, :edit_domains, @user.id) %>" class="list-group-item">
                   <div class="panel-heading"><h4>Edit Domains</h4></div>
                   <div class="panel-body">
-                  <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/globe-4x.png") %>">
+                  <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/globe.svg") %>">
                   </div>
                 </a>
                 <a href="#" class="list-group-item">
                   <div class="panel-heading"><h4>Add Domains</h4></div>
                   <div class="panel-body">
-                  <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/flash-4x.png") %>">
+                  <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/flash.svg") %>">
                   </div>
                 </a>
                 <a href="#" class="list-group-item">
                   <div class="panel-heading"><h4>Remove Duplicates</h4></div>
                   <div class="panel-body">
-                  <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/delete-4x.png") %>">
+                  <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/delete.svg") %>">
                   </div>
                 </a>
             </ul>
@@ -182,19 +188,19 @@
                 <a href="<%= user_path(@conn, :index) %>" class="list-group-item">
                   <div class="panel-heading"><h4>Edit Users</h4></div>
                   <div class="panel-body">
-                  <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/person-4x.png") %>">
+                  <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/person.svg") %>">
                   </div>
                 </a>
                 <a href="#" class="list-group-item">
                   <div class="panel-heading"><h4>Add User</h4></div>
                   <div class="panel-body">
-                  <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/people-4x.png") %>">
+                  <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/people.svg") %>">
                   </div>
                 </a>
                 <a href="#" class="list-group-item">
                   <div class="panel-heading"><h4>User Statistics</h4></div>
                   <div class="panel-body">
-                  <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/magnifying-glass-4x.png") %>">
+                  <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/magnifying-glass.svg") %>">
                   </div>
                 </a>
             </ul>
@@ -211,19 +217,19 @@
                 <a href="#" class="list-group-item">
                   <div class="panel-heading"><h4>On/Off Planner</h4></div>
                   <div class="panel-body">
-                  <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/power-standby-4x.png") %>">
+                  <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/power-standby.svg") %>">
                   </div>
                 </a>
                 <a href="<%= user_path(@conn, :view_emails) %>" class="list-group-item">
                   <div class="panel-heading"><h4>Development Email Viewer</h4></div>
                   <div class="panel-body">
-                  <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/envelope-closed-4x.png") %>">
+                  <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/envelope-closed.svg") %>">
                   </div>
                 </a>
                 <a href="<%= domain_path(@conn, :generatelist) %>" class="list-group-item">
                   <div class="panel-heading"><h4>Manually Run Scraper</h4></div>
                   <div class="panel-body">
-                  <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/data-transfer-download-4x.png") %>">
+                  <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/data-transfer-download.svg") %>">
                   </div>
                 </a>
             </ul>
