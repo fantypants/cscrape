@@ -30,6 +30,25 @@
       height: 50px;
     }
 
+    #statsblock{
+      border-radius: 0;
+      padding-top: 0px!important;
+      margin-top: -40px!important;
+      background-color: black!important;
+      z-index: -10
+    }
+
+    #statsblock .navbar-brand{
+      padding-top: -30px!important;
+      background-color: black!important;
+      margin-left: 350px!important;
+    }
+
+    #statsblock .navbar-brand p{
+      color: green;
+      text-align: middle;
+    }
+
     </style>
   </head>
       <body>
@@ -113,6 +132,12 @@
             </ul>
           </div>
         </nav>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark main-nav" id="statsblock">
+          <a class="navbar-brand" href="/">
+            
+            </a>
+        </nav>
         </header>
 
 
@@ -134,7 +159,15 @@
     <script type="text/javascript" src="<%= static_path(@conn, "/js/jquery-3.3.1.min.js") %>"></script>
     <script type="text/javascript" src="<%= static_path(@conn, "/js/bootstrap.min.js") %>"></script>
     <script type="text/javascript" src="<%= static_path(@conn, "/js/app.js") %>"></script>
-
+    <script>
+      (function(b,i,t,C,O,I,N) {
+        window.addEventListener('load',function() {
+          if(b.getElementById(C))return;
+          I=b.createElement(i),N=b.getElementsByTagName(i)[0];
+          I.src=t;I.id=C;N.parentNode.insertBefore(I, N);
+        },false)
+      })(document,'script','https://widgets.bitcoin.com/widget.js','btcwdgt');
+    </script>
 
   </body>
   <footer>
