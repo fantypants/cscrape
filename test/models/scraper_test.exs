@@ -18,6 +18,25 @@ defmodule Cryptscrape.ScraperTest do
       assert test_case_size == 3
     end
 
+    test "test_perfect_matches" do
+      data = relevant_data_set()
+      filtered_data = data |> Target.filter_initial_domains
+      direct_matches = filtered_data |> Target.direct_matches
+      perfect_matches = Target.perfect_matches(filtered_data, direct_matches)
+
+      assert Enum.count(perfect_matches) == 3
+    end
+
+    test "test_plausible_matches" do
+      data = relevant_data_set()
+      filtered_data = data |> Target.filter_initial_domains
+      direct_matches = filtered_data |> Target.direct_matches
+      plausible_matches = Target.plausible_matches(filtered_data, direct_matches)
+
+      assert Enum.count(plausible_matches) == 2
+
+    end
+
     defp data_set do
       list = [
         "coin",
@@ -32,6 +51,25 @@ defmodule Cryptscrape.ScraperTest do
         name: list,
         url: "#{list}.network",
         type: ".network",
+        date: NaiveDateTime.utc_now()
+      }end)
+    end
+
+    defp relevant_data_set do
+      list = [
+        "coin",
+        "blockdaddy",
+        "twocents",
+        "ico",
+        "gay",
+        "sex",
+        "0x88a",
+        "twocats"]
+      Enum.map(list, fn(list) -> %{
+        name: list,
+        url: "#{list}.network",
+        type: ".network",
+        relevancy: 99,
         date: NaiveDateTime.utc_now()
       }end)
     end
