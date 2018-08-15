@@ -14,11 +14,15 @@
 import "phoenix_html"
 import React from "react"
 import ReactDOM from "react-dom"
+import Navbar from './navbar'
 
 class ReactApp extends React.Component {
   render() {
     return (
-      <h1>Hello React!</h1>
+      <div>
+        <h1>Hello React!</h1>
+        <Navbar/>
+      </div>
     )
   }
 }
