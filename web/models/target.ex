@@ -39,10 +39,15 @@ defmodule Cryptscrape.Target do
   end
 
   def perfect_matches(git_processed_list, direct_matched_list) do
-    direct_matched_list |> Enum.map(fn(direct) ->
+    direct_matched_list |> Enum.reject(fn(list) -> list.relevancy == 0 end) |> Enum.map(fn(direct) ->
       new_list = git_processed_list
       |> Enum.reject(fn(git) -> direct.name !== git.name end)
-    end)
+    end) |> List.flatten
+  end
+
+  def related_matches(direct_matched_list, perfect_matched_list) do
+    perfect_name_list = perfect_matched_list |> Enum.map(fn(perfect) -> perfect.name end)
+    direct_matched_list |> Enum.reject(fn(direct) -> String.contains?(direct.name, perfect_name_list) == true end)
   end
 
 
@@ -52,6 +57,43 @@ defmodule Cryptscrape.Target do
       String.contains?(list.name, direct_list) == true
     end) |> List.flatten
   end
+
+  def insert_type_of_match(list, type) do
+    case type do
+      :perfect ->
+        list |> Enum.map(fn(list) -> %{
+          active: false,
+          name: list.name,
+          url: list.url,
+          type: list.type,
+          relevancy: list.relevancy,
+          target: "Perfect",
+          date: list.date}
+        end)
+      :related ->
+        list |> Enum.map(fn(list) -> %{
+          active: false,
+          name: list.name,
+          url: list.url,
+          type: list.type,
+          relevancy: list.relevancy,
+          target: "Related",
+          date: list.date}
+        end)
+      :plausible ->
+        list |> Enum.map(fn(list) -> %{
+          active: false,
+          name: list.name,
+          url: list.url,
+          type: list.type,
+          relevancy: list.relevancy,
+          target: "Plausible",
+          date: list.date}
+        end)
+    end
+  end
+
+
 
   #OLD
   def direct_matches_old(list) do

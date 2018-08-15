@@ -19,12 +19,12 @@ defmodule Cryptscrape.ScraperTest do
     end
 
     test "test_perfect_matches" do
-      data = relevant_data_set()
+      data = perfect_data_set()
       filtered_data = data |> Target.filter_initial_domains
       direct_matches = filtered_data |> Target.direct_matches
       perfect_matches = Target.perfect_matches(filtered_data, direct_matches)
 
-      assert Enum.count(perfect_matches) == 3
+      assert Enum.count(perfect_matches) == 2
     end
 
     test "test_plausible_matches" do
@@ -34,7 +34,30 @@ defmodule Cryptscrape.ScraperTest do
       plausible_matches = Target.plausible_matches(filtered_data, direct_matches)
 
       assert Enum.count(plausible_matches) == 2
+    end
 
+    test "test_related_matches_only" do
+      data = perfect_data_set()
+      filtered_data = data |> Target.filter_initial_domains
+      direct_matches = filtered_data |> Target.direct_matches
+      perfect_matches = Target.perfect_matches(filtered_data, direct_matches)
+      related_matches = Target.related_matches(direct_matches, perfect_matches)
+      assert Enum.count(related_matches) == 1
+    end
+
+    test "test_final_data_is_correct" do
+      data = perfect_data_set()
+      filtered_data = data |> Target.filter_initial_domains
+      direct_matches = filtered_data |> Target.direct_matches
+      perfect_matches = Target.perfect_matches(filtered_data, direct_matches) |> Target.insert_type_of_match(:perfect)
+      related_matches = Target.related_matches(direct_matches, perfect_matches) |> Target.insert_type_of_match(:related)
+      plausible_matches = Target.plausible_matches(filtered_data, direct_matches) |> Target.insert_type_of_match(:plausible)
+      final_data = perfect_matches ++ related_matches ++ plausible_matches
+      data_contains_perfect = Enum.any?(perfect_matches, fn(perfect) -> perfect.target == "Perfect" end)
+      data_contains_related = Enum.any?(related_matches, fn(related) -> related.target == "Related" end)
+      data_contains_plausible = Enum.any?(plausible_matches, fn(plausible) -> plausible.target == "Plausible" end)
+      assert Enum.count(final_data) == 5
+      assert data_contains_perfect && data_contains_related && data_contains_plausible == true
     end
 
     defp data_set do
@@ -69,10 +92,41 @@ defmodule Cryptscrape.ScraperTest do
         name: list,
         url: "#{list}.network",
         type: ".network",
-        relevancy: 99,
+        relevancy: 9,
         date: NaiveDateTime.utc_now()
       }end)
     end
+
+    defp perfect_data_set do
+      list_a = [
+        "coin",
+        "blockdaddy",
+        "twocents",
+      ]
+      list_b = [
+        "ico",
+        "gay",
+        "sex",
+        "0x88a",
+        "twocats"]
+    a =  Enum.map(list_a, fn(list) -> %{
+        name: list,
+        url: "#{list}.network",
+        type: ".network",
+        relevancy: 9,
+        date: NaiveDateTime.utc_now()
+      }end)
+
+    b = Enum.map(list_b, fn(list) -> %{
+        name: list,
+        url: "#{list}.network",
+        type: ".network",
+        relevancy: 0,
+        date: NaiveDateTime.utc_now()
+      }end)
+      a ++ b
+    end
+
 
 
 end
