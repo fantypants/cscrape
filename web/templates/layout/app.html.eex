@@ -14,6 +14,15 @@
         box-shadow: 2px 2px 2px black;
     }
 
+    .main{
+      padding-top: 0px!important;
+      background-color: #F8F8F8;
+    }
+
+    .navbar{
+      padding-bottom: 0px!important;
+    }
+
     </style>
   </head>
       <body>
@@ -101,7 +110,7 @@
 
 
 
-        <main class="main" role="main" style="margin-left: 25px">
+        <main class="main" role="main">
           <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
           <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
           <%= render @view_module, @view_template, assigns %>
@@ -121,4 +130,28 @@
 
 
   </body>
+  <footer>
+    <div class="parallax-pro">
+        <div class="img-src" style="background-color: grey;">         <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 text-center credits">
+                          <div class="credits">
+                                  ICORUMORS.io
+                          </div>
+                        </div>
+                    </div>
+                    <div class="space-30"></div>
+                    <div class="row">
+                         <div class="col-md-12 text-center">
+                            <div class="credits">
+                              Copyright 2018 icorumors.io
+                            </div>
+                        </div>
+                    </div>
+                </div></div>
+
+
+    </div>
+
+  <footer>
 </html>

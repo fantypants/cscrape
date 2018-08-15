@@ -220,6 +220,12 @@
                   <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/envelope-closed-4x.png") %>">
                   </div>
                 </a>
+                <a href="<%= domain_path(@conn, :generatelist) %>" class="list-group-item">
+                  <div class="panel-heading"><h4>Manually Run Scraper</h4></div>
+                  <div class="panel-body">
+                  <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/data-transfer-download-4x.png") %>">
+                  </div>
+                </a>
             </ul>
           </div>
         </div>
