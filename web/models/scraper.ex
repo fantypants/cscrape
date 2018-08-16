@@ -5,7 +5,7 @@ defmodule Cryptscrape.Scraper do
 
 def runlist() do
   data = newlist
-  filtered_data = data |> Target.filter_initial_domains
+  filtered_data = data |> Target.filter_initial_domains |> scrapegit()
   invalid_returns = filtered_data |> Target.process_invalid
   correct_returns = filtered_data |> Target.remove_invalid
   direct_matches = correct_returns |> Target.direct_matches
