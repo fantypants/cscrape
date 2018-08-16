@@ -27,17 +27,17 @@ defmodule Cryptscrape.DomainController do
   end
 
   def watch_index(conn, _params) do
-    domains = Repo.all(from d in Domain, where: d.target == ^"Watch") |> Repo.preload(:votes) |> Enum.sort_by(fn(a) -> a.relevancy end) |> Enum.reverse
+    domains = Repo.all(from d in Domain, where: d.target == ^"Plausible") |> Repo.preload(:votes) |> Enum.sort_by(fn(a) -> a.relevancy end) |> Enum.reverse
     conn |> render("watch_index.html", domains: domains)
   end
 
   def potential_index(conn, _params) do
-    domains = Repo.all(from d in Domain, where: d.target == ^"Potential") |> Repo.preload(:votes) |> Enum.sort_by(fn(a) -> a.relevancy end) |> Enum.reverse
+    domains = Repo.all(from d in Domain, where: d.target == ^"Perfect") |> Repo.preload(:votes) |> Enum.sort_by(fn(a) -> a.relevancy end) |> Enum.reverse
     conn |> render("potential_index.html", domains: domains)
   end
 
   def direct_index(conn, _params) do
-    domains = Repo.all(from d in Domain, where: d.target == ^"Direct") |> Repo.preload(:votes) |> Enum.sort_by(fn(a) -> a.relevancy end) |> Enum.reverse
+    domains = Repo.all(from d in Domain, where: d.target == ^"Related") |> Repo.preload(:votes) |> Enum.sort_by(fn(a) -> a.relevancy end) |> Enum.reverse
     conn |> render("direct_index.html", domains: domains)
   end
 

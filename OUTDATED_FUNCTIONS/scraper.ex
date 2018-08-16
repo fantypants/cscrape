@@ -60,3 +60,42 @@ response = HTTPotion.get(url) |> IO.inspect
       IO.puts "Error"
   end
 end
+
+
+#old
+defp remove_entries(map) do
+map |> Enum.reject(fn(a) -> a.relevancy == "invalid" end)
+end
+
+
+#old
+def remove_duplicates(filtered_list, targetted_list) do
+  targetted_list |> Enum.map(fn(a) ->
+    new_list = filtered_list
+    |> Enum.reject(fn(b) -> b.name == a.name end)
+  end)
+end
+
+
+#OLD
+def runlist_old() do
+
+  #Perfect Matches are Direct hits with github
+      list = newlist
+      filtered_list = Target.filter_initial_domains(list)
+      raw_list = scrapegit(filtered_list)
+      direct_list = filtered_list |> Target.direct_matches
+      raw_list_without_direct = remove_duplicates(raw_list, direct_list)
+      perfect_matches = Target.perfect_matches(raw_list, direct_list)
+      pending_matches = Target.watch_list(perfect_matches, raw_list)
+      perfect = perfect_matches |> Enum.map(fn(a) -> Target.insert_matches(a) end)
+      direct = remove_duplicates(direct_list, perfect_matches) |> List.flatten |> Enum.map(fn(a) -> Target.insert_matches(a) end)
+      # NEED TO FIX pending = remove_duplicates(pending_matches, direct_list) |> List.flatten |> Enum.map(fn(a) -> Target.insert_matches(a) end)
+      pending  = pending_matches |> Enum.map(fn(a) -> Target.insert_matches(a) end)
+      IO.puts "#### Stats ####"
+      IO.puts "FILTERED: #{Enum.count(filtered_list)}"
+      IO.puts "DIRECT: #{Enum.count(direct)}"
+      IO.puts "PERFECT: #{Enum.count(perfect)}"
+      IO.puts "PENDING: #{Enum.count(pending)}"
+
+end

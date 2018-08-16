@@ -68,9 +68,9 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="<%= domain_path @conn, :index %>">List All Domains</a>
-                  <a class="dropdown-item" href="<%= domain_path @conn, :watch_index %>">Watch These</a>
-                  <a class="dropdown-item" href="<%= domain_path @conn, :potential_index %>">Potential Matches</a>
-                  <a class="dropdown-item" href="<%= domain_path @conn, :direct_index %>">Direct Matches</a>
+                  <a class="dropdown-item" href="<%= domain_path @conn, :potential_index %>">Perfect</a>
+                  <a class="dropdown-item" href="<%= domain_path @conn, :direct_index %>">Related</a>
+                  <a class="dropdown-item" href="<%= domain_path @conn, :watch_index %>">Plausible</a>
                 </div>
               </li>
 
@@ -135,7 +135,7 @@
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark main-nav" id="statsblock">
           <a class="navbar-brand" href="/">
-            
+
             </a>
         </nav>
         </header>
