@@ -162,7 +162,7 @@
                   <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/globe.svg") %>">
                   </div>
                 </a>
-                <a href="#" class="list-group-item">
+                <a href="<%= csv_path(@conn, :csvupload, @user.id) %>" class="list-group-item">
                   <div class="panel-heading"><h4>Add Domains</h4></div>
                   <div class="panel-body">
                   <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/flash.svg") %>">

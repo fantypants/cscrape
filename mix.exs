@@ -52,6 +52,7 @@ defmodule Cryptscrape.Mixfile do
       {:stripity_stripe, "~> 2.0"},
       {:csvlixir, "~> 2.0.3"},
       {:csv, "~> 1.4.0"},
+      {:timex, "~> 3.1"},
       {:ex_machina, "~> 2.2"},
       {:bamboo_smtp, "~> 1.5.0"},
       {:edeliver, "~> 1.4.2"},

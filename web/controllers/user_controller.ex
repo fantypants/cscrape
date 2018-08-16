@@ -4,6 +4,8 @@ defmodule Cryptscrape.UserController do
   import Cryptscrape.Authorize
   alias Phauxth.Log
   alias Cryptscrape.Accounts
+  alias Cryptscrape.Domain
+  alias Cryptscrape.Csv
   alias Cryptscrape.Payment
   alias Cryptscrape.Mailer
   alias Bamboo.SentEmailViewerPlug
@@ -55,6 +57,13 @@ changeset = Accounts.User.changeset(%Accounts.User{}, %{name: "name"})
         render(conn, "resetpassword.html", changeset: changeset)
     end
 end
+
+  def csvupload(%Plug.Conn{assigns: %{current_user: user}} = conn, %{"id" => id}) do
+    changeset = Domain.changeset(%Domain{})
+    render(conn, "csvupload.html", changeset: changeset)
+  end
+
+  
 
   def customers(conn, _) do
     full_list = Stripe.Customer.list()
