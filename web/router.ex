@@ -56,6 +56,12 @@ defmodule Cryptscrape.Router do
     get "users/:id/customers", UserController, :customers
 
     get "/csv", Csv, :export
+    get "users/:id/csvupload", UserController, :csvupload
+    post "users/:id/csvupload", UserController, :csvupload
+    get "users/:id/csvupload", Csv, :csvupload
+    post "users/:id/csvupload", Csv, :csvupload
+    get "users/:id/insert", Csv, :insert
+    post "users/:id/insert", Csv, :insert
 
     get "/users/:id/admin", UserController, :admin
     post "/users/:id/admin", UserController, :admin

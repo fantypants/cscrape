@@ -2,34 +2,25 @@ defmodule Cryptscrape.Scraper do
   alias Cryptscrape.DomainController
   alias Cryptscrape.Target
 
+
 def runlist() do
-
-  #Perfect Matches are Direct hits with github
-      list = newlist
-      filtered_list = Target.filter_initial_domains(list)
-      raw_list = scrapegit(filtered_list)
-      direct_list = filtered_list |> Target.direct_matches
-      raw_list_without_direct = remove_duplicates(raw_list, direct_list)
-      perfect_matches = Target.perfect_matches(raw_list, direct_list)
-      pending_matches = Target.watch_list(perfect_matches, raw_list)
-      perfect = perfect_matches |> Enum.map(fn(a) -> Target.insert_matches(a) end)
-      direct = remove_duplicates(direct_list, perfect_matches) |> List.flatten |> Enum.map(fn(a) -> Target.insert_matches(a) end)
-      # NEED TO FIX pending = remove_duplicates(pending_matches, direct_list) |> List.flatten |> Enum.map(fn(a) -> Target.insert_matches(a) end)
-      pending  = pending_matches |> Enum.map(fn(a) -> Target.insert_matches(a) end)
-      IO.puts "#### Stats ####"
-      IO.puts "FILTERED: #{Enum.count(filtered_list)}"
-      IO.puts "DIRECT: #{Enum.count(direct)}"
-      IO.puts "PERFECT: #{Enum.count(perfect)}"
-      IO.puts "PENDING: #{Enum.count(pending)}"
-
+  data = newlist
+  filtered_data = data |> Target.filter_initial_domains |> scrapegit()
+  invalid_returns = filtered_data |> Target.process_invalid
+  correct_returns = filtered_data |> Target.remove_invalid
+  direct_matches = correct_returns |> Target.direct_matches
+  perfect_matches = Target.perfect_matches(correct_returns, direct_matches) |> Target.insert_type_of_match(:perfect)
+  related_matches = Target.related_matches(direct_matches, perfect_matches) |> Target.insert_type_of_match(:related)
+  plausible_matches = Target.plausible_matches(correct_returns, direct_matches) |> Target.insert_type_of_match(:plausible)
+  final_data = perfect_matches ++ related_matches ++ plausible_matches
+  direct_and_invalid = invalid_returns |> Target.direct_matches |> Target.insert_type_of_match(:related)
+  plausible_and_invalid = Target.invalid_matches(final_data, invalid_returns)
+    |> Target.remove_direct(direct_and_invalid)
+    |> Target.insert_type_of_match(:plausible)
+  data_to_insert = final_data ++ plausible_and_invalid ++ direct_and_invalid
+  data_to_insert |> Enum.map(fn(a) -> Target.insert_matches(a) end)
 end
 
-def remove_duplicates(filtered_list, targetted_list) do
-  targetted_list |> Enum.map(fn(a) ->
-    new_list = filtered_list
-    |> Enum.reject(fn(b) -> b.name == a.name end)
-  end)
-end
 
 defp newlist() do
 user = Application.get_env(:cryptscrape, Cryptscrape.Endpoint)[:user]
@@ -42,11 +33,8 @@ case response do
     map = response.body |> splitdomain
   %HTTPotion.ErrorResponse{} ->
     IO.puts "doesnt work"
+    IO.inspect response
 end
-end
-
-defp remove_entries(map) do
-map |> Enum.reject(fn(a) -> a.relevancy == "invalid" end)
 end
 
 defp splitdomain(list) do
@@ -95,7 +83,5 @@ defp processgit(name) do
     {:error, "Error in RPC Call"}
   end
 end
-
-
 
 end
