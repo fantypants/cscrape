@@ -337,6 +337,6 @@ footer.footer {
 
 
   </body>
-  <script src="<%= static_path(@conn, "/js/new-age.js") %>"></script>
+
 
 </html>
