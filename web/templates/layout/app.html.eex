@@ -157,7 +157,6 @@
 
 
     <script type="text/javascript" src="<%= static_path(@conn, "/js/jquery-3.3.1.min.js") %>"></script>
-    <script type="text/javascript" src="<%= static_path(@conn, "/js/bootstrap.min.js") %>"></script>
     <script type="text/javascript" src="<%= static_path(@conn, "/js/app.js") %>"></script>
     <script>
       (function(b,i,t,C,O,I,N) {
