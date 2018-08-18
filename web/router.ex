@@ -34,6 +34,7 @@ defmodule Cryptscrape.Router do
     get "/direct/domains/:id/add_vote", DomainController, :add_vote
     post "/direct/domains/:id/add_negvote", DomainController, :add_negvote
     get "/direct/domains/:id/add_negvote", DomainController, :add_negvote
+    
 
     get "/potential/domains/", DomainController, :potential_index
     post "/potential/domains/:id/add_vote", DomainController, :add_vote

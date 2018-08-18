@@ -6,14 +6,25 @@ defmodule Cryptscrape.DomainController do
   alias Cryptscrape.Negvote
   alias Cryptscrape.Accounts
 
-  def index(conn, _params) do
+  def index(%Plug.Conn{assigns: %{current_user: user}} = conn, _params) do
     domains = Repo.all(Domain) |> Repo.preload(:votes) |> Repo.preload(:negvotes) |> Enum.sort_by(fn(a) -> a.name end) |> Enum.reverse
-    render(conn, "index.html", domains: domains)
+    IO.inspect user
+    case user do
+    nil ->
+      redirect conn, to: page_path(conn, :index)
+    _->
+      render(conn, "index.html", domains: domains)
+    end
   end
 
   def edit_domains(%Plug.Conn{assigns: %{current_user: user}} = conn, _params) do
     domains = Repo.all(Domain) |> Repo.preload(:votes) |> Enum.sort_by(fn(a) -> a.name end) |> Enum.reverse
-    render(conn, "edit_domains.html", domains: domains)
+    case user do
+    nil ->
+      redirect conn, to: page_path(conn, :index)
+    _->
+      render(conn, "edit_domains.html", domains: domains)
+    end
   end
 
   def count_votes(domain) do
@@ -26,25 +37,46 @@ defmodule Cryptscrape.DomainController do
     Repo.all(query) |> Enum.count
   end
 
-  def watch_index(conn, _params) do
+  def watch_index(%Plug.Conn{assigns: %{current_user: user}} = conn, _params) do
     domains = Repo.all(from d in Domain, where: d.target == ^"Plausible") |> Repo.preload(:votes) |> Enum.sort_by(fn(a) -> a.relevancy end) |> Enum.reverse
-    conn |> render("watch_index.html", domains: domains)
+    case user do
+    nil ->
+      redirect conn, to: page_path(conn, :index)
+    _->
+      conn |> render("watch_index.html", domains: domains)
+    end
   end
 
-  def potential_index(conn, _params) do
+  def potential_index(%Plug.Conn{assigns: %{current_user: user}} = conn, _params) do
     domains = Repo.all(from d in Domain, where: d.target == ^"Perfect") |> Repo.preload(:votes) |> Enum.sort_by(fn(a) -> a.relevancy end) |> Enum.reverse
-    conn |> render("potential_index.html", domains: domains)
+    case user do
+    nil ->
+      redirect conn, to: page_path(conn, :index)
+    _->
+      conn |> render("potential_index.html", domains: domains)
+    end
   end
 
-  def direct_index(conn, _params) do
+  def direct_index(%Plug.Conn{assigns: %{current_user: user}} = conn, _params) do
     domains = Repo.all(from d in Domain, where: d.target == ^"Related") |> Repo.preload(:votes) |> Enum.sort_by(fn(a) -> a.relevancy end) |> Enum.reverse
-    conn |> render("direct_index.html", domains: domains)
+    case user do
+    nil ->
+      redirect conn, to: page_path(conn, :index)
+    _->
+      conn |> render("direct_index.html", domains: domains)
+    end
   end
 
 
-  def new(conn, _params) do
+  def new(%Plug.Conn{assigns: %{current_user: user}} = conn, _params) do
     changeset = Domain.changeset(%Domain{})
-    render(conn, "new.html", changeset: changeset)
+    case user do
+    nil ->
+      redirect conn, to: page_path(conn, :index)
+    _->
+      render(conn, "new.html", changeset: changeset)
+    end
+
   end
 
   def run_list() do
@@ -154,15 +186,27 @@ defmodule Cryptscrape.DomainController do
 
   end
 
-  def show(conn, %{"id" => id}) do
+  def show(%Plug.Conn{assigns: %{current_user: user}} = conn, %{"id" => id}) do
     domain = Repo.get!(Domain, id)
-    render(conn, "show.html", domain: domain)
+    case user do
+    nil ->
+      redirect conn, to: page_path(conn, :index)
+    _->
+      render(conn, "show.html", domain: domain)
+    end
+
   end
 
-  def edit(conn, %{"id" => id}) do
+
+  def edit(%Plug.Conn{assigns: %{current_user: user}} = conn, %{"id" => id}) do
     domain = Repo.get!(Domain, id)
     changeset = Domain.changeset(domain)
-    render(conn, "edit.html", domain: domain, changeset: changeset)
+    case user do
+    nil ->
+      redirect conn, to: page_path(conn, :index)
+    _->
+      render(conn, "edit.html", domain: domain, changeset: changeset)
+    end
   end
 
   def update(conn, %{"id" => id, "domain" => domain_params}) do
@@ -181,13 +225,18 @@ defmodule Cryptscrape.DomainController do
 
   def delete_domain(%Plug.Conn{assigns: %{current_user: user}} = conn, %{"id" => id}) do
     domain = Repo.get!(Domain, id)
+    case user do
+    nil ->
+      redirect conn, to: page_path(conn, :index)
+    _->
     Repo.delete!(domain)
     conn
     |> put_flash(:info, "Domain deleted successfully.")
     |> redirect(to: domain_path(conn, :edit_domains, user.id))
+    end
   end
 
-  def delete(conn, %{"id" => id}) do
+  def delete(%Plug.Conn{assigns: %{current_user: user}} = conn, %{"id" => id}) do
     domain = Repo.get!(Domain, id)
     IO.puts "Deleting"
 
