@@ -25,21 +25,9 @@
       <td><%= domain.relevancy %></td>
       <td><%= Cryptscrape.DomainController.count_votes(domain.id) %></td>
       <td><%= Cryptscrape.DomainController.count_negvotes(domain.id) %></td>
-      <%= if domain.target == "Perfect" do %>
+    
       <td><span class="badge badge-pill badge-success"><%= domain.target %></span></td>
-      <% end %>
-      <%= if domain.target == "Related"  do %>
-      <td><span class="badge badge-pill badge-warning"><%= domain.target %></span></td>
-      <% end %>
-      <%= if domain.target == "Plausible" do %>
-      <td><span class="badge badge-pill badge-info"><%= domain.target %></span></td>
-      <% end %>
-      <%= if domain.target == "Direct"  do %>
-      <td><span class="badge badge-pill badge-warning"> Related</span></td>
-      <% end %>
-      <%= if domain.target == "Potential" do %>
-      <td><span class="badge badge-pill badge-info"> Plausible</span></td>
-      <% end %>
+
       <%= if domain.target == nil do %>
       <td><span class="badge badge-pill badge-info">NOT SET</span></td>
       <% end %>

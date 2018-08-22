@@ -8,7 +8,6 @@ defmodule Cryptscrape.DomainController do
 
   def index(%Plug.Conn{assigns: %{current_user: user}} = conn, _params) do
     domains = Repo.all(Domain) |> Repo.preload(:votes) |> Repo.preload(:negvotes) |> Enum.sort_by(fn(a) -> a.name end) |> Enum.reverse
-    IO.inspect user
     case user do
     nil ->
       redirect conn, to: page_path(conn, :index)
