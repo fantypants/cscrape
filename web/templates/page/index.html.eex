@@ -299,38 +299,48 @@ footer.footer {
      </div>
 </section>
 
-<div class="masthead text-black text-center">
-<div class="container">
-  <div class="row">
-    <div class="col-xl-16 mx-auto">
-      <h1 class="mb-5">Pricing</h1>
-    </div>
-  </div>
 
-      <div class="plans">
-        <div class="row">
-          <div class="col-lg-8 mx-auto">
-          <table class="table">
-            <thead>
-              <td>Free</td>
-            </thead>
-            <tbody>
-            </tbody>
-          </table>
-        </div>
-        <div class="col-lg-8 mx-auto">
-          <table class="table">
-            <thead>
-              <td>Plan</td>
-            </thead>
-            <tbody>
-            </tbody>
-          </table>
-        </div>
+<header class="masthead text-black text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-9 mx-auto">
+        <h1 class="mb-5">Sign Up Now!</h1>
+        <p> With access to the earliest ICO Startups to give your research the head start you deserve, you will get access to all features on the site from downloading content, to API access for developers</p>
+      </div>
+      <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+        <table class="table table-bordered">
+        <thead>
+          <th></th>
+          <th> Trial </th>
+          <th> Premium </th>
+        </thead>
+        <tbody>
+          <tr>
+          <td> Access to Unlimited Domains </td>
+          <td>  <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/circle-check-4x.png") %>"></td>
+          <td> <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/circle-check-4x.png") %>"> </td>
+        </tr>
+        <tr>
+          <td> Download Valuable Leads  </td>
+          <td>  <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/circle-check-4x.png") %>"></td>
+          <td>  <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/circle-check-4x.png") %>"></td>
+        </tr>
+        <tr>
+          <td> Access to our API (Coming Soon) </td>
+          <td>  <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/circle-check-4x.png") %>"></td>
+          <td>  <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/circle-check-4x.png") %>"></td>
+        </tr>
+        <tr>
+          <td> Cost </td>
+          <td>  Free for 7 Days</td>
+          <td>  $9.99/Month</td>
+        </tr>
+        </tbody>
+      </table>
       </div>
     </div>
   </div>
-</div>
+</header>
 
 
 
