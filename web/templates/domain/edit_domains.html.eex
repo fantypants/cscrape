@@ -22,7 +22,7 @@
       <td><%= domain.name %></td>
       <td><%= domain.date %></td>
       <td><%= domain.active %></td>
-      <td><a href="http://<%= domain.url %>"><%= domain.url %></a></td>
+      <td><a href="http://<%= domain.url %>" target="blank"><%= domain.url %></a></td>
       <td><%= domain.relevancy %></td>
       <td><%= Cryptscrape.DomainController.count_votes(domain.id) %></td>
       <td><%= Cryptscrape.DomainController.count_negvotes(domain.id) %></td>
