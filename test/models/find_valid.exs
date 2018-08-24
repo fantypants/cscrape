@@ -36,8 +36,8 @@ defmodule Cryptscrape.FindValidTest do
       assert valid? == true && invalid? == false
     end
 
-    test "URL List contains 2 valid and 1 false" do
-      urls = ["asq-coin.network", "bitdb.network", "cingularity.network"]
+    test "URL List contains 3 valid and 1 false" do
+      urls = ["asq-coin.network", "bitdb.network", "cingularity.network", "bradt.network"]
       checked_domains = FindValid.run_domain_verification(urls)
       valid_domains = checked_domains |> Enum.filter(fn(domain) -> domain.active? == true end) |> Enum.count
       invalid_domains = checked_domains |> Enum.filter(fn(domain) -> domain.active? == false end) |> Enum.count

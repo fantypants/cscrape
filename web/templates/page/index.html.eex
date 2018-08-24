@@ -14,7 +14,9 @@
   }
   body {
   font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: transparent!important;
 }
+
 
 h1,
 h2,
@@ -142,34 +144,70 @@ footer.footer {
 .panel-group-ico{
   box-shadow: 1px 1px 1px grey;
 }
+
+#page{
+  background-color: transparent!important;
+  background: transparent!important;
+}
+
+#target{
+  width: 100%;
+  height: 100%;
+}
+canvas {
+  width: 100%!important;
+  height: 100%!important;
+  z-index: 0;
+  background-color: transparent!important;
+}
+#textnew{
+  z-index: 2;
+  position: absolute;
+  padding-left: 20%;
+  color: white;
+  opacity: 0.7;
+  font-size: 35px;
+  font-weight: bold;
+}
+#textfront{
+  z-index: 3;
+  position: absolute;
+  padding-left: 20%;
+  color: yellow;
+  font-size: 35px;
+  font-weight: bold;
+  opacity: 0.1;
+  transparent: true;
+}
+
+#page{
+  background-color: black!important;
+}
+#white{
+  background-color: white!important;
+  opacity: 0.90;
+}
+#clear{
+  background-color: black!important;
+}
   </style>
   </head>
 
   <body id="page">
 
-    <header class="masthead text-black text-center">
-      <div class="container">
+
+      <div class="container container-fluid">
         <div class="row">
-          <div class="col-xl-9 mx-auto">
-            <h1 class="mb-5">Where you go before an ICO Drops!</h1>
-          </div>
-          <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-            <form>
-              <div class="form-row">
-                <div class="col-12 col-md-9 mb-2 mb-md-0">
-                  <input type="email" class="form-control form-control-lg" placeholder="Enter your email...">
-                </div>
-                <div class="col-12 col-md-3">
-                  <button type="submit" class="btn btn-block btn-lg btn-primary">Sign up!</button>
-                </div>
+              <div class="col-lg-16" id="target">
+                <p id="textnew">ICORumors</p>
+                <p id="textfront">ICORumors.IO</p>
+
               </div>
-            </form>
-          </div>
         </div>
       </div>
-</header>
 
-<div class="masthead text-black text-center">
+
+<div class="masthead text-black text-center" id="white">
 <div class="container">
   <div class="row">
     <div class="col-xl-16 mx-auto">
@@ -265,7 +303,7 @@ footer.footer {
   </div>
 </div>
 
-<section class="features-icons bg-light text-center">
+<section class="features-icons bg-light text-center" id="clear">
      <div class="container">
        <div class="row">
          <div class="col-lg-4">
@@ -347,6 +385,11 @@ footer.footer {
 
 
   </body>
+  <script type="text/javascript" src="<%= static_path(@conn, "/js/three.min.js") %>"></script>
+  <script type="text/javascript" src="<%= static_path(@conn, "/js/projector.js") %>"></script>
+  <script type="text/javascript" src="<%= static_path(@conn, "/js/canvasrenderer.js") %>"></script>
+  <script type="text/javascript" src="<%= static_path(@conn, "/js/main.js") %>"></script>
+
 
 
 </html>
