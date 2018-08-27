@@ -23,6 +23,7 @@ defmodule Cryptscrape.UserController do
     render(conn, "admin.html", user: user)
   end
 
+
   def view_emails(%Plug.Conn{assigns: %{current_user: user}} = conn, _params) do
   changeset = Accounts.User.changeset(%Accounts.User{}, %{name: "name"})
   emails = Bamboo.SentEmail.all |> Enum.map(fn(a) -> %{from: elem(a.from, 1), to: elem(List.first(a.to), 1), subject: a.subject, message: a.html_body} end)
@@ -63,7 +64,7 @@ end
     render(conn, "csvupload.html", changeset: changeset)
   end
 
-  
+
 
   def customers(conn, _) do
     full_list = Stripe.Customer.list()

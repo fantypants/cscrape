@@ -17,13 +17,13 @@ defmodule Cryptscrape.FindValidTest do
     end
 
     test "test_page_meta_contains_name" do
-      url = "bitdb.network"
+      url = "elevensports.network"
       domain_has_correct_header = FindValid.check_meta(url)
       assert domain_has_correct_header == true
     end
 
     test "test_page_has_name" do
-      url = "bitdb.network"
+      url = "cingularity.network"
       domain_has_correct_header = FindValid.check_page(url)
       assert domain_has_correct_header == true
     end
@@ -36,12 +36,12 @@ defmodule Cryptscrape.FindValidTest do
       assert valid? == true && invalid? == false
     end
 
-    test "URL List contains 3 valid and 1 false" do
-      urls = ["asq-coin.network", "bitdb.network", "cingularity.network", "bradt.network"]
+    test "URL List contains 0 valid and 3 false" do
+      urls = ["dexico.network", "elevensports.network", "godsword.network"]
       checked_domains = FindValid.run_domain_verification(urls)
       valid_domains = checked_domains |> Enum.filter(fn(domain) -> domain.active? == true end) |> Enum.count
       invalid_domains = checked_domains |> Enum.filter(fn(domain) -> domain.active? == false end) |> Enum.count
-      assert valid_domains == 2 && invalid_domains == 1
+      assert valid_domains == 0 && invalid_domains == 3
     end
 
 

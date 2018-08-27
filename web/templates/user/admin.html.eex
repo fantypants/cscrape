@@ -238,6 +238,12 @@
                   <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/loop-circular.svg") %>">
                   </div>
                 </a>
+                <a href="<%= domain_path(@conn, :intermin_check) %>" class="list-group-item">
+                  <div class="panel-heading"><h4>Check Valid Domains</h4></div>
+                  <div class="panel-body">
+                  <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/cloud-upload.svg") %>">
+                  </div>
+                </a>
             </ul>
           </div>
         </div>

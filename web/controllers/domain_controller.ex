@@ -5,8 +5,10 @@ defmodule Cryptscrape.DomainController do
   alias Cryptscrape.Vote
   alias Cryptscrape.Negvote
   alias Cryptscrape.Accounts
+  alias Cryptscrape.FindValid
 
   def index(%Plug.Conn{assigns: %{current_user: user}} = conn, _params) do
+
     domains = Repo.all(Domain) |> Repo.preload(:votes) |> Repo.preload(:negvotes) |> Enum.sort_by(fn(a) -> a.name end) |> Enum.reverse
     case user do
     nil ->
@@ -14,6 +16,12 @@ defmodule Cryptscrape.DomainController do
     _->
       render(conn, "index.html", domains: domains)
     end
+  end
+
+  def intermin_check(%Plug.Conn{assigns: %{current_user: user}} = conn, _params) do
+      url_list = Cryptscrape.Repo.all(from d in Domain, where: d.active == false, select: d.url, limit: 10)
+      Task.async(fn() -> FindValid.run_domain_verification(url_list) end)
+      conn |> redirect(to: user_path(conn, :admin, user))
   end
 
   def edit_domains(%Plug.Conn{assigns: %{current_user: user}} = conn, _params) do

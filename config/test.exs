@@ -16,6 +16,8 @@ config :cryptscrape, Cryptscrape.Repo,
   password: "postgres",
   database: "cryptscrape_test",
   hostname: "localhost",
+  timeout: 60_000,
+ pool_timeout: 60_000,
   pool: Ecto.Adapters.SQL.Sandbox
 
 

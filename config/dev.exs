@@ -53,4 +53,6 @@ config :cryptscrape, Cryptscrape.Repo,
   password: "postgres",
   database: "cryptscrape_dev",
   hostname: "localhost",
-  pool_size: 10
+  pool_size: 10,
+  timeout: 60_000,
+  pool_timeout: 60_000
