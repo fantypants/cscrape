@@ -212,11 +212,21 @@ ico1{
   </head>
 
   <body id="page">
-    <div class="container">
+
       <div class="row">
         <div class="col-2">
-          <h1 class="left-menu text-white">Daily ICO Updates
-          <ico1>TEST</ico1></h1>
+          <div class="row">
+            <h1 class="left-menu text-white">Features
+            <ico1>TEST</ico1></h1>
+          </div>
+          <div class="row">
+            <h1 class="left-menu text-white">About
+            <ico1>TEST</ico1></h1>
+          </div>
+          <div class="row">
+            <h1 class="left-menu text-white">Pricing
+            <ico1>TEST</ico1></h1>
+          </div>
         </div>
         <div class="col-8">
           <p id="textnew">ICORumors</p>
@@ -224,10 +234,22 @@ ico1{
           <div id="target"></div>
       </div>
       <div class="col-2">
-        <h1 class="right-menu text-white">Find Startups before the Whales do</h1>
+        <div class="row">
+          <h1 class="left-menu text-white">Login/Signup
+          <ico1>TEST</ico1></h1>
+        </div>
+        <div class="row">
+          <h1 class="left-menu text-white">Contact
+          <ico1>TEST</ico1></h1>
+        </div>
+        <div class="row">
+          <h1 class="left-menu text-white">FAQ
+          <ico1>TEST</ico1></h1>
+        </div>
+      </div>
       </div>
     </div>
-</div>
+
   </body>
   <script type="text/javascript" src="<%= static_path(@conn, "/js/three.min.js") %>"></script>
   <script type="text/javascript" src="<%= static_path(@conn, "/js/projector.js") %>"></script>
