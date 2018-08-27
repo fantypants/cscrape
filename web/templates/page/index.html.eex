@@ -158,7 +158,6 @@ footer.footer {
 #target{
   width: 100%;
   height: 100%;
-  display: block;
 }
 canvas {
   width: 100%!important;
@@ -197,34 +196,38 @@ canvas {
   background-color: black!important;
 }
 .left-menu{
-  margin-left: 50px;
-
+  z-index: 5;
 }
 .left-menu:hover ico1{
     display: block;
 }
 .right-menu{
-  padding-left: 500px;
+  z-index: 5;
 }
 ico1{
+  z-index: 5;
   display: none;
 }
   </style>
   </head>
 
   <body id="page">
-
-              <div id="target">
-                <p id="textnew">ICORumors</p>
-                <p id="textfront">ICORumors.IO</p>
-                <div class="row">
-                  <h1 class="left-menu text-white">Daily ICO Updates
-                  <ico1>TEST</ico1></h1>
-                  <h1 class="right-menu text-white">Find Startups before the Whales do</h1>
-
-                </div>
-              </div>
-
+    <div class="container">
+      <div class="row">
+        <div class="col-2">
+          <h1 class="left-menu text-white">Daily ICO Updates
+          <ico1>TEST</ico1></h1>
+        </div>
+        <div class="col-8">
+          <p id="textnew">ICORumors</p>
+          <p id="textfront">ICORumors.IO</p>
+          <div id="target"></div>
+      </div>
+      <div class="col-2">
+        <h1 class="right-menu text-white">Find Startups before the Whales do</h1>
+      </div>
+    </div>
+</div>
   </body>
   <script type="text/javascript" src="<%= static_path(@conn, "/js/three.min.js") %>"></script>
   <script type="text/javascript" src="<%= static_path(@conn, "/js/projector.js") %>"></script>
