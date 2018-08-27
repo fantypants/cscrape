@@ -212,7 +212,6 @@ ico1{
   </head>
 
   <body id="page">
-
       <div class="row">
         <div class="col-2">
           <div class="row">
@@ -235,8 +234,12 @@ ico1{
       </div>
       <div class="col-2">
         <div class="row">
-          <h1 class="left-menu text-white">Login/Signup
-          <ico1>TEST</ico1></h1>
+          <a href="<%= session_path(@conn, :new) %>" class="list-group-item">
+            <div class="panel-heading"><h4>Sign Up or Login</h4></div>
+            <div class="panel-body">
+            <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/person.svg") %>">
+            </div>
+          </a>
         </div>
         <div class="row">
           <h1 class="left-menu text-white">Contact

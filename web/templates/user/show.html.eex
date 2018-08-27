@@ -1,3 +1,4 @@
+<body id="page">
 <div class="col-12 col-lg-4">
   <div class="panel-group panel-group-ico">
     <div class="panel panel-default">
@@ -47,6 +48,6 @@
 </div>
 </div>
 
-
+</body>
 <span><%= link "Edit", to: user_path(@conn, :edit, @user) %></span><br>
 <span><%= link "Back", to: user_path(@conn, :index) %></span>

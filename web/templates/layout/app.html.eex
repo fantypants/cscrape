@@ -136,11 +136,7 @@
           </div>
         </nav>
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark main-nav" id="statsblock">
-          <a class="navbar-brand" href="/">
-
-            </a>
-        </nav>
+    
         </header>
         <% end %>
 
