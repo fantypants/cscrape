@@ -208,6 +208,22 @@ ico1{
   z-index: 5;
   display: none;
 }
+
+.panel-heading{
+  background-color: transparent!important;
+}
+
+.panel-body{
+  background-color: transparent!important;
+}
+
+.list-group-item{
+  background-color: transparent!important;
+}
+
+.icon-check{
+  filter: invert(100%);
+}
   </style>
   </head>
 
@@ -215,8 +231,8 @@ ico1{
       <div class="row">
         <div class="col-2">
           <div class="row">
-            <h1 class="left-menu text-white">Features
-            <ico1>TEST</ico1></h1>
+            <img class="icon-check m-auto d-flex side left-menu text-white" src="<%= static_path(@conn, "/images/icons/svg/social-aws.svg") %>">
+            <ico1>TEST</ico1>
           </div>
           <div class="row">
             <h1 class="left-menu text-white">About
@@ -237,19 +253,38 @@ ico1{
           <a href="<%= session_path(@conn, :new) %>" class="list-group-item">
             <div class="panel-heading"><h4>Sign Up or Login</h4></div>
             <div class="panel-body">
-            <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/person.svg") %>">
+            <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/unlock-keyhole.svg") %>">
             </div>
           </a>
         </div>
         <div class="row">
-          <h1 class="left-menu text-white">Contact
-          <ico1>TEST</ico1></h1>
+          <a href="mailto: matthewmjeaton@gmail.com" class="list-group-item">
+            <div class="panel-heading"><h4>Contact</h4></div>
+            <div class="panel-body">
+            <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/chat.svg") %>">
+            </div>
+          </a>
         </div>
         <div class="row">
-          <h1 class="left-menu text-white">FAQ
-          <ico1>TEST</ico1></h1>
+          <a href="" class="list-group-item">
+            <div class="panel-heading"><h4>FAQ's</h4></div>
+            <div class="panel-body">
+            <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/information-circle.svg") %>">
+            </div>
+          </a>
         </div>
       </div>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/social-facebook-variant.svg") %>">
+        </div>
+        <div class="col-4">
+          <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/social-linkedin-variant.svg") %>">
+        </div>
+        <div class="col-4">
+          <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/social-reddit.svg") %>">
+        </div>
       </div>
     </div>
 
