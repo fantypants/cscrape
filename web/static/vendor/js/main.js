@@ -1,17 +1,22 @@
 
 // once everything is loaded, we run our Three.js stuff.
-$(function () {
 
 
 
     // create a scene, that will hold all our elements such as objects, cameras and lights.
     var scene = new THREE.Scene();
+    var mouse = new THREE.Vector2();
+    var mouseX = 0, mouseY = 0;
+    var windowHalfX = window.innerWidth / 2;
+		var windowHalfY = window.innerHeight / 2;
+    document.addEventListener('mousemove', onDocumentMouseMove, false);
     scene.background = new THREE.Color( 0x000000 );
 
 
 
     // create a camera, which defines where we're looking at.
     var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+    //camera = new THREE.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 2, 2000 );
 
     // create a render and set the size
     var webGLRenderer = new THREE.WebGLRenderer();
@@ -31,6 +36,7 @@ $(function () {
 
     // call the render function
     var step = 0;
+    var step2 = 0;
 
     var knot;
 
@@ -122,17 +128,27 @@ $(function () {
         return mesh;
     }
 
+    function onDocumentMouseMove(event) {
+      event.preventDefault();
+    mouseX = event.clientX - windowHalfX;
+		mouseY = event.clientY - windowHalfY;
+      console.log(mouse);
+    }
+
     function render() {
-
-
+      //var posx = mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+      //var posy = mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+      //camera.position.x += ( mouseX - camera.position.x ) * 0.001;
+			//camera.position.y += ( - mouseY - camera.position.y ) * 0.001;
+      //camera.position.z = 50;
+			//camera.lookAt( scene.position );
         if (controls.rotate) {
-            knot.rotation.y = step += 0.0001;
+            //knot.rotation.y = step += 0.0001;
+            knot.rotation.y = step += (mouseX * 0.00001);
+            knot.rotation.x = step2 += (mouseY * 0.00001);
         }
 
         // render using requestAnimationFrame
         requestAnimationFrame(render);
         webGLRenderer.render(scene, camera);
     }
-
-
-});
