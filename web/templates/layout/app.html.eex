@@ -11,43 +11,131 @@
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/phoenix.css") %>">
     <style>
-    .navbar{
-        box-shadow: 2px 2px 2px black;
+    .navbar-global {
+      background-color: indigo;
     }
 
-    .main{
-      padding-top: 0px!important;
-      background-color: transparent!important;
+    .navbar-global .navbar-brand {
+      color: white;
     }
 
-    .navbar{
-      padding-bottom: 0px!important;
+    .navbar-global .navbar-user > li > a
+    {
+      color: white;
+    }
+
+    .navbar-primary {
+      background-color: #333;
+      bottom: 0px;
+      left: 0px;
+      position: absolute;
+      top: 0px; /* 51 */
+      margin-top: 0px!important;
+      width: 60px;
+      z-index: 8;
+      overflow: hidden;
+      -webkit-transition: all 0.1s ease-in-out;
+      -moz-transition: all 0.1s ease-in-out;
+      transition: all 0.1s ease-in-out;
+    }
+
+    .navbar-primary.collapsed {
+      width: 200px;
+    }
+
+    .navbar-primary.collapsed .glyphicon {
+      font-size: 22px;
+    }
+
+    .navbar-primary .nav-label {
+      display: none;
+    }
+
+
+
+    .navbar-primary:hover .nav-label {
+      display: inline-block;
+    }
+
+    .navbar-primary:hover .side{
+      margin-left: 0px!important;
+      width: 30%!important;
+    }
+
+    .navbar-primary:hover + main{
+      margin-left: 200px!important;
+    }
+
+    main{
+      margin-left: 60px;
+    }
+
+    .btn-expand-collapse {
+        position: absolute;
+        display: block;
+        left: 0px;
+        bottom:0;
+        width: 100%;
+        padding: 8px 0;
+        border-top:solid 1px #666;
+        color: grey;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .btn-expand-collapse:hover,
+    .btn-expand-collapse:focus {
+        background-color: #222;
+        color: white;
+    }
+
+    .btn-expand-collapse:active {
+        background-color: #111;
+    }
+
+    .navbar-primary-menu,
+    .navbar-primary-menu li {
+      margin:0; padding:0;
+      list-style: none;
+    }
+
+    .navbar-primary-menu li a {
+      display: block;
+      padding: 10px 18px;
+      text-align: left;
+      border-bottom:solid 1px #444;
+      color: #ccc;
+    }
+
+    .navbar-primary-menu li a:hover {
+      background-color: #000;
+      text-decoration: none;
+      color: white;
+    }
+
+    .navbar-primary-menu li a .side {
+      margin-right: 6px;
+      width: 100%!important;
+    }
+
+    .navbar-primary-menu li a:hover .glyphicon {
+      color: orchid;
+    }
+
+    main{
+      margin-top: 60px;
+      padding: 20px;
+    }
+
+
+    .navbar-primary:hover{
+      width: 200px;
     }
 
     .side{
-      color: white;
-      fill: #fff!important;
-      width: 50px;
-      height: 50px;
-    }
-
-    #statsblock{
-      border-radius: 0;
-      padding-top: 0px!important;
-      margin-top: -40px!important;
-      background-color: black!important;
-      z-index: -10
-    }
-
-    #statsblock .navbar-brand{
-      padding-top: -30px!important;
-      background-color: black!important;
-      margin-left: 350px!important;
-    }
-
-    #statsblock .navbar-brand p{
-      color: green;
-      text-align: middle;
+      filter: invert(100%);
+      margin-left: 0px!important;
+      width: 100%!important;
     }
 
     </style>
@@ -56,98 +144,52 @@
         <%= if @conn.request_path !== "/" do %>
         <header>
 
-          <nav class="navbar navbar-expand-lg navbar-dark bg-dark main-nav">
-            <a class="navbar-brand" href="/">ICORUMORS</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <%= if @current_user do %>
-
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="side" src="<%= static_path(@conn, "/images/icons/svg/globe.svg") %>">
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="<%= domain_path @conn, :index %>">List All Domains</a>
-                  <a class="dropdown-item" href="<%= domain_path @conn, :potential_index %>">Perfect</a>
-                  <a class="dropdown-item" href="<%= domain_path @conn, :direct_index %>">Related</a>
-                  <a class="dropdown-item" href="<%= domain_path @conn, :watch_index %>">Plausible</a>
-                </div>
-              </li>
-
-              <% else %>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Pricing
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Overview</a>
-                  <a class="dropdown-item" href="#">Plans</a>
-                </div>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  About
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">About ICORUMORS.io</a>
-                  <a class="dropdown-item" href="#">FAQs</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-              </li>
-              <% end %>
-            </ul>
-            <ul class="navbar-nav mr-auto navbar-nav navbar-right">
-              <li class="nav-item dropdown user" id="user_link">
-                <a class="nav-link dropdown-toggle user" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <img class="side" src="<%= static_path(@conn, "/images/icons/svg/person.svg") %>">
-                </a>
-                <%= if @current_user do %>
-                <%= if @current_user.auth_level == false || @current_user.auth_level == nil do %>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item disabled" href="#">Login or Register</a>
-                  <a class="dropdown-item" href="<%= user_path(@conn, :show, @current_user.id) %>">Profile</a>
-                  <div class="dropdown-divider"></div>
-                  <%= link "Logout", to: session_path(@conn, :delete, @current_user), method: :delete %>
+          <nav class="navbar navbar-inverse navbar-global navbar-fixed-top">
+                <div class="container-fluid">
+                  <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">ICORUMORS</a>
                   </div>
-                  <% end %>
-                  <%= if @current_user.auth_level !== false || @current_user.auth_level !== nil do %>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item disabled" href="#">Login or Register</a>
-                  <a class="dropdown-item" href="<%= user_path(@conn, :show, @current_user.id) %>">Profile</a>
-                  <a class="dropdown-item" href="<%= user_path(@conn, :admin, @current_user.id) %>">Settings</a>
-                  <div class="dropdown-divider"></div>
-                  <%= link "Logout", to: session_path(@conn, :delete, @current_user), method: :delete %>
-                </div>
-                  <% end %>
 
-                <% else %>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="<%= session_path @conn, :new %>">Login or Register</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item disabled" href="#">Logout</a>
                 </div>
-                <% end %>
+              </nav>
+          <nav class="navbar-primary">
+            <ul class="navbar-primary-menu">
+              <li>
+                <a href="<%= domain_path @conn, :index %>"><img class="side" src="<%= static_path(@conn, "/images/icons/svg/globe.svg") %>"><span class="nav-label">All Domains</span>
+                </a>
+                <a href="<%= domain_path @conn, :index %>"><img class="side" src="<%= static_path(@conn, "/images/icons/svg/lightbulb.svg") %>"><span class="nav-label">Related</span>
+                </a>
+                <a href="<%= domain_path @conn, :index %>"><img class="side" src="<%= static_path(@conn, "/images/icons/svg/heart.svg") %>"><span class="nav-label">Perfect</span>
+                </a>
+                <a href="<%= domain_path @conn, :index %>"><img class="side" src="<%= static_path(@conn, "/images/icons/svg/circle-growth.svg") %>"><span class="nav-label">Plausible</span>
+                </a>
+                <a href="<%= domain_path @conn, :index %>"><img class="side" src="<%= static_path(@conn, "/images/icons/svg/group.svg") %>"><span class="nav-label">Profile</span>
+                </a>
+                <a href="<%= domain_path @conn, :index %>"><img class="side" src="<%= static_path(@conn, "/images/icons/svg/settings2.svg") %>"><span class="nav-label">Settings</span>
+                </a>
+                <a href="<%= domain_path @conn, :index %>"><img class="side" src="<%= static_path(@conn, "/images/icons/svg/power.svg") %>"><span class="nav-label">Logout</span>
+                </a>
               </li>
             </ul>
-          </div>
-        </nav>
+          </nav>
 
-    
         </header>
         <% end %>
 
 
+<main class="main" role="main">
 
-        <main class="main" role="main">
           <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
           <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
           <%= render @view_module, @view_template, assigns %>
-        </main>
 
+</main>
 
 
         <!-- If Not Logged In -->
@@ -160,7 +202,12 @@
     <script type="text/javascript" src="<%= static_path(@conn, "/js/app.js") %>"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+ <script>
+ $('.btn-expand-collapse').click(function(e) {
+				$('.navbar-primary').toggleClass('collapsed');
+});
 
+</script>
   </body>
   <footer>
     <div class="parallax-pro">

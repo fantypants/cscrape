@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>ICO Rumors.io</title>
+    <!-- Bootstrap CSS CDN -->
+    <script type="text/javascript" src="<%= static_path(@conn, "/js/jquery-3.3.1.min.js") %>"></script>
+
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/phoenix.css") %>">
+    <style>
+    .navbar{
+        box-shadow: 2px 2px 2px black;
+    }
+
+    .main{
+      padding-top: 0px!important;
+      background-color: transparent!important;
+    }
+
+    .navbar{
+      padding-bottom: 0px!important;
+    }
+
+    .side{
+      color: white;
+      fill: #fff!important;
+      width: 50px;
+      height: 50px;
+    }
+
+    #statsblock{
+      border-radius: 0;
+      padding-top: 0px!important;
+      margin-top: -40px!important;
+      background-color: black!important;
+      z-index: -10
+    }
+
+    #statsblock .navbar-brand{
+      padding-top: -30px!important;
+      background-color: black!important;
+      margin-left: 350px!important;
+    }
+
+    #statsblock .navbar-brand p{
+      color: green;
+      text-align: middle;
+    }
+
+    </style>
+  </head>
+      <body>
+        <%= if @conn.request_path !== "/" do %>
+        <header>
+
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark main-nav">
+            <a class="navbar-brand" href="/">ICORUMORS</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <%= if @current_user do %>
+
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img class="side" src="<%= static_path(@conn, "/images/icons/svg/globe.svg") %>">
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="<%= domain_path @conn, :index %>">List All Domains</a>
+                  <a class="dropdown-item" href="<%= domain_path @conn, :potential_index %>">Perfect</a>
+                  <a class="dropdown-item" href="<%= domain_path @conn, :direct_index %>">Related</a>
+                  <a class="dropdown-item" href="<%= domain_path @conn, :watch_index %>">Plausible</a>
+                </div>
+              </li>
+
+              <% else %>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Pricing
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Overview</a>
+                  <a class="dropdown-item" href="#">Plans</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  About
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">About ICORUMORS.io</a>
+                  <a class="dropdown-item" href="#">FAQs</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </li>
+              <% end %>
+            </ul>
+            <ul class="navbar-nav mr-auto navbar-nav navbar-right">
+              <li class="nav-item dropdown user" id="user_link">
+                <a class="nav-link dropdown-toggle user" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <img class="side" src="<%= static_path(@conn, "/images/icons/svg/person.svg") %>">
+                </a>
+                <%= if @current_user do %>
+                <%= if @current_user.auth_level == false || @current_user.auth_level == nil do %>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item disabled" href="#">Login or Register</a>
+                  <a class="dropdown-item" href="<%= user_path(@conn, :show, @current_user.id) %>">Profile</a>
+                  <div class="dropdown-divider"></div>
+                  <%= link "Logout", to: session_path(@conn, :delete, @current_user), method: :delete %>
+                  </div>
+                  <% end %>
+                  <%= if @current_user.auth_level !== false || @current_user.auth_level !== nil do %>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item disabled" href="#">Login or Register</a>
+                  <a class="dropdown-item" href="<%= user_path(@conn, :show, @current_user.id) %>">Profile</a>
+                  <a class="dropdown-item" href="<%= user_path(@conn, :admin, @current_user.id) %>">Settings</a>
+                  <div class="dropdown-divider"></div>
+                  <%= link "Logout", to: session_path(@conn, :delete, @current_user), method: :delete %>
+                </div>
+                  <% end %>
+
+                <% else %>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="<%= session_path @conn, :new %>">Login or Register</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item disabled" href="#">Logout</a>
+                </div>
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+    
+        </header>
+        <% end %>
+
+
+
+        <main class="main" role="main">
+          <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+          <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+          <%= render @view_module, @view_template, assigns %>
+        </main>
+
+
+
+        <!-- If Not Logged In -->
+
+
+          <!-- Page Content -->
+
+
+
+    <script type="text/javascript" src="<%= static_path(@conn, "/js/app.js") %>"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+  </body>
+  <footer>
+    <div class="parallax-pro">
+        <div class="img-src" style="background-color: black;">
+          <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 text-center credits">
+                          <div class="credits">
+                                  ICORUMORS.io
+                          </div>
+                        </div>
+                    </div>
+                    <div class="space-30"></div>
+                    <div class="row">
+                         <div class="col-md-12 text-center">
+                            <div class="credits">
+                              Copyright 2018 icorumors.io
+                            </div>
+                        </div>
+                    </div>
+                </div></div>
+
+
+    </div>
+
+  <footer>
+</html>

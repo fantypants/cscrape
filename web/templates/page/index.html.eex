@@ -168,7 +168,7 @@ canvas {
 #textnew{
   z-index: 2;
   position: absolute;
-  padding-left: 20%;
+  padding-left: 50%;
   color: white;
   opacity: 0.7;
   font-size: 35px;
@@ -177,7 +177,7 @@ canvas {
 #textfront{
   z-index: 3;
   position: absolute;
-  padding-left: 20%;
+  padding-left: 50%;
   color: yellow;
   font-size: 35px;
   font-weight: bold;
@@ -263,6 +263,10 @@ ico1{
   display: block;
 }
 
+#nav-container #mySidenav a:hover #overlay2{
+  display: block;
+}
+
 #nav-container #mySidenav a:hover > div#tester1{
   display: block;
 }
@@ -308,9 +312,25 @@ ico1{
 #overlay {
     position: fixed; /* Sit on top of the page content */
     display: none;
-    margin-left: 160px;/* Hidden by default */
+    margin-left: 600px;
+    margin-top: 120px;/* Hidden by default */
     width: 100%; /* Full width (cover the whole page) */
     height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+}
+
+#overlay2 {
+    position: fixed; /* Sit on top of the page content */
+    display: none;
+    margin-left: 160px;
+    width: 90%; /* Full width (cover the whole page) */
+    height: 90%; /* Full height (cover the whole page) */
     top: 0;
     left: 0;
     right: 0;
@@ -337,6 +357,11 @@ ico1{
   width: 5%!important;
   height: 5%!important;
   margin-left: 100px!important;
+}
+
+.baseline{
+  padding-top: 20px!important;
+  padding-left: 10%!important;
 }
 
 .one{
@@ -382,9 +407,12 @@ ico1{
   <body id="page">
       <div class="row" id="nav-container">
         <div class="col-2" id="right-slide">
-            <div id="mySidenav" class="sidenav">
+            <div id="mySidenav">
              <a href="#" id="projects">Features
                <div id="overlay">
+                 <div class="row">
+                   <h1 class="baseline"> Features </h3>
+                 </div>
                  <div class="row">
                    <img class="icon-check features m-auto d-flex side left-menu text-white" src="<%= static_path(@conn, "/images/icons/svg/scale.svg") %>">
                     <h3 class="one">Even the scales</h3>
@@ -412,7 +440,7 @@ ico1{
              </div>
              </a>
              <a href="#" id="pricing">Pricing
-               <div id="overlay">
+               <div id="overlay2">
                  <div class="row">
                    <header class="masthead text-black text-center">
                      <div class="container">
@@ -490,14 +518,14 @@ ico1{
       </div>
       </div>
       <div class="row">
-        <div class="col-4" id="test-btn">
-          <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/social-facebook-variant.svg") %>">
+        <div class="col-4">
+          <img class="icon-check features m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/social-facebook-variant.svg") %>">
         </div>
         <div class="col-4">
-          <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/social-linkedin-variant.svg") %>">
+          <img class="icon-check features m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/social-linkedin-variant.svg") %>">
         </div>
         <div class="col-4">
-          <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/social-reddit.svg") %>">
+          <img class="icon-check features m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/social-reddit.svg") %>">
         </div>
       </div>
     </div>
