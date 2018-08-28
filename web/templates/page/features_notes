@@ -1,0 +1,54 @@
+<h3>Even the scales</h3>
+<p class="lead mb-0">ICORUMORS Balances the power of investment in your favour</p>
+<h3>Helping You Connect the Dots</h3>
+<p class="lead mb-0">We've taken the hassle out of early research!</p>
+<h3>Fast Results</h3>
+  <p class="lead mb-0">Our Data Gives you results fast!</p>
+<h3>Updated Daily</h3>
+<p class="lead mb-0">We work 24/7 to give you instant ICO Leads</p>
+<h3>Our Finger is on the ICO Pulse</h3>
+  <p class="lead mb-0">We continually montior and check feeds to strengthen the data set</p>
+<h3>Easy to Use</h3>
+<p class="lead mb-0">We have Sorted, Filtered & Prioritized data so you don't have too!</p>
+
+
+<div class="row">
+  <img class="icon-check features m-auto d-flex side left-menu text-white" src="<%= static_path(@conn, "/images/icons/svg/share2.svg") %>">
+  <ico1>TEST</ico1>
+</div>
+<div class="row">
+  <img class="icon-check features m-auto d-flex side left-menu text-white" src="<%= static_path(@conn, "/images/icons/svg/globe.svg") %>">
+  <ico1>TEST</ico1>
+</div>
+<div class="row">
+  <img class="icon-check features m-auto d-flex side left-menu text-white" src="<%= static_path(@conn, "/images/icons/svg/rocket-rotated-45.svg") %>">
+  <ico1>TEST</ico1>
+</div>
+<div class="row">
+  <img class="icon-check features m-auto d-flex side left-menu text-white" src="<%= static_path(@conn, "/images/icons/svg/medical-pulse.svg") %>">
+  <ico1>TEST</ico1>
+</div>
+<div class="row">
+  <img class="icon-check features m-auto d-flex side left-menu text-white" src="<%= static_path(@conn, "/images/icons/svg/book-hardcover-open-writing.svg") %>">
+  <ico1>TEST</ico1>
+</div>
+
+
+
+
+<div class="row">
+  <a href="mailto: matthewmjeaton@gmail.com" class="list-group-item">
+    <div class="panel-heading"><h4>Contact</h4></div>
+    <div class="panel-body">
+    <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/chat.svg") %>">
+    </div>
+  </a>
+</div>
+<div class="row">
+  <a href="" class="list-group-item">
+    <div class="panel-heading"><h4>FAQ's</h4></div>
+    <div class="panel-body">
+    <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/information-circle.svg") %>">
+    </div>
+  </a>
+</div>

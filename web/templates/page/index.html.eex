@@ -209,6 +209,11 @@ ico1{
   display: none;
 }
 
+#mySidenav .text-white{
+  color: white!important;
+  z-index: 5!important;
+}
+
 .panel-heading{
   background-color: transparent!important;
 }
@@ -224,59 +229,268 @@ ico1{
 .icon-check{
   filter: invert(100%);
 }
+
+.features{
+  width: 5%;
+  height: 5%;
+}
+#mySidenav a {
+    position: absolute; /* Position them relative to the browser window */
+    left: -80px; /* Position them outside of the screen */
+    transition: 0.3s; /* Add transition on hover */
+    padding: 15px; /* 15px padding */
+    width: 100px; /* Set a specific width */
+    text-decoration: none; /* Remove underline */
+    font-size: 20px; /* Increase font size */
+    color: white; /* White text color */
+    border-radius: 0 5px 5px 0; /* Rounded corners on the top right and bottom right side */
+}
+
+#mySidenav2 a {
+  right: -80px;
+  position: absolute; /* Position them relative to the browser window */
+  transition: 0.3s; /* Add transition on hover */
+  padding: 15px; /* 15px padding */
+  width: 100px; /* Set a specific width */
+  text-decoration: none; /* Remove underline */
+  font-size: 20px; /* Increase font size */
+  color: white; /* White text color */
+  border-radius: 0 5px 5px 0;
+  z-index: 5!important;/* Rounded corners on the top right and bottom right side */
+}
+
+#nav-container #mySidenav a:hover #overlay{
+  display: block;
+}
+
+#nav-container #mySidenav a:hover > div#tester1{
+  display: block;
+}
+
+#mySidenav a:hover{
+    left: 0; /* On mouse-over, make the elements appear as they should */
+}
+
+/* The about link: 20px from the top with a green background */
+#pricing {
+    top: 80px;
+    background-color: #4CAF50;
+}
+
+#blog {
+    top: 80px;
+    background-color: #0080ff; /* Blue */
+}
+
+#projects {
+    top: 20px;
+    background-color: #2196F3; /* Red */
+}
+
+#projects:hover #overlay{
+  display: block;
+}
+
+#about {
+    top: 140px;
+    background-color: #eae001; /* Red */
+}
+
+#portal {
+    top: 200px;
+    background-color:  #f44336/* Light Black */
+}
+
+#test-btn:hover{
+  left: 0;
+}
+
+#overlay {
+    position: fixed; /* Sit on top of the page content */
+    display: none;
+    margin-left: 160px;/* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+}
+
+#tester1{
+  display: none;
+}
+
+#feature-list{
+  float: right;
+  color: white!important;
+  margin-left: 0px!important;
+  z-index: 5!important;
+  position: absolute;
+}
+
+#overlay .features{
+  float: right;
+  width: 5%!important;
+  height: 5%!important;
+  margin-left: 100px!important;
+}
+
+.one{
+  padding-top: 20px!important;
+  margin-right: 80%!important;
+}
+
+.two{
+  padding-top: 20px!important;
+  margin-right: 71.5%!important;
+}
+.three{
+  padding-top: 20px!important;
+  margin-right: 82%!important;
+}
+.four{
+  padding-top: 20px!important;
+  margin-right: 80.5%!important;
+}
+.five{
+  padding-top: 20px!important;
+  margin-right: 71.3%!important;
+}
+.six{
+  padding-top: 20px!important;
+  margin-right: 82%!important;
+}
+
+.icon-check .features{
+  float: left!important;
+}
+
+.masthead{
+  margin-left: -160px;
+}
+
   </style>
   </head>
 
+
+
+
   <body id="page">
-      <div class="row">
-        <div class="col-2">
-          <div class="row">
-            <img class="icon-check m-auto d-flex side left-menu text-white" src="<%= static_path(@conn, "/images/icons/svg/social-aws.svg") %>">
-            <ico1>TEST</ico1>
-          </div>
-          <div class="row">
-            <h1 class="left-menu text-white">About
-            <ico1>TEST</ico1></h1>
-          </div>
-          <div class="row">
-            <h1 class="left-menu text-white">Pricing
-            <ico1>TEST</ico1></h1>
-          </div>
+      <div class="row" id="nav-container">
+        <div class="col-2" id="right-slide">
+            <div id="mySidenav" class="sidenav">
+             <a href="#" id="projects">Features
+               <div id="overlay">
+                 <div class="row">
+                   <img class="icon-check features m-auto d-flex side left-menu text-white" src="<%= static_path(@conn, "/images/icons/svg/scale.svg") %>">
+                    <h3 class="one">Even the scales</h3>
+                 </div>
+                   <div class="row">
+                     <img class="icon-check features m-auto d-flex side left-menu text-white" src="<%= static_path(@conn, "/images/icons/svg/share2.svg") %>">
+                     <h3 class="two"> Helping You Connect the Dots</h3>
+                   </div>
+                   <div class="row">
+                     <img class="icon-check features m-auto d-flex side left-menu text-white" src="<%= static_path(@conn, "/images/icons/svg/globe.svg") %>">
+                     <h3 class="three">Fast Results</h3>
+                   </div>
+                   <div class="row">
+                     <img class="icon-check features m-auto d-flex side left-menu text-white" src="<%= static_path(@conn, "/images/icons/svg/rocket-rotated-45.svg") %>">
+                     <h3 class="four"> Updated Daily</h3>
+                   </div>
+                   <div class="row">
+                     <img class="icon-check features m-auto d-flex side left-menu text-white" src="<%= static_path(@conn, "/images/icons/svg/medical-pulse.svg") %>">
+                     <h3 class="five">Our Finger is on the ICO Pulse</h3>
+                   </div>
+                   <div class="row">
+                     <img class="icon-check features m-auto d-flex side left-menu text-white" src="<%= static_path(@conn, "/images/icons/svg/book-hardcover-open-writing.svg") %>">
+                     <h3 class="six"> Easy to Use</h3>
+                   </div>
+             </div>
+             </a>
+             <a href="#" id="pricing">Pricing
+               <div id="overlay">
+                 <div class="row">
+                   <header class="masthead text-black text-center">
+                     <div class="container">
+                       <div class="row">
+                         <div class="col-xl-9 mx-auto">
+                           <h1 class="mb-5">Sign Up Now!</h1>
+                           <p> With access to the earliest ICO Startups to give your research the head start you deserve, you will get access to all features on the site from downloading content, to API access for developers</p>
+                         </div>
+                         <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+                           <table class="table table-bordered">
+                           <thead>
+                             <th></th>
+                             <th> Trial </th>
+                             <th> Premium </th>
+                           </thead>
+                           <tbody>
+                             <tr>
+                             <td> Access to Unlimited Domains </td>
+                             <td>  <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/circle-check-4x.png") %>"></td>
+                             <td> <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/circle-check-4x.png") %>"> </td>
+                           </tr>
+                           <tr>
+                             <td> Download Valuable Leads  </td>
+                             <td>  <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/circle-check-4x.png") %>"></td>
+                             <td>  <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/circle-check-4x.png") %>"></td>
+                           </tr>
+                           <tr>
+                             <td> Access to our API (Coming Soon) </td>
+                             <td>  <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/circle-check-4x.png") %>"></td>
+                             <td>  <img class="icon-check m-auto d-flex" src="<%= static_path(@conn, "/images/icons/png/circle-check-4x.png") %>"></td>
+                           </tr>
+                           <tr>
+                             <td> Cost </td>
+                             <td>  Free for 7 Days</td>
+                             <td>  $9.99/Month</td>
+                           </tr>
+                           </tbody>
+                         </table>
+                         </div>
+                       </div>
+                     </div>
+                   </header>
+                 </div>
+             </div>
+             </a>
+
+             <a href="#" id="about">About
+               <div id="overlay">
+                 <div class="row">
+                 </div>
+               </div>
+             </a>
+
+             <a href="<%= session_path(@conn, :new) %>" id="portal">Login
+               <div id="overlay">
+                 <div class="row">
+                   </div>
+                 </div>
+             </a>
+           </div>
+
+
         </div>
         <div class="col-8">
           <p id="textnew">ICORumors</p>
           <p id="textfront">ICORumors.IO</p>
+          <div id="tester1">TESTTTTTTTTT</div>
           <div id="target"></div>
       </div>
       <div class="col-2">
-        <div class="row">
-          <a href="<%= session_path(@conn, :new) %>" class="list-group-item">
-            <div class="panel-heading"><h4>Sign Up or Login</h4></div>
-            <div class="panel-body">
-            <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/unlock-keyhole.svg") %>">
-            </div>
-          </a>
-        </div>
-        <div class="row">
-          <a href="mailto: matthewmjeaton@gmail.com" class="list-group-item">
-            <div class="panel-heading"><h4>Contact</h4></div>
-            <div class="panel-body">
-            <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/chat.svg") %>">
-            </div>
-          </a>
-        </div>
-        <div class="row">
-          <a href="" class="list-group-item">
-            <div class="panel-heading"><h4>FAQ's</h4></div>
-            <div class="panel-body">
-            <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/information-circle.svg") %>">
-            </div>
-          </a>
-        </div>
+        <div id="mySidenav2" class="sidenav2">
+          <a href="#" id="projects2">Features</a>
+       </div>
+
       </div>
       </div>
       <div class="row">
-        <div class="col-4">
+        <div class="col-4" id="test-btn">
           <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/social-facebook-variant.svg") %>">
         </div>
         <div class="col-4">
@@ -287,7 +501,29 @@ ico1{
         </div>
       </div>
     </div>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidebar").mCustomScrollbar({
+            theme: "minimal"
+        });
 
+        $('#dismiss, .overlay').on('click', function () {
+            // hide sidebar
+            $('#sidebar').removeClass('active');
+            // hide overlay
+            $('.overlay').removeClass('active');
+        });
+
+        $('#sidebarCollapse').on('click', function () {
+            // open sidebar
+            $('#sidebar').addClass('active');
+            // fade in the overlay
+            $('.overlay').addClass('active');
+            $('.collapse.in').toggleClass('in');
+            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        });
+    });
+</script>
   </body>
   <script type="text/javascript" src="<%= static_path(@conn, "/js/three.min.js") %>"></script>
   <script type="text/javascript" src="<%= static_path(@conn, "/js/projector.js") %>"></script>
