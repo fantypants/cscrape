@@ -168,7 +168,7 @@ canvas {
 #textnew{
   z-index: 2;
   position: absolute;
-  padding-left: 50%;
+  padding-left: 90%;
   color: white;
   opacity: 0.7;
   font-size: 35px;
@@ -177,7 +177,7 @@ canvas {
 #textfront{
   z-index: 3;
   position: absolute;
-  padding-left: 50%;
+  padding-left: 90%;
   color: yellow;
   font-size: 35px;
   font-weight: bold;
@@ -236,15 +236,29 @@ ico1{
 }
 #mySidenav a {
     position: absolute; /* Position them relative to the browser window */
-    left: -80px; /* Position them outside of the screen */
+    left: -160px; /* Position them outside of the screen */
     transition: 0.3s; /* Add transition on hover */
     padding: 15px; /* 15px padding */
-    width: 100px; /* Set a specific width */
+    width: 200px; /* Set a specific width */
+    height: 80px;
     text-decoration: none; /* Remove underline */
     font-size: 20px; /* Increase font size */
     color: white; /* White text color */
-    border-radius: 0 5px 5px 0; /* Rounded corners on the top right and bottom right side */
+    display: inline-block;
+    border-radius: 10px 10px 10px 10px;
+   /* Rounded corners on the top right and bottom right side */
 }
+
+#mySidenav a .icon-feature{
+  display: inline-block;
+  position: absolute;
+  margin-top: -40px!important;
+  margin-left: 40px!important;
+  width: 60px;
+  height: 60px;
+}
+
+
 
 #mySidenav2 a {
   right: -80px;
@@ -272,13 +286,17 @@ ico1{
 }
 
 #mySidenav a:hover{
-    left: 0; /* On mouse-over, make the elements appear as they should */
+    left: 0!important; /* On mouse-over, make the elements appear as they should */
+}
+
+#mySidenav a:hover #projects{
+    left: 0!important; /* On mouse-over, make the elements appear as they should */
 }
 
 /* The about link: 20px from the top with a green background */
 #pricing {
-    top: 80px;
-    background-color: #4CAF50;
+    top: 105px;
+    background-color: #2E2FE3;
 }
 
 #blog {
@@ -288,7 +306,7 @@ ico1{
 
 #projects {
     top: 20px;
-    background-color: #2196F3; /* Red */
+    background-color: #700CBC; /* Red */
 }
 
 #projects:hover #overlay{
@@ -296,13 +314,13 @@ ico1{
 }
 
 #about {
-    top: 140px;
-    background-color: #eae001; /* Red */
+    top: 190px;
+    background-color: #CE46A3; /* Red */
 }
 
 #portal {
-    top: 200px;
-    background-color:  #f44336/* Light Black */
+    top: 275px;
+    background-color: #9696F8/* Light Black */
 }
 
 #test-btn:hover{
@@ -328,7 +346,7 @@ ico1{
 #overlay2 {
     position: fixed; /* Sit on top of the page content */
     display: none;
-    margin-left: 160px;
+    margin-left: 260px;
     width: 90%; /* Full width (cover the whole page) */
     height: 90%; /* Full height (cover the whole page) */
     top: 0;
@@ -336,6 +354,40 @@ ico1{
     right: 0;
     bottom: 0;
     background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+}
+
+#overlay-back {
+    position: fixed; /* Sit on top of the page content */
+    display: block;
+    border-radius: 50px;
+    margin-top: 60px;
+    margin-left: 500px;
+    width: 700px; /* Full width (cover the whole page) */
+    height: 700px; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255,255,255,0.2); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+}
+
+#overlay-back2 {
+    position: fixed; /* Sit on top of the page content */
+    display: block;
+    border-radius: 50px;
+    margin-top: 60px;
+    margin-left: 500px;
+    width: 700px; /* Full width (cover the whole page) */
+    height: 700px; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255,255,255,0.2); /* Black background with opacity */
     z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
     cursor: pointer; /* Add a pointer on hover */
 }
@@ -395,7 +447,25 @@ ico1{
 }
 
 .masthead{
-  margin-left: -160px;
+  margin-left: -240px;
+  margin-top: -60px;
+}
+
+#white-trans{
+  background-color: white;
+  opacity: 0.7;
+}
+
+#overlay #container-features{
+  margin-top: -60px!important;
+}
+
+.feature2{
+  position: absolute;
+  margin-left: 80%!important;
+  margin-top: -45px!important;
+  width: 10%!important;
+  height: 35%!important;
 }
 
   </style>
@@ -408,9 +478,12 @@ ico1{
       <div class="row" id="nav-container">
         <div class="col-2" id="right-slide">
             <div id="mySidenav">
-             <a href="#" id="projects">Features
+             <a href="#" id="projects">Features<img class="icon-check icon-feature m-auto d-flex side left-menu text-white" src="<%= static_path(@conn, "/images/icons/svg/cubes.svg") %>">
+
                <div id="overlay">
+                 <div id="container-features">
                  <div class="row">
+                   <div id="overlay-back2"></div>
                    <h1 class="baseline"> Features </h3>
                  </div>
                  <div class="row">
@@ -438,11 +511,13 @@ ico1{
                      <h3 class="six"> Easy to Use</h3>
                    </div>
              </div>
+           </div>
              </a>
-             <a href="#" id="pricing">Pricing
+             <a href="#" id="pricing">Pricing<img class="icon-check icon-feature m-auto d-flex side left-menu text-white" style="margin-top: -36px!important;" src="<%= static_path(@conn, "/images/icons/svg/bitcoin2.svg") %>">
                <div id="overlay2">
                  <div class="row">
                    <header class="masthead text-black text-center">
+                     <div id="overlay-back"></div>
                      <div class="container">
                        <div class="row">
                          <div class="col-xl-9 mx-auto">
@@ -487,14 +562,14 @@ ico1{
              </div>
              </a>
 
-             <a href="#" id="about">About
+             <a href="#" id="about">About<img class="icon-check icon-feature m-auto d-flex side left-menu text-white" style="margin-top: -36px!important;" src="<%= static_path(@conn, "/images/icons/svg/info-circle.svg") %>">
                <div id="overlay">
                  <div class="row">
                  </div>
                </div>
              </a>
 
-             <a href="<%= session_path(@conn, :new) %>" id="portal">Login
+             <a href="<%= session_path(@conn, :new) %>" id="portal">Login<img class="icon-check icon-feature m-auto d-flex side left-menu text-white" style="margin-top: -36px!important;" src="<%= static_path(@conn, "/images/icons/svg/power.svg") %>">
                <div id="overlay">
                  <div class="row">
                    </div>
@@ -507,7 +582,7 @@ ico1{
         <div class="col-8">
           <p id="textnew">ICORumors</p>
           <p id="textfront">ICORumors.IO</p>
-          <div id="tester1">TESTTTTTTTTT</div>
+          <img class="icon-check feature2 m-auto d-flex side left-menu text-white" src="<%= static_path(@conn, "/images/icons/svg/logo_ico.png") %>">
           <div id="target"></div>
       </div>
       <div class="col-2">
