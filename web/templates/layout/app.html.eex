@@ -28,11 +28,14 @@
       background-color: #333;
       bottom: 0px;
       left: 0px;
-      position: absolute;
+      position: fixed;
       top: 0px; /* 51 */
-      margin-top: 0px!important;
+      margin-top: 150px!important;
       width: 60px;
       z-index: 8;
+      height: 360px;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
       overflow: hidden;
       -webkit-transition: all 0.1s ease-in-out;
       -moz-transition: all 0.1s ease-in-out;
@@ -51,7 +54,9 @@
       display: none;
     }
 
-
+    .navbar-primary:hover{
+      height: 560px!important;
+    }
 
     .navbar-primary:hover .nav-label {
       display: inline-block;
@@ -138,44 +143,67 @@
       width: 100%!important;
     }
 
+    .title{
+      position: absolute;
+      margin-left: 12%;
+    }
+
+    .sub-title{
+      margin-top: 50px;
+      margin-left: 30%;
+    }
+
     </style>
   </head>
       <body>
         <%= if @conn.request_path !== "/" do %>
         <header>
-
-          <nav class="navbar navbar-inverse navbar-global navbar-fixed-top">
-                <div class="container-fluid">
-                  <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                      <span class="sr-only">Toggle navigation</span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="/">ICORUMORS</a>
-                  </div>
-
-                </div>
-              </nav>
+          <div class="container">
+          <h2 class="title"> ICORumors.IO </h2>
+          <h5 class="sub-title"> Where to go before the coin drops </h5>
+        </div>
           <nav class="navbar-primary">
             <ul class="navbar-primary-menu">
+              <%= if @current_user do %>
+              <%= if @current_user.auth_level == false || @current_user.auth_level == nil do %>
               <li>
+                <a href="<%= page_path @conn, :index %>"><img class="side" src="<%= static_path(@conn, "/images/icons/svg/home.svg") %>"><span class="nav-label">Home</span>
+                </a>
                 <a href="<%= domain_path @conn, :index %>"><img class="side" src="<%= static_path(@conn, "/images/icons/svg/globe.svg") %>"><span class="nav-label">All Domains</span>
                 </a>
-                <a href="<%= domain_path @conn, :index %>"><img class="side" src="<%= static_path(@conn, "/images/icons/svg/lightbulb.svg") %>"><span class="nav-label">Related</span>
+                <a href="<%= domain_path @conn, :direct_index %>"><img class="side" src="<%= static_path(@conn, "/images/icons/svg/lightbulb.svg") %>"><span class="nav-label">Related</span>
                 </a>
-                <a href="<%= domain_path @conn, :index %>"><img class="side" src="<%= static_path(@conn, "/images/icons/svg/heart.svg") %>"><span class="nav-label">Perfect</span>
+                <a href="<%= domain_path @conn, :potential_index %>"><img class="side" src="<%= static_path(@conn, "/images/icons/svg/heart.svg") %>"><span class="nav-label">Perfect</span>
                 </a>
-                <a href="<%= domain_path @conn, :index %>"><img class="side" src="<%= static_path(@conn, "/images/icons/svg/circle-growth.svg") %>"><span class="nav-label">Plausible</span>
+                <a href="<%= domain_path @conn, :watch_index %>"><img class="side" src="<%= static_path(@conn, "/images/icons/svg/circle-growth.svg") %>"><span class="nav-label">Plausible</span>
                 </a>
-                <a href="<%= domain_path @conn, :index %>"><img class="side" src="<%= static_path(@conn, "/images/icons/svg/group.svg") %>"><span class="nav-label">Profile</span>
-                </a>
-                <a href="<%= domain_path @conn, :index %>"><img class="side" src="<%= static_path(@conn, "/images/icons/svg/settings2.svg") %>"><span class="nav-label">Settings</span>
+                <a href="<%= user_path(@conn, :show, @current_user.id) %>"><img class="side" src="<%= static_path(@conn, "/images/icons/svg/group.svg") %>"><span class="nav-label">Profile</span>
                 </a>
                 <a href="<%= domain_path @conn, :index %>"><img class="side" src="<%= static_path(@conn, "/images/icons/svg/power.svg") %>"><span class="nav-label">Logout</span>
                 </a>
               </li>
+              <% else %>
+              <li>
+                <a href="<%= page_path @conn, :index %>"><img class="side" src="<%= static_path(@conn, "/images/icons/svg/home.svg") %>"><span class="nav-label">Home</span>
+                </a>
+                <a href="<%= domain_path @conn, :index %>"><img class="side" src="<%= static_path(@conn, "/images/icons/svg/globe.svg") %>"><span class="nav-label">All Domains</span>
+                </a>
+                <a href="<%= domain_path @conn, :direct_index %>"><img class="side" src="<%= static_path(@conn, "/images/icons/svg/lightbulb.svg") %>"><span class="nav-label">Related</span>
+                </a>
+                <a href="<%= domain_path @conn, :potential_index %>"><img class="side" src="<%= static_path(@conn, "/images/icons/svg/heart.svg") %>"><span class="nav-label">Perfect</span>
+                </a>
+                <a href="<%= domain_path @conn, :watch_index %>"><img class="side" src="<%= static_path(@conn, "/images/icons/svg/circle-growth.svg") %>"><span class="nav-label">Plausible</span>
+                </a>
+                <a href="<%= user_path(@conn, :show, @current_user.id) %>"><img class="side" src="<%= static_path(@conn, "/images/icons/svg/group.svg") %>"><span class="nav-label">Profile</span>
+                </a>
+                <a href="<%= user_path(@conn, :admin, @current_user.id) %>"><img class="side" src="<%= static_path(@conn, "/images/icons/svg/settings2.svg") %>"><span class="nav-label">Settings</span>
+                </a>
+                <a href="<%= domain_path @conn, :index %>"><img class="side" src="<%= static_path(@conn, "/images/icons/svg/power.svg") %>"><span class="nav-label">Logout</span>
+                </a>
+              </li>
+              <% end %>
+              <% end %>
+
             </ul>
           </nav>
 
@@ -210,8 +238,6 @@
 </script>
   </body>
   <footer>
-    <div class="parallax-pro">
-        <div class="img-src" style="background-color: black;">
           <div class="container">
                     <div class="row">
                         <div class="col-md-12 text-center credits">
@@ -228,10 +254,7 @@
                             </div>
                         </div>
                     </div>
-                </div></div>
-
-
-    </div>
+                </div>
 
   <footer>
 </html>
