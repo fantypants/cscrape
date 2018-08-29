@@ -132,10 +132,23 @@
   }
 
   .panel-group-ico{
-  box-shadow: 1px 1px 1px grey;
+  background: none;
+  background-color: transparent!important;
   }
 
-  .side{
+  .panel{
+    background: none;
+    border: none;
+    border-radius: 5px;
+    background-color: transparent!important;
+  }
+
+  .list-group-item{
+    background: none;
+    background-color: transparent!important;
+  }
+
+  .side2{
     height: 30px!important;
     width: 30px!important;
 
@@ -160,25 +173,25 @@
                 <a href="<%= domain_path(@conn, :edit_domains, @user.id) %>" class="list-group-item">
                   <div class="panel-heading"><h4>Edit Domains</h4></div>
                   <div class="panel-body">
-                  <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/globe.svg") %>">
+                  <img class="icon-check m-auto d-flex side2" src="<%= static_path(@conn, "/images/icons/svg/globe.svg") %>">
                   </div>
                 </a>
                 <a href="<%= csv_path(@conn, :csvupload, @user.id) %>" class="list-group-item">
                   <div class="panel-heading"><h4>Add Domains</h4></div>
                   <div class="panel-body">
-                  <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/flash.svg") %>">
+                  <img class="icon-check m-auto d-flex side2" src="<%= static_path(@conn, "/images/icons/svg/flash.svg") %>">
                   </div>
                 </a>
                 <a href="#" class="list-group-item">
                   <div class="panel-heading"><h4>Remove Duplicates</h4></div>
                   <div class="panel-body">
-                  <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/delete.svg") %>">
+                  <img class="icon-check m-auto d-flex side2" src="<%= static_path(@conn, "/images/icons/svg/delete.svg") %>">
                   </div>
                 </a>
                 <a href="<%= csv_path(@conn, :export) %>" class="list-group-item">
                   <div class="panel-heading"><h4>Export Data</h4></div>
                   <div class="panel-body">
-                  <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/data-transfer-download.svg") %>">
+                  <img class="icon-check m-auto d-flex side2" src="<%= static_path(@conn, "/images/icons/svg/data-transfer-download.svg") %>">
                   </div>
                 </a>
             </ul>
@@ -195,19 +208,19 @@
                 <a href="<%= user_path(@conn, :index) %>" class="list-group-item">
                   <div class="panel-heading"><h4>Edit Users</h4></div>
                   <div class="panel-body">
-                  <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/person.svg") %>">
+                  <img class="icon-check m-auto d-flex side2" src="<%= static_path(@conn, "/images/icons/svg/person.svg") %>">
                   </div>
                 </a>
                 <a href="#" class="list-group-item">
                   <div class="panel-heading"><h4>Add User</h4></div>
                   <div class="panel-body">
-                  <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/people.svg") %>">
+                  <img class="icon-check m-auto d-flex side2" src="<%= static_path(@conn, "/images/icons/svg/people.svg") %>">
                   </div>
                 </a>
                 <a href="#" class="list-group-item">
                   <div class="panel-heading"><h4>User Statistics</h4></div>
                   <div class="panel-body">
-                  <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/magnifying-glass.svg") %>">
+                  <img class="icon-check m-auto d-flex side2" src="<%= static_path(@conn, "/images/icons/svg/magnifying-glass.svg") %>">
                   </div>
                 </a>
             </ul>
@@ -224,25 +237,25 @@
                 <a href="#" class="list-group-item">
                   <div class="panel-heading"><h4>On/Off Planner</h4></div>
                   <div class="panel-body">
-                  <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/power-standby.svg") %>">
+                  <img class="icon-check m-auto d-flex side2" src="<%= static_path(@conn, "/images/icons/svg/power-standby.svg") %>">
                   </div>
                 </a>
                 <a href="<%= user_path(@conn, :view_emails) %>" class="list-group-item">
                   <div class="panel-heading"><h4>Development Email Viewer</h4></div>
                   <div class="panel-body">
-                  <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/envelope-closed.svg") %>">
+                  <img class="icon-check m-auto d-flex side2" src="<%= static_path(@conn, "/images/icons/svg/envelope-closed.svg") %>">
                   </div>
                 </a>
                 <a href="<%= domain_path(@conn, :generatelist) %>" class="list-group-item">
                   <div class="panel-heading"><h4>Manually Run Scraper</h4></div>
                   <div class="panel-body">
-                  <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/loop-circular.svg") %>">
+                  <img class="icon-check m-auto d-flex side2" src="<%= static_path(@conn, "/images/icons/svg/loop-circular.svg") %>">
                   </div>
                 </a>
                 <a href="<%= domain_path(@conn, :intermin_check) %>" class="list-group-item">
                   <div class="panel-heading"><h4>Check Valid Domains</h4></div>
                   <div class="panel-body">
-                  <img class="icon-check m-auto d-flex side" src="<%= static_path(@conn, "/images/icons/svg/cloud-upload.svg") %>">
+                  <img class="icon-check m-auto d-flex side2" src="<%= static_path(@conn, "/images/icons/svg/cloud-upload.svg") %>">
                   </div>
                 </a>
             </ul>

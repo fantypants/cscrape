@@ -25,7 +25,8 @@
     }
 
     .navbar-primary {
-      background-color: #333;
+        opacity: 0.7;
+      background-color: #6A5ACD;
       bottom: 0px;
       left: 0px;
       position: fixed;
@@ -55,10 +56,19 @@
     }
 
     .navbar-primary:hover{
+      opacity: 0.9!important;
       height: 560px!important;
     }
 
+      .navbar-primary:hover #overlay3{
+        display: block!important;
+      }
+
+
+
+
     .navbar-primary:hover .nav-label {
+      opacity: 1;
       display: inline-block;
     }
 
@@ -82,8 +92,9 @@
         bottom:0;
         width: 100%;
         padding: 8px 0;
-        border-top:solid 1px #666;
+        border-top:solid 1px #333;
         color: grey;
+        opacity: 0.8;
         font-size: 20px;
         text-align: center;
     }
@@ -102,9 +113,11 @@
     .navbar-primary-menu li {
       margin:0; padding:0;
       list-style: none;
+
     }
 
     .navbar-primary-menu li a {
+
       display: block;
       padding: 10px 18px;
       text-align: left;
@@ -114,6 +127,7 @@
 
     .navbar-primary-menu li a:hover {
       background-color: #000;
+      opacity: 1;
       text-decoration: none;
       color: white;
     }
@@ -152,7 +166,34 @@
       margin-top: 50px;
       margin-left: 30%;
     }
-
+    #overlay3 {
+        position: fixed; /* Sit on top of the page content */
+        display: none;
+        margin-left: 0px;
+        margin-top: 100px;/* Hidden by default */
+        width: 100%; /* Full width (cover the whole page) */
+        height: 100%; /* Full height (cover the whole page) */
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        -webkit-transition: padding 2s;
+        background-color: rgba(0,0,0,0.1); /* Black background with opacity */
+        z-index: -1!important; /* Specify a stack order in case you're using a different order for other elements */
+        cursor: pointer; /* Add a pointer on hover */
+        transition: color 0.5s linear; /* vendorless fallback */
+   -o-transition: color 0.5s linear; /* opera */
+   -ms-transition: color 0.5s linear; /* IE 10 */
+   -moz-transition: color 0.5s linear; /* Firefox */
+   -webkit-transition: color 0.5s linear; /*safari and chrome */
+   background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(0,0,0,1) 100%);   /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(100%,rgba(130,91,0,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(0,0,0,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(0,0,0,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(0,0,0,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(0,0,0,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#6A5ACD',GradientType=0 ); /* IE6-9 */
+    }
     </style>
   </head>
       <body>
@@ -205,6 +246,7 @@
               <% end %>
 
             </ul>
+            <div id="overlay3"> </div>
           </nav>
 
         </header>

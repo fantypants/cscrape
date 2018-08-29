@@ -1,5 +1,5 @@
 <body id="page">
-<table class="table table-hover">
+<table>
   <thead>
     <tr>
       <th>Name</th>
@@ -12,17 +12,18 @@
       <th>Target</th>
 
       <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
 <%= for domain <- @domains do %>
-    <tr class="text-info">
+    <tr>
       <td><%= domain.name %></td>
       <td><%= domain.date %></td>
       <td><%= domain.type %></td>
     <td><a href="http://<%= domain.url %>" target="blank"><%= domain.url %></a></td>
       <td><%= domain.relevancy %></td>
-      <td><%= Cryptscrape.DomainController.count_votes(domain.id) %></td>
+      <td class="something"><%= Cryptscrape.DomainController.count_votes(domain.id) %></td>
       <td><%= Cryptscrape.DomainController.count_negvotes(domain.id) %></td>
 
       <td><span class="badge badge-pill badge-success"><%= domain.target %></span></td>
