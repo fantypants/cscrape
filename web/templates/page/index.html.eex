@@ -151,8 +151,8 @@ footer.footer {
 }
 
 #page{
-  background-color: transparent!important;
-  background: transparent!important;
+  background-color: black!important;
+  background: url("/images/bg-pattern0.png")!important;
 }
 
 #target{
@@ -164,6 +164,7 @@ canvas {
   height: 100%!important;
   z-index: 0;
   background-color: transparent!important;
+  padding-bottom: 50px;
 }
 #textnew{
   z-index: 2;
@@ -188,6 +189,7 @@ canvas {
 #page{
   background-color: black!important;
 }
+
 #white{
   background-color: white!important;
   opacity: 0.90;
@@ -370,7 +372,9 @@ ico1{
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(255,255,255,0.2); /* Black background with opacity */
+    border-style: solid;
+    border-color: white;
+    background-color: rgba(1,1,255,0.1); /* Black background with opacity */
     z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
     cursor: pointer; /* Add a pointer on hover */
 }
@@ -387,7 +391,9 @@ ico1{
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(255,255,255,0.2); /* Black background with opacity */
+    border-style: solid;
+    border-color: white;
+    background-color: rgba(50,1,100,0.1); /* Black background with opacity */
     z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
     cursor: pointer; /* Add a pointer on hover */
 }

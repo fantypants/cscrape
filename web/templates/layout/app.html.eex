@@ -198,6 +198,7 @@
   </head>
       <body>
         <%= if @conn.request_path !== "/" do %>
+        <%= if @conn.request_path !== "/sessions/new" do %>
         <header>
           <div class="container">
           <h2 class="title"> ICORumors.IO </h2>
@@ -220,7 +221,7 @@
                 </a>
                 <a href="<%= user_path(@conn, :show, @current_user.id) %>"><img class="side" src="<%= static_path(@conn, "/images/icons/svg/group.svg") %>"><span class="nav-label">Profile</span>
                 </a>
-                <a href="<%= domain_path @conn, :index %>"><img class="side" src="<%= static_path(@conn, "/images/icons/svg/power.svg") %>"><span class="nav-label">Logout</span>
+                <a href="<%= session_path(@conn, :delete2, @current_user) %>"><img class="side" src="<%= static_path(@conn, "/images/icons/svg/power.svg") %>"><span class="nav-label">Logout</span>
                 </a>
               </li>
               <% else %>
@@ -239,8 +240,9 @@
                 </a>
                 <a href="<%= user_path(@conn, :admin, @current_user.id) %>"><img class="side" src="<%= static_path(@conn, "/images/icons/svg/settings2.svg") %>"><span class="nav-label">Settings</span>
                 </a>
-                <a href="<%= domain_path @conn, :index %>"><img class="side" src="<%= static_path(@conn, "/images/icons/svg/power.svg") %>"><span class="nav-label">Logout</span>
+                <a href="<%= session_path(@conn, :delete2, @current_user) %>"><img class="side" src="<%= static_path(@conn, "/images/icons/svg/power.svg") %>"><span class="nav-label">Logout</span>
                 </a>
+
               </li>
               <% end %>
               <% end %>
@@ -250,6 +252,7 @@
           </nav>
 
         </header>
+        <% end %>
         <% end %>
 
 

@@ -74,7 +74,8 @@ defmodule Cryptscrape.Router do
     get "/domains/:id/make_active", DomainController, :make_active
     post "/domains/:id/make_active", DomainController, :make_active
     resources "/users", UserController
-    resources "/sessions", SessionController, only: [:new, :create, :delete]
+    get "/sessions/:id/delete2", SessionController, :delete2
+    resources "/sessions", SessionController, only: [:new, :create]
     resources "/domains", DomainController
 
     get "/viewemails", UserController, :view_emails

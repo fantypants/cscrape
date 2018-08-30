@@ -8,13 +8,12 @@ defmodule Cryptscrape.DomainController do
   alias Cryptscrape.FindValid
 
   def index(%Plug.Conn{assigns: %{current_user: user}} = conn, _params) do
-
     domains = Repo.all(Domain) |> Repo.preload(:votes) |> Repo.preload(:negvotes) |> Enum.sort_by(fn(a) -> a.name end) |> Enum.reverse
-    case user do
-    nil ->
-      redirect conn, to: page_path(conn, :index)
-    _->
+    IO.inspect user
+    with _id <- user.id do
       render(conn, "index.html", domains: domains)
+    else
+      nil -> redirect conn, to: page_path(conn, :index)
     end
   end
 
@@ -144,7 +143,9 @@ defmodule Cryptscrape.DomainController do
   def generatelist(conn, _params) do
     IO.puts "Start of generating list"
     Task.async(fn -> Cryptscrape.Scraper.runlist() end)
-    render(conn, "running.html")
+    conn
+      |> put_flash(:info, "Scraper is now running")
+      |> redirect(to: user_path(conn, :admin, conn.assigns[:current_user]))
   end
 
   def create(conn, %{"domain" => domain_params}) do

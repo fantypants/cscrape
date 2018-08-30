@@ -10,7 +10,7 @@
     var windowHalfX = window.innerWidth / 2;
 		var windowHalfY = window.innerHeight / 2;
     document.addEventListener('mousemove', onDocumentMouseMove, false);
-    scene.background = new THREE.Color( 0x000000 );
+    //scene.background = new THREE.Color( 0x000000 );
 
 
 
@@ -19,10 +19,11 @@
     //camera = new THREE.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 2, 2000 );
 
     // create a render and set the size
-    var webGLRenderer = new THREE.WebGLRenderer();
+    var webGLRenderer = new THREE.WebGLRenderer({ alpha: true });
     //webGLRenderer.setClearColor(new THREE.Color(0x000000, 1.0));
     webGLRenderer.setSize(window.innerWidth, window.innerHeight);
     webGLRenderer.shadowMap.enabled = true;
+    webGLRenderer.setClearColor( 0x000000, 0);
 
 
     // position and point the camera to the center of the scene
